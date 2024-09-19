@@ -1,18 +1,25 @@
-const Home = () => {
+import { Header } from 'components/Header/Header';
+
+const styles = {
+  background: {
+    width: '100%',
+    height: '342px',
+    backgroundColor: 'var(--light-grey)',
+    borderBottomLeftRadius: '160px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+};
+
+export default function Home() {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      React homework template
-      <button>Click</button>
+    <div>
+      <Header />
+      <div style={styles.background}>
+        <h1>Placeholder</h1>
+      </div>
     </div>
   );
-};
-export default Home;
+}

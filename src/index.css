@@ -1,5 +1,17 @@
 @import '../node_modules/modern-normalize/modern-normalize.css';
 
+:root {
+  --light-grey: rgba(245, 246, 251, 1);
+  --orange: rgba(255, 117, 29, 1);
+  --orange-light: rgba(255, 117, 29, 0.2);
+  --red: rgba(231, 25, 46, 1);
+  --green: rgb(64, 121, 70);
+  --grey: #52555f;
+  --icon-navy: rgb(7, 31, 65, 1);
+  --icon-orange-light: #ffdac0;
+  --chart-orange-light: #fed9bf;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
