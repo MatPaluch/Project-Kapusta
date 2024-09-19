@@ -1,4 +1,4 @@
-export const Home = () => {
+const Home = () => {
   return (
     <div
       style={{
@@ -11,6 +11,8 @@ export const Home = () => {
       }}
     >
       React homework template
+      <button>Click</button>
     </div>
   );
 };
+export default Home;
