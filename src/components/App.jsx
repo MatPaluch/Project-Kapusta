@@ -1,15 +1,27 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import PrivateRoute from './PrivateRout/PrivateRout';
 
 const Home = lazy(() => import('../pages/Home'));
-//Reszta importów stron
+const Login = lazy(() => import('./Login/Login.jsx'));
+const Register = lazy(() => import('./Register/Register.jsx'));
+// Reszta importów stron
 
 export const App = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* Reszta routingu stron*/}
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        {/* Reszta routingu stron */}
       </Routes>
     </Suspense>
   );
