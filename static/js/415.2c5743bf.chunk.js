@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject_kapusta=self.webpackChunkproject_kapusta||[]).push([[415],{415:function(e,t,n){n.r(t);var c=n(184);t.default=function(){return(0,c.jsxs)("div",{style:{height:"100vh",display:"flex",justifyContent:"center",alignItems:"center",fontSize:40,color:"#010101"},children:["React homework template",(0,c.jsx)("button",{children:"Click"})]})}}}]);
+//# sourceMappingURL=415.2c5743bf.chunk.js.map
