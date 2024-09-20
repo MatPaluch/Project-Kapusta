@@ -56,7 +56,7 @@
   font-weight: 400;
   font-size: 14px;
   letter-spacing: 0.04em;
-
+  border: none;
   padding: 19px;
   outline: none;
 }
@@ -80,6 +80,13 @@
 
 .registerButtonForm:hover {
   background: #ff751d;
+  box-shadow: 1px 3px 5px 0 rgba(255, 107, 8, 0.35);
+
+  color: #fff;
+}
+.registerButtonForm:focus {
+  background: #ff751d;
+  box-shadow: 1px 3px 5px 0 rgba(255, 107, 8, 0.35);
 
   color: #fff;
 }
@@ -145,11 +152,6 @@
     font-weight: 700;
     font-size: 12px;
     letter-spacing: 0.02em;
-  }
-
-  .registerDiv .registerButtonForm:hover {
-    background: #ff751d;
-    color: #fff;
   }
 }
 
