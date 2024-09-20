@@ -56,12 +56,11 @@
   font-weight: 400;
   font-size: 14px;
   letter-spacing: 0.04em;
-  border: none;
   padding: 19px;
-  outline: none;
 }
+
 .registerInputName:focus {
-  border-color: #ff751d;
+  border: 2px solid #ff751d;
 }
 
 .registerButtonForm {
@@ -81,14 +80,19 @@
 .registerButtonForm:hover {
   background: #ff751d;
   box-shadow: 1px 3px 5px 0 rgba(255, 107, 8, 0.35);
-
   color: #fff;
 }
+
 .registerButtonForm:focus {
   background: #ff751d;
   box-shadow: 1px 3px 5px 0 rgba(255, 107, 8, 0.35);
-
   color: #fff;
+}
+
+.active {
+  background-color: #ff751d;
+  color: #fff;
+  box-shadow: 1px 3px 5px 0 rgba(255, 107, 8, 0.35);
 }
 
 .buttonContainer {
@@ -103,7 +107,7 @@
 }
 
 .inputError {
-  border-color: red;
+  border: 2px solid red;
 }
 
 .errorText {
@@ -125,6 +129,7 @@
     flex-direction: column;
     margin: 0 84px;
   }
+
   .registerParagraph {
     margin-bottom: 20px;
   }

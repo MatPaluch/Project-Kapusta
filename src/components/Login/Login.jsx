@@ -8,6 +8,7 @@ import styles from './Login.module.css';
 const Login = () => {
   const [state, setState] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({ email: '', password: '' });
+  const [active, setActive] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -77,7 +78,7 @@ const Login = () => {
         <div className={styles.loginFormDiv}>
           <label htmlFor="email" className={styles.loginLabel}>
             {errors.email && <span className={styles.errorAsterisk}>*</span>}{' '}
-            Email
+            Email:
           </label>
           <input
             type="email"
@@ -86,9 +87,8 @@ const Login = () => {
             value={state.email}
             onChange={handleChange}
             placeholder="Email"
-            className={`${styles.loginInput} ${
-              errors.email ? styles.inputError : ''
-            }`}
+            className={`${styles.loginInput} ${errors.email ? styles.inputError : ''
+              }`}
           />
           {errors.email && <p className={styles.errorText}>{errors.email}</p>}
         </div>
@@ -96,7 +96,7 @@ const Login = () => {
         <div className={styles.loginFormDiv}>
           <label htmlFor="password" className={styles.loginLabel}>
             {errors.password && <span className={styles.errorAsterisk}>*</span>}{' '}
-            Password
+            Password:
           </label>
           <input
             type="password"
@@ -105,9 +105,8 @@ const Login = () => {
             value={state.password}
             onChange={handleChange}
             placeholder="Password"
-            className={`${styles.loginInput} ${
-              errors.password ? styles.inputError : ''
-            }`}
+            className={`${styles.loginInput} ${errors.password ? styles.inputError : ''
+              }`}
           />
           {errors.password && (
             <p className={styles.errorText}>{errors.password}</p>
@@ -115,13 +114,15 @@ const Login = () => {
         </div>
 
         <div className={styles.buttonContainer}>
-          <button type="submit" className={styles.registerButtonForm}>
+          <button type="submit" className={`${styles.registerButtonForm} ${active && styles.active}`}>
             Log in
           </button>
           <button
             type="button"
             className={styles.registerButtonForm}
             onClick={handleRegistrationRedirect}
+            onMouseEnter={() => setActive(false)}
+            onMouseLeave={() => setActive(true)}
           >
             Registration
           </button>

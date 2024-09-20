@@ -7,6 +7,7 @@ const Register = () => {
   // Stany na pola i błędy
   const [state, setState] = useState({ name: '', email: '', password: '' });
   const [errors, setErrors] = useState({ name: '', email: '', password: '' }); // Stan na błędy
+  const [active, setActive] = useState(true);
   const navigate = useNavigate();
 
   const handleChange = e => {
@@ -64,7 +65,7 @@ const Register = () => {
         <div className={styles.formRegisterDiv}>
           <label htmlFor="name" className={styles.registerLabelName}>
             {errors.password && <span className={styles.errorAsterisk}>*</span>}{' '}
-            Name
+            Name:
           </label>
           <input
             type="text"
@@ -73,9 +74,8 @@ const Register = () => {
             value={state.name}
             onChange={handleChange}
             placeholder="Name"
-            className={`${styles.registerInputName} ${
-              errors.name ? styles.inputError : ''
-            }`}
+            className={`${styles.registerInputName} ${errors.name ? styles.inputError : ''
+              }`}
           />
           {/* Wyświetlanie błędu jeśli pole nie zostało wypełnione */}
           {errors.name && <p className={styles.errorText}>{errors.name}</p>}
@@ -84,7 +84,7 @@ const Register = () => {
         <div className={styles.formRegisterDiv}>
           <label htmlFor="email" className={styles.registerLabelName}>
             {errors.password && <span className={styles.errorAsterisk}>*</span>}{' '}
-            E-mail
+            E-mail:
           </label>
           <input
             type="email"
@@ -93,9 +93,8 @@ const Register = () => {
             value={state.email}
             onChange={handleChange}
             placeholder="Email"
-            className={`${styles.registerInputName} ${
-              errors.email ? styles.inputError : ''
-            }`}
+            className={`${styles.registerInputName} ${errors.email ? styles.inputError : ''
+              }`}
           />
           {errors.email && <p className={styles.errorText}>{errors.email}</p>}
         </div>
@@ -103,7 +102,7 @@ const Register = () => {
         <div className={styles.formRegisterDiv}>
           <label htmlFor="password" className={styles.registerLabelName}>
             {errors.password && <span className={styles.errorAsterisk}>*</span>}{' '}
-            Password
+            Password:
           </label>
           <input
             type="password"
@@ -112,9 +111,8 @@ const Register = () => {
             value={state.password}
             onChange={handleChange}
             placeholder="Password"
-            className={`${styles.registerInputName} ${
-              errors.password ? styles.inputError : ''
-            }`}
+            className={`${styles.registerInputName} ${errors.password ? styles.inputError : ''
+              }`}
           />
           {errors.password && (
             <p className={styles.errorText}>{errors.password}</p>
@@ -126,10 +124,12 @@ const Register = () => {
             type="button"
             className={styles.registerButtonForm}
             onClick={handleLoginRedirect}
+            onMouseEnter={() => setActive(false)}
+            onMouseLeave={() => setActive(true)}
           >
             Log in
           </button>
-          <button type="submit" className={styles.registerButtonForm}>
+          <button type="submit" className={`${styles.registerButtonForm} ${active && styles.active}`}>
             Registration
           </button>
         </div>

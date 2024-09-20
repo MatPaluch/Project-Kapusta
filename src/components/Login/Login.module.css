@@ -57,8 +57,6 @@
   font-size: 14px;
   letter-spacing: 0.04em;
   padding: 19px;
-  box-shadow: none;
-  outline: none;
 }
 
 .registerButtonForm {
@@ -73,23 +71,26 @@
   text-transform: uppercase;
   text-align: center;
   color: #52555f;
-  outline: none;
 }
 
 .loginInput:focus {
-  border-color: #ff751d;
+  border: 2px solid #ff751d;
+}
+
+.active {
+  background-color: #ff751d;
+  color: #fff;
+  box-shadow: 1px 3px 5px 0 rgba(255, 107, 8, 0.35);
 }
 
 .registerButtonForm:hover {
   background: #ff751d;
   box-shadow: 1px 3px 5px 0 rgba(255, 107, 8, 0.35);
-
   color: #fff;
 }
 .registerButtonForm:focus {
   background: #ff751d;
   box-shadow: 1px 3px 5px 0 rgba(255, 107, 8, 0.35);
-
   color: #fff;
 }
 
@@ -100,7 +101,7 @@
 }
 
 .inputError {
-  border-color: red;
+  border: 2px solid red;
 }
 
 .errorText {
