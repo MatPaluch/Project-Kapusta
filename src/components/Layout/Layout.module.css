@@ -16,6 +16,7 @@
   transform: translateX(-50%);
   z-index: 600px;
 }
+
 .iconLogo2 {
   width: 183px;
   height: 63px;
@@ -23,7 +24,7 @@
   top: 86px;
   left: 50%;
   transform: translateX(-140px);
-  z-index: 150;
+  z-index: 550;
 }
 
 .kapusta1Container {
@@ -51,13 +52,20 @@
   height: 86px;
 }
 
-.kapustaBigContainer {
+.iconBigKapusta,
+.kapustaSmallContainer {
   display: none;
 }
 
+.kapustaSmallContainerPrivate,
+.kapustaBigContainerPrivate,
+.iconBigKapustaPrivate {
+  display: none;
+}
+/* =============================== TABLET 👇 ========================================= */
 @media screen and (min-width: 768px) {
   .layoutBackground {
-    height: 582px;
+    height: 526px;
   }
 
   .loginContainer {
@@ -65,7 +73,7 @@
     top: 261px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 600px;
+    z-index: 600;
   }
 
   .iconLogo2 {
@@ -81,35 +89,104 @@
     display: none;
   }
 
+  .iconBigKapusta {
+    display: flex;
+    width: 1334px;
+    height: 232px;
+    flex-shrink: 0;
+    transform-origin: 0px 0px;
+  }
+
   .kapustaBigContainer {
-    display: block;
+    display: flex;
+    justify-content: left;
     overflow: hidden;
     width: 100%;
-    max-width: 1280px;
+    max-width: 1270px;
     height: 232px;
     position: absolute;
     top: 28px;
     left: 10px;
     z-index: 100;
+    margin: 0;
+    padding: 0;
   }
 
-  .iconBigKapusta {
-    width: 1334px;
-    height: 232px;
+  .kapustaSmallContainer {
+    display: block;
+    overflow: hidden;
+    width: 183px;
+    height: 142px;
+    position: absolute;
+    top: 770px;
+    left: 50%;
+    transform: translateX(-281px);
+    z-index: 100;
+  }
+
+  .kapustaSmallContainerPrivate {
+    display: block;
+    overflow: hidden;
+    width: 183px;
+    height: 142px;
+    position: absolute;
+    top: 973px;
+    left: 50%;
+    transform: translateX(113px);
+    z-index: 100;
+  }
+
+  .iconSmallKapusta {
+    width: 183px;
+    height: 142px;
     z-index: 99;
   }
 }
-
+/* =========================== DESKTOP 👇 ============================== */
 @media screen and (min-width: 1280px) {
   .iconLogo2 {
     width: 377px;
     height: 139px;
+    top: 308px;
+    left: 50%;
+    transform: translateX(-411px);
   }
   .loginContainer {
     position: absolute;
-    top: 261px;
+    top: 117px;
     left: 50%;
-    transform: translateX(-50%);
-    z-index: 600px;
+    transform: translateX(91px);
+  }
+
+  .kapustaSmallContainer {
+    top: 602px;
+    transform: translateX(-410px);
+  }
+  .kapustaSmallContainerPrivate {
+    display: none;
+  }
+
+  .kapustaBigContainerPrivate {
+    display: flex;
+    justify-content: left;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1270px;
+    height: 232px;
+    position: absolute;
+    top: 601px;
+    left: 10px;
+    z-index: 100;
+    margin: 0;
+    padding: 0;
+  }
+
+  .iconBigKapusta {
+    flex-shrink: initial;
+  }
+  .iconBigKapustaPrivate {
+    display: flex;
+    width: 1334px;
+    height: 232px;
   }
 }
