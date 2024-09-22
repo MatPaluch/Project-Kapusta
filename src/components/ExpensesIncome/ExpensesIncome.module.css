@@ -1,0 +1,75 @@
+/* ======================== GLOBAL STYLES ==============================*/
+:root {
+  --font-family: 'Roboto', sans-serif;
+  --second-family: 'Montserrat', sans-serif;
+}
+
+/* ======================== MOBILE ===================================== */
+.bilansBox {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  width: 280px;
+  height: 85px;
+
+  box-shadow: 5px 10px 20px 0 rgba(170, 178, 197, 0.4);
+  background: #fff;
+}
+
+.labelBox {
+  width: 120px;
+  height: 40px;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  color: #52555f;
+}
+
+.expensesLabel {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: #e53935;
+}
+
+.incomeLabel {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: #407946;
+}
+
+.svg {
+  stroke-width: 1px;
+  stroke: #e0e5eb;
+}
+/* ======================== TABLET ===================================== */
+
+@media screen and (min-width: 768px) {
+  .bilansBox {
+    border-radius: 30px;
+    width: 1034px;
+    height: 50px;
+  }
+  .labelBox {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 198px;
+    height: 20px;
+  }
+  .label {
+    justify-content: center;
+  }
+}
+
+/* ======================== DESKTOP===================================== */
