@@ -4,22 +4,99 @@
   height: 342px;
   background-color: var(--light-grey);
   border-bottom-left-radius: 160px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   margin: 0 auto;
+  z-index: 100;
+  position: relative;
 }
 
+.loginContainer {
+  position: absolute;
+  top: 199px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 600px;
+}
 .iconLogo2 {
   width: 183px;
   height: 63px;
+  position: absolute;
+  top: 86px;
+  left: 50%;
+  transform: translateX(-140px);
+  z-index: 150;
+}
+
+.kapusta1Container {
+  overflow: hidden;
+  width: calc(50% - 111px);
+  max-width: 83px;
+  height: 86px;
+  position: absolute;
+  top: 104px;
+  left: 50%;
+  transform: translateX(111px);
+}
+.kapusta2Container {
+  overflow: hidden;
+  width: 83px;
+  height: 86px;
+  position: absolute;
+  top: 711px;
+  left: 50%;
+  transform: translateX(-125px);
+}
+
+.iconSingleKapusta {
+  width: 83px;
+  height: 86px;
+}
+
+.kapustaBigContainer {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
+  .layoutBackground {
+    height: 582px;
+  }
+
+  .loginContainer {
+    position: absolute;
+    top: 261px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 600px;
+  }
+
   .iconLogo2 {
     width: 306px;
     height: 101px;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-213px);
+    z-index: 150;
+  }
+
+  .iconSingleKapusta {
+    display: none;
+  }
+
+  .kapustaBigContainer {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1280px;
+    height: 232px;
+    position: absolute;
+    top: 28px;
+    left: 10px;
+    z-index: 100;
+  }
+
+  .iconBigKapusta {
+    width: 1334px;
+    height: 232px;
+    z-index: 99;
   }
 }
 
@@ -27,5 +104,12 @@
   .iconLogo2 {
     width: 377px;
     height: 139px;
+  }
+  .loginContainer {
+    position: absolute;
+    top: 261px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 600px;
   }
 }

@@ -74,8 +74,9 @@ const Register = () => {
             value={state.name}
             onChange={handleChange}
             placeholder="Name"
-            className={`${styles.registerInputName} ${errors.name ? styles.inputError : ''
-              }`}
+            className={`${styles.registerInputName} ${
+              errors.name ? styles.inputError : ''
+            }`}
           />
           {/* Wyświetlanie błędu jeśli pole nie zostało wypełnione */}
           {errors.name && <p className={styles.errorText}>{errors.name}</p>}
@@ -93,8 +94,9 @@ const Register = () => {
             value={state.email}
             onChange={handleChange}
             placeholder="Email"
-            className={`${styles.registerInputName} ${errors.email ? styles.inputError : ''
-              }`}
+            className={`${styles.registerInputName} ${
+              errors.email ? styles.inputError : ''
+            }`}
           />
           {errors.email && <p className={styles.errorText}>{errors.email}</p>}
         </div>
@@ -111,8 +113,9 @@ const Register = () => {
             value={state.password}
             onChange={handleChange}
             placeholder="Password"
-            className={`${styles.registerInputName} ${errors.password ? styles.inputError : ''
-              }`}
+            className={`${styles.registerInputName} ${
+              errors.password ? styles.inputError : ''
+            }`}
           />
           {errors.password && (
             <p className={styles.errorText}>{errors.password}</p>
@@ -129,7 +132,12 @@ const Register = () => {
           >
             Log in
           </button>
-          <button type="submit" className={`${styles.registerButtonForm} ${active && styles.active}`}>
+          <button
+            type="submit"
+            className={`${styles.registerButtonForm} ${
+              active && styles.active
+            }`}
+          >
             Registration
           </button>
         </div>

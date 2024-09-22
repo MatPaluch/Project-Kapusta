@@ -13,9 +13,25 @@ export const Layout = ({ children }) => {
       {!token ? (
         <div className={styles.layoutBackground}>
           <svg className={styles.iconLogo2}>
-            <use href={`${icons}#icon-logo2`}></use>
+            <use href={`${icons}#icon-logo2`} width="306px"></use>
           </svg>
-          {children}
+
+          <div className={styles.kapusta1Container}>
+            <svg className={styles.iconSingleKapusta}>
+              <use href={`${icons}#icon-single-kapusta-1`}></use>
+            </svg>
+          </div>
+          <div className={styles.kapustaBigContainer}>
+            <svg className={styles.iconBigKapusta}>
+              <use href={`${icons}#icon-kapusta-big`}></use>
+            </svg>
+          </div>
+          <div class={styles.loginContainer}>{children}</div>
+          <div className={styles.kapusta2Container}>
+            <svg className={styles.iconSingleKapusta}>
+              <use href={`${icons}#icon-single-kapusta-2`}></use>
+            </svg>
+          </div>
         </div>
       ) : (
         <div className={styles.layoutBackground}> {children}</div>
