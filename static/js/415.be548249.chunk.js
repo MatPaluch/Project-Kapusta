@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject_kapusta=self.webpackChunkproject_kapusta||[]).push([[415],{415:function(e,n,t){t.r(n);var a=t(184);n.default=function(){return(0,a.jsx)("div",{children:"Placeholder na komponenty"})}}}]);
+//# sourceMappingURL=415.be548249.chunk.js.map
