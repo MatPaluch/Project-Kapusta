@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from './PrivateRout/PrivateRout';
+import { Layout } from './Layout/Layout';
 
 const Home = lazy(() => import('../pages/Home'));
 const Login = lazy(() => import('./Login/Login.jsx'));
@@ -15,13 +16,22 @@ export const App = () => {
           path="/"
           element={
             <PrivateRoute>
-              <Home />
+              <Layout>
+                <Home />
+                {/* Reszta routingu stron */}
+              </Layout>
             </PrivateRoute>
           }
         />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <Layout>
+              <Login />
+            </Layout>
+          }
+        />
         <Route path="/register" element={<Register />} />
-        {/* Reszta routingu stron */}
       </Routes>
     </Suspense>
   );

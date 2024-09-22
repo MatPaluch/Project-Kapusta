@@ -1,0 +1,31 @@
+.layoutBackground {
+  width: 100%;
+  max-width: 1280px;
+  height: 342px;
+  background-color: var(--light-grey);
+  border-bottom-left-radius: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.iconLogo2 {
+  width: 183px;
+  height: 63px;
+}
+
+@media screen and (min-width: 768px) {
+  .iconLogo2 {
+    width: 306px;
+    height: 101px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .iconLogo2 {
+    width: 377px;
+    height: 139px;
+  }
+}

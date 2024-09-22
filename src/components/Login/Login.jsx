@@ -69,65 +69,76 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.loginDiv}>
-      <form onSubmit={handleSubmit}>
-        <p className={styles.loginParagraph}>
-          Log in using an email and password, after registering:
-        </p>
+    <div>
+      <div className={styles.loginDiv}>
+        <form onSubmit={handleSubmit}>
+          <p className={styles.loginParagraph}>
+            Log in using an email and password, after registering:
+          </p>
 
-        <div className={styles.loginFormDiv}>
-          <label htmlFor="email" className={styles.loginLabel}>
-            {errors.email && <span className={styles.errorAsterisk}>*</span>}{' '}
-            Email:
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={state.email}
-            onChange={handleChange}
-            placeholder="Email"
-            className={`${styles.loginInput} ${errors.email ? styles.inputError : ''
+          <div className={styles.loginFormDiv}>
+            <label htmlFor="email" className={styles.loginLabel}>
+              {errors.email && <span className={styles.errorAsterisk}>*</span>}{' '}
+              Email:
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={state.email}
+              onChange={handleChange}
+              placeholder="Email"
+              className={`${styles.loginInput} ${
+                errors.email ? styles.inputError : ''
               }`}
-          />
-          {errors.email && <p className={styles.errorText}>{errors.email}</p>}
-        </div>
+            />
+            {errors.email && <p className={styles.errorText}>{errors.email}</p>}
+          </div>
 
-        <div className={styles.loginFormDiv}>
-          <label htmlFor="password" className={styles.loginLabel}>
-            {errors.password && <span className={styles.errorAsterisk}>*</span>}{' '}
-            Password:
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={state.password}
-            onChange={handleChange}
-            placeholder="Password"
-            className={`${styles.loginInput} ${errors.password ? styles.inputError : ''
+          <div className={styles.loginFormDiv}>
+            <label htmlFor="password" className={styles.loginLabel}>
+              {errors.password && (
+                <span className={styles.errorAsterisk}>*</span>
+              )}{' '}
+              Password:
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={state.password}
+              onChange={handleChange}
+              placeholder="Password"
+              className={`${styles.loginInput} ${
+                errors.password ? styles.inputError : ''
               }`}
-          />
-          {errors.password && (
-            <p className={styles.errorText}>{errors.password}</p>
-          )}
-        </div>
+            />
+            {errors.password && (
+              <p className={styles.errorText}>{errors.password}</p>
+            )}
+          </div>
 
-        <div className={styles.buttonContainer}>
-          <button type="submit" className={`${styles.registerButtonForm} ${active && styles.active}`}>
-            Log in
-          </button>
-          <button
-            type="button"
-            className={styles.registerButtonForm}
-            onClick={handleRegistrationRedirect}
-            onMouseEnter={() => setActive(false)}
-            onMouseLeave={() => setActive(true)}
-          >
-            Registration
-          </button>
-        </div>
-      </form>
+          <div className={styles.buttonContainer}>
+            <button
+              type="submit"
+              className={`${styles.registerButtonForm} ${
+                active && styles.active
+              }`}
+            >
+              Log in
+            </button>
+            <button
+              type="button"
+              className={styles.registerButtonForm}
+              onClick={handleRegistrationRedirect}
+              onMouseEnter={() => setActive(false)}
+              onMouseLeave={() => setActive(true)}
+            >
+              Registration
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
