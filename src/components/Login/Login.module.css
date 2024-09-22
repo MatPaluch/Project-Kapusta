@@ -11,12 +11,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   margin: 0;
   background-color: white;
+  z-index: 900;
 }
 
 .loginParagraph {
@@ -121,12 +122,14 @@
   .loginDiv {
     width: 426px;
     height: 552px;
+    z-index: 900;
   }
 
   .loginFormDiv {
     display: flex;
     flex-direction: column;
     margin: 0 84px;
+    z-index: 900;
   }
   .loginParagraph {
     margin-bottom: 20px;
@@ -163,10 +166,11 @@
   .loginDiv {
     width: 426px;
     height: 552px;
-    top: 50%;
+    /* top: 50%;
     right: 91px;
-    transform: translateY(-50%);
+    transform: translateY(-50%); */
     margin: 0;
     left: auto;
+    z-index: 900;
   }
 }
