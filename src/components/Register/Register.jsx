@@ -5,8 +5,12 @@ import styles from './Register.module.css';
 
 const Register = () => {
   // Stany na pola i błędy
-  const [state, setState] = useState({ name: '', email: '', password: '' });
-  const [errors, setErrors] = useState({ name: '', email: '', password: '' }); // Stan na błędy
+  const [state, setState] = useState({ username: '', email: '', password: '' });
+  const [errors, setErrors] = useState({
+    username: '',
+    email: '',
+    password: '',
+  }); // Stan na błędy
   const [active, setActive] = useState(true);
   const navigate = useNavigate();
 
@@ -25,7 +29,7 @@ const Register = () => {
 
     // Walidacja formularza
     const newErrors = {};
-    if (!state.name) newErrors.name = 'This is a required field';
+    if (!state.username) newErrors.username = 'This is a required field';
     if (!state.email) newErrors.email = 'This is a required field';
     if (!state.password) newErrors.password = 'This is a required field';
 
@@ -37,10 +41,12 @@ const Register = () => {
 
     try {
       // Wysyłanie danych do API
-      await axios.post(
-        'https://connections-api.goit.global/users/signup',
+      console.log(state);
+      const response = await axios.post(
+        'https://project-kapusta-rest-api.vercel.app/auth/register',
         state
       );
+      console.log(response);
       navigate('/login');
     } catch (error) {
       console.error(
@@ -70,8 +76,8 @@ const Register = () => {
           <input
             type="text"
             id="name"
-            name="name"
-            value={state.name}
+            name="username"
+            value={state.username}
             onChange={handleChange}
             placeholder="Name"
             className={`${styles.registerInputName} ${
