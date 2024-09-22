@@ -35,9 +35,10 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        'https://connections-api.goit.global/users/login',
+        'https://project-kapusta-rest-api.vercel.app/auth/login',
         state
       );
+      console.log(response);
       const token = response.data.token;
 
       try {
