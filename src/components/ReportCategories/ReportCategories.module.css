@@ -46,6 +46,7 @@
     padding: 20px 40px;
     background-color: white;
     flex-wrap: wrap;
+    box-shadow: 5px 10px 20px 0 rgba(170, 178, 197, 0.4);
   }
   .categoriesBar {
     width: 136px;

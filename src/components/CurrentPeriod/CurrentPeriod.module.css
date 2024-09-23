@@ -1,0 +1,33 @@
+.currentPeriodContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 39px;
+}
+
+.arrowButton {
+  width: 4px;
+  height: 10px;
+  all: unset;
+  box-sizing: border-box;
+}
+
+.arrowIcon {
+  width: 4px;
+  height: 10px;
+  fill: var(--orange);
+}
+
+.currentPeriod {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 134px;
+  height: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: black;
+  text-transform: uppercase;
+}

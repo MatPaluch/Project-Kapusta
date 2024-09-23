@@ -1,0 +1,27 @@
+.mainBarContainer {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: none;
+  color: var(--grey-mid);
+  margin: 16px auto;
+  gap: 32px;
+}
+
+/* ================================================= TABLET 👇 ========================================= */
+@media screen and (min-width: 768px) {
+  .mainBarContainer {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    height: 44px;
+    width: 704px;
+  }
+}
+/* =========================== DESKTOP 👇 ============================== */
+@media screen and (min-width: 1280px) {
+  .mainBarContainer {
+    width: 1034px;
+  }
+}

@@ -6,6 +6,7 @@ import { Layout } from './Layout/Layout';
 const Home = lazy(() => import('../pages/Home'));
 const Login = lazy(() => import('./Login/Login.jsx'));
 const Register = lazy(() => import('./Register/Register.jsx'));
+const Reports = lazy(() => import('../pages/Reports'));
 // Reszta importów stron
 
 export const App = () => {
@@ -23,6 +24,19 @@ export const App = () => {
             </PrivateRoute>
           }
         />
+
+        {/* Trasa dla strony /reports */}
+        <Route
+          path="/reports"
+          element={
+            // <PrivateRoute>
+            <Layout>
+              <Reports />
+            </Layout>
+            // </PrivateRoute>
+          }
+        />
+
         <Route
           path="/login"
           element={
