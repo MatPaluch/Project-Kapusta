@@ -1,0 +1,89 @@
+/* ======================== MOBILE ===================================== */
+.balansBox {
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 183px;
+  height: 72px;
+}
+
+.label {
+  padding-top: 10px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: rgba(82, 85, 95, 0.7);
+}
+
+.amauntBox {
+  border: 2px solid #fff;
+  border-radius: 22px;
+  width: 183px;
+  height: 44px;
+}
+
+.amaunt {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000;
+}
+
+.confirmBox {
+  display: none;
+}
+
+/* ======================== TABLET ===================================== */
+@media screen and (min-width: 768px) {
+  .balansBox {
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    width: 228px;
+    height: 44px;
+  }
+
+  .label {
+    padding-top: 0;
+    margin-right: 20px;
+  }
+
+  .amauntBox {
+    margin: 0;
+    width: 228px;
+    height: 44px;
+  }
+}
+
+.confirmBox {
+  display: none;
+}
+
+/* ======================== DESKTOP===================================== */
+@media screen and (min-width: 1280px) {
+  .confirmBox {
+    display: flex;
+    margin-left: 10px;
+    border: 2px solid #fff;
+    border-radius: 16px;
+    width: 125px;
+    height: 44px;
+  }
+
+  .confirm {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: rgba(82, 85, 95, 0.7);
+  }
+}
