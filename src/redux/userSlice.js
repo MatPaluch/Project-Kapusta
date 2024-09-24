@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  balance: 0,
+  balance: '0',
+  isBalanceSet: false,
 };
 
 const userSlice = createSlice({
@@ -13,9 +14,13 @@ const userSlice = createSlice({
     setBalance: (state, action) => {
       state.balance = action.payload.value;
     },
+    setIsBalanceSet: (state, action) => {
+      console.log(action.payload);
+      state.isBalanceSet = action.payload;
+    },
   },
 });
 
-export const { setBalance } = userSlice.actions;
+export const { setBalance, setIsBalanceSet } = userSlice.actions;
 
 export default userSlice.reducer;

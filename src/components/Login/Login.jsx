@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { loginSuccess } from '../../redux/authSlice';
+import { setBalance, setIsBalanceSet } from '../../redux/userSlice';
 import styles from './Login.module.css';
 
 const Login = () => {
@@ -34,6 +35,7 @@ const Login = () => {
     }
 
     try {
+      console.log(state);
       const response = await axios.post(
         'https://project-kapusta-rest-api.vercel.app/auth/login',
         state
@@ -48,8 +50,23 @@ const Login = () => {
         if (typeof jwtDecode !== 'function') {
           throw new Error('jwtDecode is not a function');
         }
-
         const user = jwtDecode(token);
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+        try {
+          const response = await axios.get(
+            'https://project-kapusta-rest-api.vercel.app/user'
+          );
+
+          const value = String(response.data.balance);
+          dispatch(setIsBalanceSet(true));
+          dispatch(setBalance({ value }));
+        } catch (error) {
+          console.error(
+            'Failed fetch user',
+            error.response ? error.response.data : error.message
+          );
+          alert('Failed fetch user');
+        }
         dispatch(loginSuccess({ token, user }));
         navigate('/');
       } catch (jwtError) {

@@ -28,6 +28,7 @@
   text-transform: uppercase;
   text-align: right;
   color: #000;
+  text-overflow: ellipsis;
 }
 .inputBox {
   border: 2px solid #fff;
