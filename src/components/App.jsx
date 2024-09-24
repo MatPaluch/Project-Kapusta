@@ -2,9 +2,9 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from './PrivateRout/PrivateRout';
 import { Layout } from './Layout/Layout';
+import LoginPage from '../pages/LoginPage'; // Zaktualizuj import do LoginPage
 
 const Home = lazy(() => import('../pages/Home'));
-const Login = lazy(() => import('./Login/Login.jsx'));
 const Register = lazy(() => import('./Register/Register.jsx'));
 // Reszta importów stron
 
@@ -27,7 +27,7 @@ export const App = () => {
           path="/login"
           element={
             <Layout>
-              <Login />
+              <LoginPage /> {/* Użyj LoginPage zamiast Login */}
             </Layout>
           }
         />
