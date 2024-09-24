@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { loginSuccess } from '../../redux/authSlice';
 import { setBalance } from '../../redux/userSlice';
+import { loginUser, fetchUserData, decodeToken } from '../../redux/operations';
 import styles from './Login.module.css';
 
 const Login = () => {
@@ -21,13 +21,12 @@ const Login = () => {
       setErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
     }
   };
-
   const handleSubmit = async e => {
     e.preventDefault();
 
     const newErrors = {};
-    if (!state.email) newErrors.email = 'This is a required field';
-    if (!state.password) newErrors.password = 'This is a required field';
+    if (!state.email) newErrors.email = 'To pole jest wymagane';
+    if (!state.password) newErrors.password = 'To pole jest wymagane';
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -35,50 +34,29 @@ const Login = () => {
     }
 
     try {
-      console.log(state);
-      const response = await axios.post(
-        'https://project-kapusta-rest-api.vercel.app/auth/login',
-        state
-      );
-      console.log(response);
-      const token = response.data.token;
+      const { token } = await loginUser(state);
 
-      try {
-        const jwtDecodeModule = await import('jwt-decode');
-        const jwtDecode = jwtDecodeModule.default || jwtDecodeModule.jwtDecode;
+      // Zdekodowanie tokena
+      const user = await decodeToken(token);
 
-        if (typeof jwtDecode !== 'function') {
-          throw new Error('jwtDecode is not a function');
-        }
-        const user = jwtDecode(token);
-        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-        try {
-          const response = await axios.get(
-            'https://project-kapusta-rest-api.vercel.app/user'
-          );
+      const userData = await fetchUserData(token);
+      const value = String(userData.balance);
 
-          const value = String(response.data.balance);
+      // Logowanie informacji o użytkowniku do konsoli
+      console.log('Zalogowany użytkownik:');
+      console.log('Username:', user.username);
+      console.log('Email:', state.email);
+      console.log('Token:', token);
 
-          dispatch(setBalance({ value }));
-        } catch (error) {
-          console.error(
-            'Failed fetch user',
-            error.response ? error.response.data : error.message
-          );
-          alert('Failed fetch user');
-        }
-        dispatch(loginSuccess({ token, user }));
-        navigate('/');
-      } catch (jwtError) {
-        console.error('Error decoding JWT:', jwtError);
-        alert('Failed to decode JWT. Please try again.');
-      }
+      dispatch(setBalance({ value }));
+      dispatch(loginSuccess({ token, user }));
+      navigate('/');
     } catch (error) {
       console.error(
-        'Login failed:',
+        'Błąd logowania:',
         error.response ? error.response.data : error.message
       );
-      alert('Login failed. Please try again.');
+      alert('Logowanie nie powiodło się. Spróbuj ponownie.');
     }
   };
 
