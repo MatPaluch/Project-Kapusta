@@ -1,8 +1,7 @@
 .moduleDiv {
   position: relative;
-}
-.svg {
-  position: absolute;
+  top: 20px;
+  left: -20px;
 }
 .text {
   position: absolute;
@@ -25,4 +24,7 @@
   font-size: 12px;
   line-height: 133%;
   color: #fff;
+}
+.svg {
+  position: absolute;
 }

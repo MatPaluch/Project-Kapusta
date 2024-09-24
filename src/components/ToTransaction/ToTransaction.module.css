@@ -1,0 +1,28 @@
+.reportsSVG {
+  width: 24px;
+  height: 24px;
+}
+
+.backspaceBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 20px;
+  background-color: transparent;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000;
+}
+
+/* ======================== TABLET ===================================== */
+@media screen and (min-width: 768px) {
+  .backspaceBox {
+    display: none;
+  }
+}

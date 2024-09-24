@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { loginSuccess } from '../../redux/authSlice';
-import { setBalance, setIsBalanceSet } from '../../redux/userSlice';
+import { setBalance } from '../../redux/userSlice';
 import styles from './Login.module.css';
 
 const Login = () => {
@@ -58,7 +58,7 @@ const Login = () => {
           );
 
           const value = String(response.data.balance);
-          dispatch(setIsBalanceSet(true));
+
           dispatch(setBalance({ value }));
         } catch (error) {
           console.error(

@@ -1,10 +1,10 @@
-import union from '../../images/Union.svg';
+import modalBgComment from '../../images/modalBgComment.svg';
 import styles from './ModalBilance.module.css';
 
 function ModalBilance() {
   return (
     <div className={styles.moduleDiv}>
-      <img src={union} className={styles.svg} alt="BackGroundModal" />
+      <img src={modalBgComment} className={styles.svg} alt="BackGroundModal" />
       <p className={styles.text}>
         Hello! To get started, enter the current balance of your account!
       </p>

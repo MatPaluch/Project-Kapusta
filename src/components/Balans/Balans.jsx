@@ -1,7 +1,9 @@
 import styles from './Balans.module.css';
+import icons from '../../images/icons.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBalance } from '../../redux/userSlice';
+import { setBalance, setIsBalanceSet } from '../../redux/userSlice';
 import axios from 'axios';
+import ModalBilance from 'components/ModalBilance/ModalBilance';
 
 function Balans() {
   const dispatch = useDispatch();
@@ -31,6 +33,7 @@ function Balans() {
       console.log(response);
       console.log(value);
       dispatch(setBalance({ value }));
+      dispatch(setIsBalanceSet(true));
       alert('Balance updated!');
     } catch (error) {
       console.error(
@@ -43,30 +46,38 @@ function Balans() {
 
   return (
     <div className={styles.balanceBox}>
-      <p className={styles.label}>Balance:</p>
-
-      <form className={styles.amountBox} onSubmit={confirmBalance}>
-        <div className={styles.inputBox}>
-          <input
-            name="balance"
-            className={styles.amount}
-            value={balance || '0111'} // Zabezpieczamy wartość, gdy balance jest undefined
-            onChange={handleChange}
-            type="text"
-            pattern="\d*"
-            inputMode="numeric"
+      <button className={styles.reportsBox}>
+        <span>Reports</span>
+        <svg className={styles.reportsSVG}>
+          <use href={`${icons}#icon-reports`}></use>
+        </svg>
+      </button>
+      <div className={styles.balanceWraper}>
+        <p className={styles.label}>Balance:</p>
+        <form className={styles.amountBox} onSubmit={confirmBalance}>
+          <div className={styles.inputBox}>
+            {!isBalanceSet && <ModalBilance />}
+            <input
+              name="balance"
+              className={styles.amount}
+              value={balance || '0111'} // Zabezpieczamy wartość, gdy balance jest undefined
+              onChange={handleChange}
+              type="text"
+              pattern="\d*"
+              inputMode="numeric"
+              disabled={isBalanceSet}
+            />
+            <span className={styles.pln}>PLN</span>
+          </div>
+          <button
+            type="submit"
+            className={`${isBalanceSet ? styles.disabled : styles.confirm}`}
             disabled={isBalanceSet}
-          />
-          <span className={styles.pln}>PLN</span>
-        </div>
-        <button
-          type="submit"
-          className={`${isBalanceSet ? styles.disabled : styles.confirm}`}
-          disabled={isBalanceSet}
-        >
-          Confirm
-        </button>
-      </form>
+          >
+            Confirm
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
