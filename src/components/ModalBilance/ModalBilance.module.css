@@ -1,0 +1,28 @@
+.moduleDiv {
+  position: relative;
+}
+.svg {
+  position: absolute;
+}
+.text {
+  position: absolute;
+  top: 25px;
+  left: 50px;
+  width: 230px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 143%;
+  color: #fff;
+}
+.textNext {
+  position: absolute;
+  top: 90px;
+  left: 50px;
+  width: 230px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: #fff;
+}

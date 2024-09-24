@@ -1,43 +1,85 @@
 /* ======================== MOBILE ===================================== */
-.balansBox {
-  margin: auto;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  width: 183px;
-  height: 72px;
+.balanceBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .label {
-  padding-top: 10px;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.02em;
-  text-align: center;
   color: rgba(82, 85, 95, 0.7);
 }
-
-.amauntBox {
-  border: 2px solid #fff;
-  border-radius: 22px;
-  width: 183px;
-  height: 44px;
+.amountBox {
+  display: flex;
 }
+.amount {
+  height: 100%;
+  width: 75%;
+  border-radius: 22px 0 0 22px;
+  background-color: transparent;
 
-.amaunt {
   font-family: var(--font-family);
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  text-align: center;
+  text-align: right;
   color: #000;
 }
+.inputBox {
+  border: 2px solid #fff;
+  border-radius: 22px 0 0 22px;
+  width: 140px;
+  height: 44px;
+  padding-right: 16px;
 
-.confirmBox {
-  display: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
+  background-color: transparent;
+  position: relative;
 }
+.pln {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: right;
+  color: #000;
+}
+.disabled {
+  border: 2px solid #fff;
+  border-radius: 0 22px 22px 0;
+  width: 142px;
+  height: 44px;
+  margin-left: -2px;
 
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(82, 85, 95, 0.7);
+}
+.confirm {
+  border-radius: 0 22px 22px 0;
+  width: 142px;
+  height: 44px;
+  background: #ff751d;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+}
 /* ======================== TABLET ===================================== */
 @media screen and (min-width: 768px) {
   .balansBox {
