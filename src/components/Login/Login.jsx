@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginSuccess } from '../../redux/authSlice';
+import {
+  loginSuccess,
+  loginRequest,
+  loginFailure,
+} from '../../redux/authSlice';
 import { setBalance } from '../../redux/userSlice';
 import { loginUser, fetchUserData, decodeToken } from '../../redux/operations';
 import styles from './Login.module.css';
@@ -9,9 +13,9 @@ import styles from './Login.module.css';
 const Login = () => {
   const [state, setState] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({ email: '', password: '' });
-  const [active, setActive] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isLoading, error } = useSelector(state => state.auth);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -25,29 +29,25 @@ const Login = () => {
     e.preventDefault();
 
     const newErrors = {};
-    if (!state.email) newErrors.email = 'To pole jest wymagane';
-    if (!state.password) newErrors.password = 'To pole jest wymagane';
+    if (!state.email) newErrors.email = 'This is a required field';
+    if (!state.password) newErrors.password = 'This is a required field';
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
+    dispatch(loginRequest());
+
     try {
       const { token } = await loginUser(state);
-
-      // Zdekodowanie tokena
       const user = await decodeToken(token);
-
       const userData = await fetchUserData(token);
       const value = String(userData.balance);
 
-      // Logowanie informacji o użytkowniku do konsoli
-      console.log('Zalogowany użytkownik:');
-      console.log('Username:', user.username);
-      console.log('Email:', state.email);
-      console.log('Token:', token);
+      console.log('User object:', user);
 
+      console.log('Token:', token);
       dispatch(setBalance({ value }));
       dispatch(loginSuccess({ token, user }));
       navigate('/');
@@ -56,6 +56,7 @@ const Login = () => {
         'Błąd logowania:',
         error.response ? error.response.data : error.message
       );
+      dispatch(loginFailure('Logowanie nie powiodło się. Spróbuj ponownie.')); // Ustawienie błędu
       alert('Logowanie nie powiodło się. Spróbuj ponownie.');
     }
   };
@@ -71,6 +72,9 @@ const Login = () => {
           <p className={styles.loginParagraph}>
             Log in using an email and password, after registering:
           </p>
+
+          {/* Wyświetlanie błędów logowania */}
+          {error && <p className={styles.errorText}>{error}</p>}
 
           <div className={styles.loginFormDiv}>
             <label htmlFor="email" className={styles.loginLabel}>
@@ -118,17 +122,16 @@ const Login = () => {
             <button
               type="submit"
               className={`${styles.registerButtonForm} ${
-                active && styles.active
+                isLoading ? styles.loading : ''
               }`}
+              disabled={isLoading} // Zablokowanie przycisku, gdy ładowanie jest w toku
             >
-              Log in
+              {isLoading ? 'Loading...' : 'Log in'}
             </button>
             <button
               type="button"
               className={styles.registerButtonForm}
               onClick={handleRegistrationRedirect}
-              onMouseEnter={() => setActive(false)}
-              onMouseLeave={() => setActive(true)}
             >
               Registration
             </button>
