@@ -1,89 +1,155 @@
 /* ======================== MOBILE ===================================== */
-.balansBox {
-  margin: auto;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  width: 183px;
-  height: 72px;
+.balanceBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .label {
-  padding-top: 10px;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.02em;
-  text-align: center;
   color: rgba(82, 85, 95, 0.7);
+  margin-top: 32px;
 }
 
-.amauntBox {
-  border: 2px solid #fff;
-  border-radius: 22px;
-  width: 183px;
-  height: 44px;
+.balanceWraper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.amaunt {
+.amountBox {
+  display: flex;
+}
+.amount {
+  width: 75%;
+  border-radius: 22px 0 0 22px;
+  background-color: transparent;
+
   font-family: var(--font-family);
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  text-align: center;
+  text-align: right;
+  color: #000;
+  text-overflow: ellipsis;
+}
+.inputBox {
+  position: relative;
+  border: 2px solid #fff;
+  border-radius: 22px 0 0 22px;
+  width: 140px;
+  height: 44px;
+  padding-right: 16px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
+  background-color: transparent;
+  position: relative;
+}
+.pln {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: right;
   color: #000;
 }
+.disabled {
+  border: 2px solid #fff;
+  border-radius: 0 22px 22px 0;
+  width: 142px;
+  height: 44px;
+  margin-left: -2px;
 
-.confirmBox {
-  display: none;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(82, 85, 95, 0.7);
+}
+.confirm {
+  border-radius: 0 22px 22px 0;
+  width: 142px;
+  height: 44px;
+  background: #ff751d;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.reportsBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background-color: transparent;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-align: right;
+  color: rgba(82, 85, 95, 0.7);
+}
+
+.reportsSVG {
+  width: 24px;
+  height: 24px;
 }
 
 /* ======================== TABLET ===================================== */
 @media screen and (min-width: 768px) {
-  .balansBox {
-    margin-top: 0;
-    margin-bottom: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    display: flex;
-    width: 228px;
-    height: 44px;
+  .balanceBox {
+    padding: 40px 32px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
   }
-
+  .balanceWraper {
+    flex-direction: row;
+    align-items: center;
+    gap: 21px;
+  }
   .label {
-    padding-top: 0;
-    margin-right: 20px;
-  }
-
-  .amauntBox {
     margin: 0;
-    width: 228px;
-    height: 44px;
+    text-align: right;
   }
-}
-
-.confirmBox {
-  display: none;
-}
-
-/* ======================== DESKTOP===================================== */
-@media screen and (min-width: 1280px) {
-  .confirmBox {
-    display: flex;
-    margin-left: 10px;
+  .amountBox {
+    gap: 15px;
+  }
+  .inputBox {
     border: 2px solid #fff;
     border-radius: 16px;
     width: 125px;
     height: 44px;
   }
-
+  .disabled {
+    margin-left: 0;
+    border: 2px solid #fff;
+    border-radius: 16px;
+    width: 125px;
+    height: 44px;
+  }
   .confirm {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 12px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    text-align: center;
-    color: rgba(82, 85, 95, 0.7);
+    border-radius: 16px;
+  }
+}
+
+/* ======================== DESKTOP===================================== */
+@media screen and (min-width: 1280px) {
+  .balanceBox {
+    justify-content: flex-start;
+    gap: 300px;
   }
 }

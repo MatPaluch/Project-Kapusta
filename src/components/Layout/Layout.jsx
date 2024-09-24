@@ -34,7 +34,7 @@ export const Layout = ({ children }) => {
             </svg>
           </div>
 
-          <div class={styles.loginContainer}>{children}</div>
+          <div className={styles.loginContainer}>{children}</div>
 
           <div className={styles.kapusta2Container}>
             <svg className={styles.iconSingleKapusta}>

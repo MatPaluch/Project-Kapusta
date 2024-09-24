@@ -42,7 +42,7 @@ export const Header = () => {
           </svg>
 
           <div className={styles.mobileHidden}>
-            <div className={styles.userName}> {user.username}</div>
+            <div className={styles.userName}>{user.username}</div>
             <svg className={styles.iconVector}>
               <use href={`${icons}#icon-Vector`}></use>
             </svg>
