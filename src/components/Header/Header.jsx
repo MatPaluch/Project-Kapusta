@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/authSlice'; // Akcja wylogowania
 import styles from './Header.module.css';
 import icons from '../../images/icons.svg';
+import LogoutModal from 'components/LogoutModal/LogoutModal';
 
 export const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, token } = useSelector(state => state.auth); // Pobieramy dane użytkownika z Reduxa
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleLogout = () => {
+  const handleLogoutClick = () => {
+    setIsModalOpen(true); // Otwieramy modal po kliknięciu "Exit"
+  };
+
+  const handleConfirmLogout = () => {
     dispatch(logout()); // Wywołujemy akcję wylogowania
     navigate('/login'); // Przekierowanie na stronę logowania
+    setIsModalOpen(false); // Zamykamy modal
+  };
+
+  const handleCancelLogout = () => {
+    setIsModalOpen(false); // Zamykamy modal bez wylogowania
   };
 
   return (
@@ -26,22 +37,29 @@ export const Header = () => {
       {token ? (
         <div className={styles.headerMenu}>
           <div className={styles.user}>U</div>
-          <svg className={styles.iconLogout}>
+          <svg className={styles.iconLogout} onClick={handleLogoutClick}>
             <use href={`${icons}#icon-logout`}></use>
           </svg>
 
           <div className={styles.mobileHidden}>
-            <div className={styles.userName}> username {user.username}</div>
+            <div className={styles.userName}> {user.username}</div>
             <svg className={styles.iconVector}>
               <use href={`${icons}#icon-Vector`}></use>
             </svg>
-            <button className={styles.exitButton} onClick={handleLogout}>
+            <button className={styles.exitButton} onClick={handleLogoutClick}>
               Exit
-            </button>{' '}
+            </button>
           </div>
         </div>
       ) : (
         <div></div>
+      )}
+
+      {isModalOpen && (
+        <LogoutModal
+          onConfirm={handleConfirmLogout} // Przekazujemy funkcję do potwierdzenia wylogowania
+          onCancel={handleCancelLogout} // Przekazujemy funkcję do anulowania
+        />
       )}
     </header>
   );
