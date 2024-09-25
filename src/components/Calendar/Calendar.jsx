@@ -9,7 +9,7 @@ function Calendar() {
 
   return (
     <div className={styles.calendarBox}>
-      <div>
+      <div className={styles.calendarIcon}>
         <svg
           width="20"
           height="20"
