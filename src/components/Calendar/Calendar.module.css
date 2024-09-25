@@ -1,3 +1,4 @@
+/* ======================== MOBILE ===================================== */
 .calendarBox {
   fill: rgba(245, 246, 251, 1);
   margin: auto;
@@ -25,4 +26,8 @@
   margin-right: 8px;
   width: 20px;
   height: 20px;
+}
+
+/* ======================== TABLET ===================================== */
+@media screen and (min-width: 768px) {
 }

@@ -1,5 +1,5 @@
 import Balans from 'components/Balans/Balans';
-import Calendar from 'components/Calendar/Calendar';
+import HomeInput from 'components/HomeInput/HomeInput';
 
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
 
@@ -10,7 +10,7 @@ const Home = () => {
     <div>
       <ToTransaction />
       <Balans />
-      <Calendar />
+      <HomeInput />
       {/* <ExpensesIncome expenses={expenses} income={income} /> */}
     </div>
   );
