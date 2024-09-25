@@ -6,7 +6,7 @@ import {
   loginRequest,
   loginFailure,
 } from '../../redux/authSlice';
-import { setBalance } from '../../redux/userSlice';
+import { setBalance, setIsBalanceSet } from '../../redux/userSlice';
 import { loginUser, fetchUserData, decodeToken } from '../../redux/operations';
 import styles from './Login.module.css';
 
@@ -44,10 +44,10 @@ const Login = () => {
       const user = await decodeToken(token);
       const userData = await fetchUserData(token);
       const value = String(userData.balance);
-
+      const isBalanceSet = userData.isBalanceSet;
       console.log('User object:', user);
-
       console.log('Token:', token);
+      dispatch(setIsBalanceSet(isBalanceSet))
       dispatch(setBalance({ value }));
       dispatch(loginSuccess({ token, user }));
       navigate('/');
