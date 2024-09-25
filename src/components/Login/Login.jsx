@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { loginSuccess } from '../../redux/authSlice';
-import { setBalance } from '../../redux/userSlice';
+import {
+  loginSuccess,
+  loginRequest,
+  loginFailure,
+} from '../../redux/authSlice';
+import { setBalance, setIsBalanceSet } from '../../redux/userSlice';
+import { loginUser, fetchUserData, decodeToken } from '../../redux/operations';
 import styles from './Login.module.css';
 
 const Login = () => {
   const [state, setState] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({ email: '', password: '' });
-  const [active, setActive] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isLoading, error } = useSelector(state => state.auth);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -21,7 +25,6 @@ const Login = () => {
       setErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
     }
   };
-
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -34,51 +37,27 @@ const Login = () => {
       return;
     }
 
+    dispatch(loginRequest());
+
     try {
-      console.log(state);
-      const response = await axios.post(
-        'https://project-kapusta-rest-api.vercel.app/auth/login',
-        state
-      );
-      console.log(response);
-      const token = response.data.token;
-
-      try {
-        const jwtDecodeModule = await import('jwt-decode');
-        const jwtDecode = jwtDecodeModule.default || jwtDecodeModule.jwtDecode;
-
-        if (typeof jwtDecode !== 'function') {
-          throw new Error('jwtDecode is not a function');
-        }
-        const user = jwtDecode(token);
-        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-        try {
-          const response = await axios.get(
-            'https://project-kapusta-rest-api.vercel.app/user'
-          );
-
-          const value = String(response.data.balance);
-
-          dispatch(setBalance({ value }));
-        } catch (error) {
-          console.error(
-            'Failed fetch user',
-            error.response ? error.response.data : error.message
-          );
-          alert('Failed fetch user');
-        }
-        dispatch(loginSuccess({ token, user }));
-        navigate('/');
-      } catch (jwtError) {
-        console.error('Error decoding JWT:', jwtError);
-        alert('Failed to decode JWT. Please try again.');
-      }
+      const { token } = await loginUser(state);
+      const user = await decodeToken(token);
+      const userData = await fetchUserData(token);
+      const value = String(userData.balance);
+      const isBalanceSet = userData.isBalanceSet;
+      console.log('User object:', user);
+      console.log('Token:', token);
+      dispatch(setIsBalanceSet(isBalanceSet))
+      dispatch(setBalance({ value }));
+      dispatch(loginSuccess({ token, user }));
+      navigate('/');
     } catch (error) {
       console.error(
-        'Login failed:',
+        'Błąd logowania:',
         error.response ? error.response.data : error.message
       );
-      alert('Login failed. Please try again.');
+      dispatch(loginFailure('Logowanie nie powiodło się. Spróbuj ponownie.')); // Ustawienie błędu
+      alert('Logowanie nie powiodło się. Spróbuj ponownie.');
     }
   };
 
@@ -93,6 +72,9 @@ const Login = () => {
           <p className={styles.loginParagraph}>
             Log in using an email and password, after registering:
           </p>
+
+          {/* Wyświetlanie błędów logowania */}
+          {error && <p className={styles.errorText}>{error}</p>}
 
           <div className={styles.loginFormDiv}>
             <label htmlFor="email" className={styles.loginLabel}>
@@ -140,17 +122,16 @@ const Login = () => {
             <button
               type="submit"
               className={`${styles.registerButtonForm} ${
-                active && styles.active
+                isLoading ? styles.loading : ''
               }`}
+              disabled={isLoading} // Zablokowanie przycisku, gdy ładowanie jest w toku
             >
-              Log in
+              {isLoading ? 'Loading...' : 'Log in'}
             </button>
             <button
               type="button"
               className={styles.registerButtonForm}
               onClick={handleRegistrationRedirect}
-              onMouseEnter={() => setActive(false)}
-              onMouseLeave={() => setActive(true)}
             >
               Registration
             </button>
