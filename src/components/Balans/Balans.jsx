@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setBalance, setIsBalanceSet } from '../../redux/userSlice';
 import axios from 'axios';
 import ModalBilance from 'components/ModalBilance/ModalBilance';
+import { Link } from 'react-router-dom';
 
 function Balans() {
   const dispatch = useDispatch();
@@ -46,12 +47,15 @@ function Balans() {
 
   return (
     <div className={styles.balanceBox}>
-      <button className={styles.reportsBox}>
-        <span>Reports</span>
-        <svg className={styles.reportsSVG}>
-          <use href={`${icons}#icon-reports`}></use>
-        </svg>
-      </button>
+      <Link to="/reports">
+        <button className={styles.reportsBox}>
+          <span>Reports</span>
+          <svg className={styles.reportsSVG}>
+            <use href={`${icons}#icon-reports`}></use>
+          </svg>
+        </button>
+      </Link>
+
       <div className={styles.balanceWraper}>
         <p className={styles.label}>Balance:</p>
         <form className={styles.amountBox} onSubmit={confirmBalance}>

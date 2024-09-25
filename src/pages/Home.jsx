@@ -9,6 +9,7 @@ const Home = () => {
     <div>
       <ToTransaction />
       <Balans />
+
       {/* <ExpensesIncome expenses={expenses} income={income} /> */}
     </div>
   );

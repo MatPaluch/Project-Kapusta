@@ -1,0 +1,36 @@
+.returnContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.arrowButton {
+  width: 4px;
+  height: 10px;
+  all: unset;
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-140px);
+}
+
+.arrowIcon {
+  width: 18px;
+  height: 10px;
+  fill: var(--orange);
+}
+.mobileHidden {
+  display: none;
+}
+
+/* ================================================= TABLET 👇 ========================================= */
+@media screen and (min-width: 768px) {
+  .arrowButton {
+    position: relative;
+    left: auto;
+    transform: none;
+  }
+}
+.mobileHidden {
+  display: flex;
+  margin-left: 15px;
+}
