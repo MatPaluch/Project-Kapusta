@@ -1,22 +1,28 @@
 .returnContainer {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  width: 100px;
+  height: 44px;
 }
 
 .arrowButton {
-  width: 4px;
+  width: 18px;
   height: 10px;
+  align-content: center;
   all: unset;
   box-sizing: border-box;
   position: absolute;
   left: 50%;
   transform: translateX(-140px);
+  margin-top: 16px;
 }
 
 .arrowIcon {
   width: 18px;
   height: 10px;
-  fill: var(--orange);
+  fill: #ff751d;
 }
 .mobileHidden {
   display: none;
@@ -28,9 +34,13 @@
     position: relative;
     left: auto;
     transform: none;
+    margin: auto;
   }
-}
-.mobileHidden {
-  display: flex;
-  margin-left: 15px;
+
+  .mobileHidden {
+    display: flex;
+    margin-left: 15px;
+    text-decoration: none;
+    color: var(--grey-lighter);
+  }
 }
