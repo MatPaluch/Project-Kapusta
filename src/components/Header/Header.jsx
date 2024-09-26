@@ -10,6 +10,7 @@ export const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, token } = useSelector(state => state.auth); // Pobieramy dane użytkownika z Reduxa
+  console.log(user);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLogoutClick = () => {
@@ -36,7 +37,14 @@ export const Header = () => {
 
       {token ? (
         <div className={styles.headerMenu}>
-          <div className={styles.user}>U</div>
+          <div className={styles.user}>
+            U
+            {/* <img
+              src={user.avatarURL}
+              alt="avatar"
+              className={styles.avatar}
+            ></img> */}
+          </div>
           <svg className={styles.iconLogout} onClick={handleLogoutClick}>
             <use href={`${icons}#icon-logout`}></use>
           </svg>

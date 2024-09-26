@@ -1,0 +1,121 @@
+/* ======================== MOBILE ===================================== */
+.label {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: rgba(82, 85, 95, 0.7);
+  margin-top: 32px;
+}
+
+.balanceWraper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.amountBox {
+  display: flex;
+}
+.amount {
+  width: 75%;
+  border-radius: 22px 0 0 22px;
+  background-color: transparent;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: right;
+  color: #000;
+  text-overflow: ellipsis;
+}
+.inputBox {
+  position: relative;
+  border: 2px solid #fff;
+  border-radius: 22px 0 0 22px;
+  width: 140px;
+  height: 44px;
+  padding-right: 16px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
+  background-color: transparent;
+  position: relative;
+}
+.pln {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: right;
+  color: #000;
+}
+.disabled {
+  border: 2px solid #fff;
+  border-radius: 0 22px 22px 0;
+  width: 142px;
+  height: 44px;
+  margin-left: -2px;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(82, 85, 95, 0.7);
+}
+.confirm {
+  border-radius: 0 22px 22px 0;
+  width: 142px;
+  height: 44px;
+  background: #ff751d;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* ======================== TABLET ===================================== */
+@media screen and (min-width: 768px) {
+  .balanceWraper {
+    flex-direction: row;
+    align-items: center;
+    gap: 21px;
+  }
+  .label {
+    margin: 0;
+    text-align: right;
+  }
+  .amountBox {
+    gap: 15px;
+  }
+  .inputBox {
+    border: 2px solid #fff;
+    border-radius: 16px;
+    width: 125px;
+    height: 44px;
+  }
+  .disabled {
+    margin-left: 0;
+    border: 2px solid #fff;
+    border-radius: 16px;
+    width: 125px;
+    height: 44px;
+  }
+  .confirm {
+    border-radius: 16px;
+  }
+}
+
+/* ======================== DESKTOP===================================== */
+@media screen and (min-width: 1280px) {
+}

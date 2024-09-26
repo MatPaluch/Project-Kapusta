@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from './PrivateRout/PrivateRout';
 import { Layout } from './Layout/Layout';
 import LoginPage from '../pages/LoginPage'; // Zaktualizuj import do LoginPage
+import ReportsPage from 'pages/ReportsPage';
 
 const Home = lazy(() => import('../pages/Home'));
 const Register = lazy(() => import('./Register/Register.jsx'));
@@ -18,6 +19,17 @@ export const App = () => {
             <PrivateRoute>
               <Layout>
                 <Home />
+                {/* Reszta routingu stron */}
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/reports"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <ReportsPage />
                 {/* Reszta routingu stron */}
               </Layout>
             </PrivateRoute>
