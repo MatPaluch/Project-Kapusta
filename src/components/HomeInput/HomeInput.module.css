@@ -28,6 +28,9 @@
     height: 44px;
   }
   .productCategory {
+    border: 2px solid #f5f6fb;
+    width: 186px;
+    height: 44px;
   }
 
   .productValue {
