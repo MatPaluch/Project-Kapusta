@@ -29,5 +29,9 @@
 }
 
 /* ======================== TABLET ===================================== */
+
 @media screen and (min-width: 768px) {
+  .calendarBox {
+    margin: 0;
+  }
 }

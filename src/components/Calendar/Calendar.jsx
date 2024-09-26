@@ -5,7 +5,21 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 function Calendar() {
   const [startDate, setStartDate] = useState(new Date());
-  console.log(startDate);
+
+  let dateFormatted = startDate;
+  let dd = dateFormatted.getDate();
+  let mm = dateFormatted.getMonth() + 1;
+  let yyyy = dateFormatted.getFullYear();
+
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+  dateFormatted = dd + '.' + mm + '.' + yyyy;
+
+  console.log(dateFormatted);
 
   return (
     <div className={styles.calendarBox}>
@@ -51,6 +65,7 @@ function Calendar() {
         className={styles.calendar}
         selected={startDate}
         onChange={date => setStartDate(date)}
+        dateFormat="dd/MM/yyyy"
       />
     </div>
   );

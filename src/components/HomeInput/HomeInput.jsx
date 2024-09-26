@@ -8,13 +8,18 @@ function HomeInput() {
       <ul className={styles.list}>
         <li className={styles.listItem}>
           <input
+            className={styles.productDescription}
             type="text"
             name="description"
             placeholder="Product description"
           />
         </li>
         <li className={styles.listItem}>
-          <select type="select" name="category">
+          <select
+            type="select"
+            name="category"
+            className={styles.productCategory}
+          >
             <option value="" disabled selected hidden>
               Product category
             </option>
@@ -35,6 +40,7 @@ function HomeInput() {
         </li>
         <li className={styles.listItem}>
           <input
+            className={styles.productValue}
             type="number"
             name="value"
             placeholder="0,00"

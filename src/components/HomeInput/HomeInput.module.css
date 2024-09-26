@@ -7,6 +7,7 @@
 @media screen and (min-width: 768px) {
   .inputBox {
     display: flex;
+    margin: auto;
     flex-direction: row;
     width: 624px;
     height: 44px;
@@ -19,6 +20,20 @@
 
   .listItem {
     display: inline;
+  }
+
+  .productDescription {
+    border: 2px solid #f5f6fb;
+    width: 186px;
+    height: 44px;
+  }
+  .productCategory {
+  }
+
+  .productValue {
+    border: 2px solid #f5f6fb;
+    width: 186px;
+    height: 44px;
   }
 }
 
