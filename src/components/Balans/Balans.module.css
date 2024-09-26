@@ -17,7 +17,7 @@
 /* ======================== DESKTOP===================================== */
 @media screen and (min-width: 1280px) {
   .balanceBox {
-    gap: 298;
-    justify-content: center;
+    gap: 298px;
+    justify-content: flex-start;
   }
 }
