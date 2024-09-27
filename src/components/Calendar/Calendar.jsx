@@ -19,7 +19,7 @@ function Calendar() {
   }
   dateFormatted = dd + '.' + mm + '.' + yyyy;
 
-  console.log(dateFormatted);
+  // console.log(dateFormatted);
 
   return (
     <div className={styles.calendarBox}>
