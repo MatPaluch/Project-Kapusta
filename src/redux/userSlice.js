@@ -15,7 +15,6 @@ const userSlice = createSlice({
       state.balance = action.payload.value;
     },
     setIsBalanceSet: (state, action) => {
-      console.log(action.payload);
       state.isBalanceSet = action.payload;
     },
   },
