@@ -4,7 +4,7 @@
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  margin: 32px auto 0;
+  margin: 32px auto;
   padding: 20px;
   border-radius: 30px;
 }
@@ -21,6 +21,8 @@
 /* =========================== DESKTOP 👇 ============================== */
 @media screen and (min-width: 1280px) {
   .reportContainer {
+    position: relative;
     width: 1034px;
+    z-index: 900;
   }
 }

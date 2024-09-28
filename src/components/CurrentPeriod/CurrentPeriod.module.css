@@ -7,15 +7,19 @@
 }
 
 .arrowButton {
-  width: 4px;
-  height: 10px;
+  width: 6px;
+  height: 15px;
   all: unset;
   box-sizing: border-box;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
 
 .arrowIcon {
-  width: 4px;
-  height: 10px;
+  width: 6px;
+  height: 15px;
   fill: var(--orange);
 }
 
@@ -24,7 +28,7 @@
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  width: 134px;
+  width: 150px;
   height: 20px;
   font-size: 14px;
   font-weight: 700;
