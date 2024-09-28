@@ -1,0 +1,72 @@
+/* ======================== MOBILE ===================================== */
+.list {
+  display: none;
+}
+
+/* ======================== TABLET ===================================== */
+@media screen and (min-width: 768px) {
+  .inputBox {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    width: 624px;
+    height: 44px;
+  }
+
+  .list {
+    list-style-type: none;
+    display: inline;
+  }
+
+  .listItem {
+    display: inline;
+  }
+
+  .productDescription {
+    border: 2px solid #f5f6fb;
+    border-radius: 16px 0 0 0;
+    width: 186px;
+    height: 44px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: #c7ccdc;
+    text-align: center;
+  }
+  .productCategory {
+    border: 2px solid #f5f6fb;
+    width: 186px;
+    height: 44px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: #c7ccdc;
+    appearance: none;
+    background-image: url('../../../assets/arrow.svg');
+    background-repeat: no-repeat;
+    background-position: 156px 15px;
+    text-align: center;
+  }
+
+  .productValue {
+    border: 2px solid #f5f6fb;
+    border-radius: 0 16px 16px 0;
+    width: 110px;
+    height: 44px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: #c7ccdc;
+    background-image: url('../../../assets/calculator.svg');
+    background-repeat: no-repeat;
+    background-position: 70px 10px;
+  }
+}
+
+/* ======================== DESKTOP===================================== */
+@media screen and (min-width: 1280px) {
+}

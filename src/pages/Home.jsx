@@ -1,4 +1,6 @@
 import Balans from 'components/Balans/Balans';
+import HomeInput from 'components/HomeInput/HomeInput';
+
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
 
 const Home = () => {
@@ -6,6 +8,7 @@ const Home = () => {
     <div>
       <ToTransaction />
       <Balans />
+      <HomeInput />
     </div>
   );
 };
