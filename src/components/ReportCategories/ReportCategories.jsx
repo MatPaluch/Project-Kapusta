@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 export const ReportCategories = () => {
   const [category, setCategory] = useState('expenses');
   const selectedMonth = useSelector(state => state.period.selectedPeriod);
-  console.log('wybrany miesiac ', selectedMonth);
+
   const toggleCategory = () => {
     setCategory(prevCategory =>
       prevCategory === 'expenses' ? 'incomes' : 'expenses'
