@@ -5,9 +5,10 @@ import PrivateRoute from './PrivateRout/PrivateRout';
 import { Layout } from './Layout/Layout';
 import LoginPage from '../pages/LoginPage'; // Zaktualizuj import do LoginPage
 import ReportsPage from 'pages/ReportsPage';
+import { IncomesPage } from 'pages/IncomesPage';
 
 const Home = lazy(() => import('../pages/Home'));
-const Register = lazy(() => import('./Register/Register.jsx'));
+const Register = lazy(() => import('../pages/RegisterPage.jsx'));
 
 export const App = () => {
   const { token } = useSelector(state => state.auth); // Sprawdź token w Redux
@@ -20,12 +21,21 @@ export const App = () => {
           element={
             <PrivateRoute>
               <Layout>
-                <Home />{' '}
+                <Home />
                 {/* Zawsze renderuj Home, gdy użytkownik jest zalogowany */}
               </Layout>
             </PrivateRoute>
           }
         />
+        <Route
+          path="/incomes"
+          element={
+            <PrivateRoute>
+              <IncomesPage />
+            </PrivateRoute>
+          }
+        ></Route>
+
         <Route
           path="/reports"
           element={
@@ -41,19 +51,12 @@ export const App = () => {
           path="/login"
           element={
             <Layout>
-              {!token ? <LoginPage /> : <Home />}{' '}
+              {!token ? <LoginPage /> : <Home />}
               {/* Jeśli zalogowany, renderuj Home */}
             </Layout>
           }
         />
-        <Route
-          path="/register"
-          element={
-            <Layout>
-              <Register />
-            </Layout>
-          }
-        />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Suspense>
   );
