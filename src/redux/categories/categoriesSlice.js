@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   expenseCategories: [],
+  incomeCategories: [],
   loading: false,
   error: null,
 };

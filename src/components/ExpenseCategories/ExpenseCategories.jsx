@@ -8,11 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 export const ExpenseCategories = () => {
   const dispatch = useDispatch();
 
-  const { expenseCategories, loading, error } = useSelector(state => ({
-    expenseCategories: state.categories.expenseCategories,
-    loading: state.categories.loading,
-    error: state.categories.error,
-  }));
+  const expenseCategories = useSelector(
+    state => state.categories.expenseCategories
+  );
+  const loading = useSelector(state => state.categories.loading);
+  const error = useSelector(state => state.categories.error);
 
   useEffect(() => {
     dispatch(fetchExpenseCategories());
