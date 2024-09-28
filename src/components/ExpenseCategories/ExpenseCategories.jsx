@@ -14,8 +14,6 @@ export const ExpenseCategories = () => {
     error: state.categories.error,
   }));
 
-  console.log('Categories State:', expenseCategories);
-
   useEffect(() => {
     dispatch(fetchExpenseCategories());
   }, [dispatch]);

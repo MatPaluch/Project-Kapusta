@@ -3,6 +3,16 @@ import styles from './ReportCategory.module.css';
 import icons from '../../images/categoryIcons.svg';
 
 export const ReportCategory = ({ name, total }) => {
+  const getIconName = name => {
+    let iconName;
+    if (name === 'Other income') {
+      iconName = 'ioth';
+    } else {
+      iconName = name.slice(0, 4).toLowerCase();
+    }
+    return iconName;
+  };
+
   return (
     <div className={styles.categoryContainer}>
       <div className={styles.categoryTotal}>{total}</div>
@@ -11,7 +21,7 @@ export const ReportCategory = ({ name, total }) => {
         <div className={styles.categoryBackground}></div>
         <button className={styles.categoryButton}>
           <svg className={styles.categoryIcon}>
-            <use href={`${icons}#icon-category-products`}></use>
+            <use href={`${icons}#icon-category-${getIconName(name)}`}></use>
           </svg>
         </button>
       </div>

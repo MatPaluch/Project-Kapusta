@@ -7,9 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export const IncomeCategories = () => {
   const dispatch = useDispatch();
-  const { incomeCategories, loading, error } = useSelector(
-    state => state.categories
-  );
+  const { incomeCategories, loading, error } = useSelector(state => ({
+    expenseCategories: state.categories.expenseCategories,
+    loading: state.categories.loading,
+    error: state.categories.error,
+  }));
 
   useEffect(() => {
     dispatch(fetchIncomeCategories());
@@ -22,7 +24,7 @@ export const IncomeCategories = () => {
     <div>
       {incomeCategories.map(category => (
         <ReportCategory
-          key={category.id}
+          key={category.name}
           name={category.name}
           total={category.total}
         />
