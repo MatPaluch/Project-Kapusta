@@ -6,8 +6,8 @@ import { nextMonth, previousMonth } from '../../redux/period/periodSlice';
 
 export const CurrentPeriod = () => {
   const dispatch = useDispatch();
-  const currentDateString = useSelector(state => state.period.selectedPeriod);
-  const currentDate = new Date(currentDateString); // Konwersja string na Date
+  const currentDateString = useSelector(state => state.selectedPeriod);
+  const currentDate = new Date(currentDateString);
 
   const formatDate = date => {
     return new Intl.DateTimeFormat('en-US', {

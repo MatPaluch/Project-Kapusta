@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  selectedPeriod: new Date().toISOString(), // Przechowujemy jako string
+  selectedPeriod: new Date().toISOString(),
 };
 
 export const periodSlice = createSlice({
