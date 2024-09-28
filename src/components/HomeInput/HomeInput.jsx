@@ -21,6 +21,7 @@ function HomeInput() {
   }
 
   return (
+    // Formularz a nie div
     <div className={styles.inputBox}>
       <Calendar />
       <ul className={styles.list}>
@@ -42,6 +43,7 @@ function HomeInput() {
             value={category}
             onChange={categoryHandler}
           >
+            {/* renderować options po tablicy z backendu */}
             <option value="" disabled selected hidden>
               Product category
             </option>
