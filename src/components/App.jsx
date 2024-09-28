@@ -1,14 +1,16 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux'; // Importuj useSelector
 import PrivateRoute from './PrivateRout/PrivateRout';
 import { Layout } from './Layout/Layout';
-import LoginPage from '../pages/LoginPage'; // Zaktualizuj import do LoginPage
+import LoginPage from '../pages/LoginPage';
 
 const Home = lazy(() => import('../pages/Home'));
 const Register = lazy(() => import('./Register/Register.jsx'));
-// Reszta importów stron
 
 export const App = () => {
+  const { token } = useSelector(state => state.auth); // Sprawdź token w Redux
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
@@ -17,8 +19,8 @@ export const App = () => {
           element={
             <PrivateRoute>
               <Layout>
-                <Home />
-                {/* Reszta routingu stron */}
+                <Home />{' '}
+                {/* Zawsze renderuj Home, gdy użytkownik jest zalogowany */}
               </Layout>
             </PrivateRoute>
           }
@@ -27,7 +29,8 @@ export const App = () => {
           path="/login"
           element={
             <Layout>
-              <LoginPage /> {/* Użyj LoginPage zamiast Login */}
+              {!token ? <LoginPage /> : <Home />}{' '}
+              {/* Jeśli zalogowany, renderuj Home */}
             </Layout>
           }
         />
