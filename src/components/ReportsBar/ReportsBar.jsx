@@ -9,11 +9,8 @@ export const ReportsBar = () => {
   return (
     <div className={styles.mainBarContainer}>
       <BackToMain />
-
-      <div className={styles.subContainer}>
-        <CurrentPeriod />
-        <InputBalance />
-      </div>
+      <CurrentPeriod />
+      <InputBalance />
     </div>
   );
 };

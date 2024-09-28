@@ -1,30 +1,19 @@
 .mainBarContainer {
   display: flex;
   flex-direction: column;
-  align-self: center;
   font-size: 12px;
   font-weight: normal;
   text-transform: none;
   color: var(--grey-mid);
-  margin: 16px auto;
-}
-
-.subContainer {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  gap: 32px;
-  margin-top: 16px;
 }
 
 /* ================================================= TABLET 👇 ========================================= */
 @media screen and (min-width: 768px) {
   .mainBarContainer {
-    flex-direction: row;
     justify-content: space-between;
+    flex-direction: row;
+    padding: 40px 32px;
     align-items: center;
-    height: 44px;
-    width: 704px;
   }
   .subContainer {
     flex-direction: row-reverse;
@@ -35,9 +24,8 @@
 /* =========================== DESKTOP 👇 ============================== */
 @media screen and (min-width: 1280px) {
   .mainBarContainer {
-    width: 1034px;
-  }
-  .subContainer {
-    width: 684px;
+    max-width: 1024px;
+    padding: 40px 0 0 0;
+    margin: 0 auto;
   }
 }
