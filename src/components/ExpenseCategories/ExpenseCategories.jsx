@@ -1,9 +1,9 @@
 import styles from './ExpenseCategories.module.css';
 
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { ReportCategory } from '../ReportCategory/ReportCategory';
 import { fetchExpenseCategories } from '../../redux/categories/categoriesActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const ExpenseCategories = () => {
   const dispatch = useDispatch();

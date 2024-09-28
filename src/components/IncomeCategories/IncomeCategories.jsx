@@ -1,4 +1,4 @@
-// import styles from './IncomeCategories.module.css';
+import styles from './IncomeCategories.module.css';
 
 import React, { useEffect } from 'react';
 import { ReportCategory } from '../ReportCategory/ReportCategory';
@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export const IncomeCategories = () => {
   const dispatch = useDispatch();
+
   const { incomeCategories, loading, error } = useSelector(state => ({
-    expenseCategories: state.categories.expenseCategories,
+    incomeCategories: state.categories.incomeCategories,
     loading: state.categories.loading,
     error: state.categories.error,
   }));
@@ -21,13 +22,9 @@ export const IncomeCategories = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div className={styles.categoriesContainer}>
       {incomeCategories.map(category => (
-        <ReportCategory
-          key={category.name}
-          name={category.name}
-          total={category.total}
-        />
+        <ReportCategory key={category} name={category} total={'total'} />
       ))}
     </div>
   );

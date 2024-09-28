@@ -12,17 +12,15 @@ export const periodSlice = createSlice({
       state.selectedPeriod = action.payload;
     },
     previousMonth: state => {
-      const prevMonth = new Date(
-        state.selectedPeriod.setMonth(state.selectedPeriod.getMonth() - 1)
-      );
-      state.selectedPeriod = new Date(prevMonth);
+      const currentDate = new Date(state.selectedPeriod);
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      state.selectedPeriod = currentDate.toISOString();
     },
 
     nextMonth: state => {
-      const nextMonth = new Date(
-        state.selectedPeriod.setMonth(state.selectedPeriod.getMonth() + 1)
-      );
-      state.selectedPeriod = new Date(nextMonth);
+      const currentDate = new Date(state.selectedPeriod);
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      state.selectedPeriod = currentDate.toISOString();
     },
   },
 });

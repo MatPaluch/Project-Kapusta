@@ -6,7 +6,7 @@ import { nextMonth, previousMonth } from '../../redux/period/periodSlice';
 
 export const CurrentPeriod = () => {
   const dispatch = useDispatch();
-  const currentDateString = useSelector(state => state.selectedPeriod);
+  const currentDateString = useSelector(state => state.period.selectedPeriod);
   const currentDate = new Date(currentDateString);
 
   const formatDate = date => {
