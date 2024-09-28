@@ -7,7 +7,6 @@ import ModalBilance from 'components/ModalBilance/ModalBilance';
 function InputBalance() {
   const dispatch = useDispatch();
   const balance = useSelector(state => state.user.balance);
-  console.log(balance);
   const isBalanceSet = useSelector(state => state.user.isBalanceSet);
 
   const handleChange = e => {
@@ -29,8 +28,7 @@ function InputBalance() {
         { balance: Number(balance) } // Wysyłamy aktualny stan balance do backendu
       );
       const value = String(response.data.data.balance);
-      console.log(response);
-      console.log(value);
+
       dispatch(setBalance({ value }));
       dispatch(setIsBalanceSet(true));
       alert('Balance updated!');

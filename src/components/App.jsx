@@ -1,15 +1,18 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux'; // Importuj useSelector
 import PrivateRoute from './PrivateRout/PrivateRout';
 import { Layout } from './Layout/Layout';
 import LoginPage from '../pages/LoginPage'; // Zaktualizuj import do LoginPage
 import ReportsPage from 'pages/ReportsPage';
+import { IncomesPage } from 'pages/IncomesPage';
 
 const Home = lazy(() => import('../pages/Home'));
-const Register = lazy(() => import('./Register/Register.jsx'));
-// Reszta importów stron
+const Register = lazy(() => import('../pages/RegisterPage.jsx'));
 
 export const App = () => {
+  const { token } = useSelector(state => state.auth); // Sprawdź token w Redux
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
@@ -19,11 +22,20 @@ export const App = () => {
             <PrivateRoute>
               <Layout>
                 <Home />
-                {/* Reszta routingu stron */}
+                {/* Zawsze renderuj Home, gdy użytkownik jest zalogowany */}
               </Layout>
             </PrivateRoute>
           }
         />
+        <Route
+          path="/incomes"
+          element={
+            <PrivateRoute>
+              <IncomesPage />
+            </PrivateRoute>
+          }
+        ></Route>
+
         <Route
           path="/reports"
           element={
@@ -39,18 +51,12 @@ export const App = () => {
           path="/login"
           element={
             <Layout>
-              <LoginPage /> {/* Użyj LoginPage zamiast Login */}
+              {!token ? <LoginPage /> : <Home />}
+              {/* Jeśli zalogowany, renderuj Home */}
             </Layout>
           }
         />
-        <Route
-          path="/register"
-          element={
-            <Layout>
-              <Register />
-            </Layout>
-          }
-        />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Suspense>
   );

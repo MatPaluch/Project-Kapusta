@@ -45,9 +45,8 @@ const Login = () => {
       const userData = await fetchUserData(token);
       const value = String(userData.balance);
       const isBalanceSet = userData.isBalanceSet;
-      console.log('User object:', user);
-      console.log('Token:', token);
-      dispatch(setIsBalanceSet(isBalanceSet))
+
+      dispatch(setIsBalanceSet(isBalanceSet));
       dispatch(setBalance({ value }));
       dispatch(loginSuccess({ token, user }));
       navigate('/');
