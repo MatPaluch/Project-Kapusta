@@ -1,0 +1,27 @@
+/* ======================== MOBILE ===================================== */
+
+.reportsBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 16px;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-align: right;
+  color: rgba(82, 85, 95, 0.7);
+  text-decoration: none;
+}
+.reportsBox:hover {
+  background-color: rgba(82, 85, 95, 0.3);
+}
+
+.reportsSVG {
+  width: 24px;
+  height: 24px;
+}

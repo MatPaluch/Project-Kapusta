@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'; // Importuj useSelector
 import PrivateRoute from './PrivateRout/PrivateRout';
 import { Layout } from './Layout/Layout';
 import LoginPage from '../pages/LoginPage'; // Zaktualizuj import do LoginPage
+import ReportsPage from 'pages/ReportsPage';
+
 const Home = lazy(() => import('../pages/Home'));
 const Register = lazy(() => import('./Register/Register.jsx'));
 
@@ -20,6 +22,17 @@ export const App = () => {
               <Layout>
                 <Home />{' '}
                 {/* Zawsze renderuj Home, gdy użytkownik jest zalogowany */}
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/reports"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <ReportsPage />
+                {/* Reszta routingu stron */}
               </Layout>
             </PrivateRoute>
           }

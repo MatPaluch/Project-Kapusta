@@ -1,0 +1,64 @@
+.reportContainer {
+  width: 320px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  margin: 32px auto 0;
+  padding: 20px;
+  border-radius: 30px;
+}
+
+.categoriesBar {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 134px;
+  height: 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.categoriesContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 20px;
+}
+.arrowButton {
+  width: 4px;
+  height: 10px;
+  all: unset;
+  box-sizing: border-box;
+}
+
+.arrowIcon {
+  width: 4px;
+  height: 10px;
+  fill: var(--orange);
+}
+/* =========================== TABLET 👇 ============================== */
+@media screen and (min-width: 768px) {
+  .reportContainer {
+    width: 704px;
+    padding: 20px 40px;
+    background-color: white;
+    flex-wrap: wrap;
+    box-shadow: 5px 10px 20px 0 rgba(170, 178, 197, 0.4);
+  }
+  .categoriesBar {
+    width: 136px;
+  }
+  .categoriesContainer {
+    width: 623px;
+    height: auto;
+  }
+}
+/* =========================== DESKTOP 👇 ============================== */
+@media screen and (min-width: 1280px) {
+  .reportContainer {
+    width: 1034px;
+  }
+}
