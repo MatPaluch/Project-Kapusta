@@ -188,5 +188,6 @@
     display: flex;
     width: 1334px;
     height: 232px;
+    z-index: 101;
   }
 }

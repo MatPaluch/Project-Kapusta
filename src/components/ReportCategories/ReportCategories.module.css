@@ -7,6 +7,8 @@
   margin: 32px auto 0;
   padding: 20px;
   border-radius: 30px;
+  position: relative;
+  z-index: 700;
 }
 
 .categoriesBar {
@@ -18,7 +20,7 @@
   height: 20px;
   font-size: 14px;
   font-weight: 700;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 .categoriesContainer {
   display: flex;
@@ -29,15 +31,19 @@
   margin-top: 20px;
 }
 .arrowButton {
-  width: 4px;
-  height: 10px;
+  width: 6px;
+  height: 15px;
   all: unset;
   box-sizing: border-box;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
 
 .arrowIcon {
-  width: 4px;
-  height: 10px;
+  width: 6px;
+  height: 15px;
   fill: var(--orange);
 }
 /* =========================== TABLET 👇 ============================== */

@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './CurrentPeriod.module.css';
 import icons from '../../images/icons.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { nextMonth, previousMonth } from '../../redux/period/periodSlice';
 
 export const CurrentPeriod = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const dispatch = useDispatch();
+  const currentDateString = useSelector(state => state.period.selectedPeriod);
+  const currentDate = new Date(currentDateString); // Konwersja string na Date
 
   const formatDate = date => {
     return new Intl.DateTimeFormat('en-US', {
@@ -12,33 +16,25 @@ export const CurrentPeriod = () => {
     }).format(date);
   };
 
-  const handlePreviousMonth = () => {
-    const prevMonth = new Date(
-      currentDate.setMonth(currentDate.getMonth() - 1)
-    );
-    setCurrentDate(new Date(prevMonth));
-  };
-
-  const handleNextMonth = () => {
-    const nextMonth = new Date(
-      currentDate.setMonth(currentDate.getMonth() + 1)
-    );
-    setCurrentDate(new Date(nextMonth));
-  };
-
   return (
     <div className={styles.currentPeriodContainer}>
       <div>Current period:</div>
 
       <div className={styles.currentPeriod}>
-        <button className={styles.arrowButton} onClick={handlePreviousMonth}>
+        <button
+          className={styles.arrowButton}
+          onClick={() => dispatch(previousMonth())}
+        >
           <svg className={styles.arrowIcon}>
             <use href={`${icons}#icon-arrow-left`}></use>
           </svg>
         </button>
 
         {formatDate(currentDate)}
-        <button className={styles.arrowButton} onClick={handleNextMonth}>
+        <button
+          className={styles.arrowButton}
+          onClick={() => dispatch(nextMonth())}
+        >
           <svg className={styles.arrowIcon}>
             <use href={`${icons}#icon-arrow-right`}></use>
           </svg>

@@ -3,10 +3,12 @@ import styles from './ReportCategories.module.css';
 import icons from '../../images/icons.svg';
 import { IncomeCategories } from 'components/IncomeCategories/IncomeCategories';
 import { ExpenseCategories } from 'components/ExpenseCategories/ExpenseCategories';
+import { useSelector } from 'react-redux';
 
 export const ReportCategories = () => {
   const [category, setCategory] = useState('expenses');
-
+  const selectedMonth = useSelector(state => state.period.selectedPeriod);
+  console.log('wybrany miesiac ', selectedMonth);
   const toggleCategory = () => {
     setCategory(prevCategory =>
       prevCategory === 'expenses' ? 'incomes' : 'expenses'
@@ -29,7 +31,11 @@ export const ReportCategories = () => {
         </button>
       </div>
       <div className={styles.categoriesContainer}>
-        {category === 'expenses' ? <ExpenseCategories /> : <IncomeCategories />}
+        {category === 'expenses' ? (
+          <ExpenseCategories selectedMonth={selectedMonth} />
+        ) : (
+          <IncomeCategories selectedMonth={selectedMonth} />
+        )}
       </div>
     </div>
   );
