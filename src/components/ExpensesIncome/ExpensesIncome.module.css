@@ -62,7 +62,7 @@
   }
   .labelBox {
     margin: auto;
-
+    width: auto;
     display: flex;
     height: 20px;
   }
