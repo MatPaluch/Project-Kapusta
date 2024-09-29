@@ -15,7 +15,7 @@ export const ReportCategory = ({ name, total, onClick }) => {
 
   return (
     <div className={styles.categoryContainer}>
-      <div className={styles.categoryTotal}>{total}</div>
+      <div className={styles.categoryTotal}>{total} PLN</div>
 
       <div className={styles.categoryImage}>
         <div className={styles.categoryBackground}></div>

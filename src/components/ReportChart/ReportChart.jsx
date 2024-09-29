@@ -28,7 +28,7 @@ export const ReportChart = () => {
 
   return (
     <div className={styles.reportContainer}>
-      {selectedCategory ? (
+      {selectedCategory && formattedData ? (
         <>
           <div className={styles.verticalChart}>
             <VictoryChart domainPadding={{ x: 25 }}>
@@ -76,7 +76,11 @@ export const ReportChart = () => {
                 cornerRadius={{ topLeft: 10, topRight: 10 }}
                 style={{
                   data: {
-                    fill: 'var(--chart-orange-light)',
+                    // Ustawienie koloru słupka na podstawie indeksu
+                    fill: ({ index }) =>
+                      index % 3 === 0
+                        ? 'var(--orange)'
+                        : 'var(--chart-orange-light)',
                     width: 38,
                   },
                 }}

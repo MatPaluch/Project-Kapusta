@@ -28,20 +28,25 @@ export const ExpenseCategories = () => {
   if (error) return <p>Error: {error}</p>;
 
   const categoriesArray = Object.entries(expenseCategories);
+  if (!categoriesArray.length > 0) {
+    dispatch(setSelectedCategory(false));
+  }
 
   return (
     <div className={styles.categoriesContainer}>
-      {categoriesArray.map(([categoryName, categoryData]) => (
-        <ReportCategory
-          key={categoryName}
-          name={categoryName}
-          total={categoryData.total}
-          onClick={() => {
-            dispatch(setSelectedCategory(categoryName));
-            dispatch(setSelectedType('expenses'));
-          }}
-        />
-      ))}
+      {categoriesArray && categoriesArray.length > 0
+        ? categoriesArray.map(([categoryName, categoryData]) => (
+            <ReportCategory
+              key={categoryName}
+              name={categoryName}
+              total={categoryData.total}
+              onClick={() => {
+                dispatch(setSelectedCategory(categoryName));
+                dispatch(setSelectedType('expenses'));
+              }}
+            />
+          ))
+        : 'No expenses available in selected period'}
     </div>
   );
 };

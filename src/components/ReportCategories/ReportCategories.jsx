@@ -3,18 +3,20 @@ import styles from './ReportCategories.module.css';
 import icons from '../../images/icons.svg';
 import { IncomeCategories } from 'components/IncomeCategories/IncomeCategories';
 import { ExpenseCategories } from 'components/ExpenseCategories/ExpenseCategories';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSelectedCategory } from '../../redux/reports/reportsSlice';
 
 export const ReportCategories = () => {
+  const dispatch = useDispatch();
   const selectedType = useSelector(state => state.reports.selectedType);
   const [category, setCategory] = useState(selectedType || 'expenses');
-
   const selectedMonth = useSelector(state => state.period.selectedPeriod);
 
   const toggleCategory = () => {
     setCategory(prevCategory =>
       prevCategory === 'expenses' ? 'incomes' : 'expenses'
     );
+    dispatch(setSelectedCategory(false));
   };
 
   return (
