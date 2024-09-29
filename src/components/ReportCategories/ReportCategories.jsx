@@ -6,7 +6,9 @@ import { ExpenseCategories } from 'components/ExpenseCategories/ExpenseCategorie
 import { useSelector } from 'react-redux';
 
 export const ReportCategories = () => {
-  const [category, setCategory] = useState('expenses');
+  const selectedType = useSelector(state => state.reports.selectedType);
+  const [category, setCategory] = useState(selectedType || 'expenses');
+
   const selectedMonth = useSelector(state => state.period.selectedPeriod);
 
   const toggleCategory = () => {
@@ -31,10 +33,14 @@ export const ReportCategories = () => {
         </button>
       </div>
       <div className={styles.categoriesContainer}>
-        {category === 'expenses' ? (
-          <ExpenseCategories selectedMonth={selectedMonth} />
+        {selectedMonth ? (
+          category === 'expenses' ? (
+            <ExpenseCategories selectedMonth={selectedMonth} />
+          ) : (
+            <IncomeCategories selectedMonth={selectedMonth} />
+          )
         ) : (
-          <IncomeCategories selectedMonth={selectedMonth} />
+          <p>Please select a month.</p>
         )}
       </div>
     </div>

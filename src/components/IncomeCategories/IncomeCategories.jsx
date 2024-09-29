@@ -1,7 +1,6 @@
 import styles from './IncomeCategories.module.css';
 import React, { useEffect } from 'react';
 import { ReportCategory } from '../ReportCategory/ReportCategory';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReportIncomeCategories } from '../../redux/reports/reportsActions';
 import {
@@ -41,7 +40,7 @@ export const IncomeCategories = () => {
           onClick={() => {
             console.log(`Selecting category: ${categoryName}`);
             dispatch(setSelectedCategory(categoryName));
-            dispatch(setSelectedType('income'));
+            dispatch(setSelectedType('incomes'));
           }}
         />
       ))}

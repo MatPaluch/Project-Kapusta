@@ -38,7 +38,7 @@ export const ExpenseCategories = () => {
           total={categoryData.total}
           onClick={() => {
             dispatch(setSelectedCategory(categoryName));
-            dispatch(setSelectedType('expense'));
+            dispatch(setSelectedType('expenses'));
           }}
         />
       ))}

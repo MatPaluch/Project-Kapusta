@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   incomeCategories: {
-    incomeData: {},
+    incomesData: {},
   },
   expenseCategories: {
     expensesData: {},
@@ -14,7 +14,7 @@ const initialState = {
   loading: false,
   error: null,
   selectedCategory: null,
-  selectedType: 'expense',
+  selectedType: 'expenses',
   categoryData: {},
 };
 
@@ -44,7 +44,6 @@ const reportsSlice = createSlice({
       .addCase(fetchReportIncomeCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.incomeCategories = action.payload;
-        state.incomeCategories.incomeData = action.payload.incomeData;
       })
       .addCase(fetchReportIncomeCategories.rejected, (state, action) => {
         state.loading = false;
@@ -58,7 +57,6 @@ const reportsSlice = createSlice({
       .addCase(fetchReportExpenseCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.expenseCategories = action.payload;
-        state.expenseCategories.expensesData = action.payload.expensesData;
       })
       .addCase(fetchReportExpenseCategories.rejected, (state, action) => {
         state.loading = false;
