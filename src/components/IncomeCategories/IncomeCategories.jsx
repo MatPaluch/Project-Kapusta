@@ -40,7 +40,7 @@ export const IncomeCategories = () => {
           onClick={() => {
             console.log(`Selecting category: ${categoryName}`);
             dispatch(setSelectedCategory(categoryName));
-            dispatch(setSelectedType('expense'));
+            dispatch(setSelectedType('income'));
           }}
         />
       ))}

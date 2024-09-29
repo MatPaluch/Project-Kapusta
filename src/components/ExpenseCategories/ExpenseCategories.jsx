@@ -37,7 +37,6 @@ export const ExpenseCategories = () => {
           name={categoryName}
           total={categoryData.total}
           onClick={() => {
-            console.log(`Selecting category: ${categoryName}`);
             dispatch(setSelectedCategory(categoryName));
             dispatch(setSelectedType('expense'));
           }}
