@@ -3,6 +3,7 @@ import authReducer from './authSlice';
 import userReducer from './userSlice';
 import categoriesReducer from './categories/categoriesSlice';
 import periodReducer from './period/periodSlice';
+import reportsReducer from './reports/reportsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     user: userReducer,
     categories: categoriesReducer,
     period: periodReducer,
+    reports: reportsReducer,
   },
 });

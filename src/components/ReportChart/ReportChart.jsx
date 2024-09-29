@@ -7,22 +7,22 @@ export const ReportChart = () => {
     <div className={styles.reportContainer}>
       <VictoryChart
         style={{ width: 635, height: 314 }}
-        domainPadding={{ x: 25 }} // Padding dla osi X, by wyśrodkować kolumny
+        domainPadding={{ x: 25 }}
       >
         <VictoryAxis
           dependentAxis
           style={{
-            axis: { stroke: 'none' }, // Ukrycie osi Y
-            ticks: { stroke: 'none' }, // Ukrycie znaczników na osi Y
-            tickLabels: { fill: 'none' }, // Ukrycie etykiet na osi Y
+            axis: { stroke: 'none' },
+            ticks: { stroke: 'none' },
+            tickLabels: { fill: 'none' },
             grid: {
-              stroke: 'var(--light-grey)', // Kolor linii siatki
+              stroke: 'var(--light-grey)',
               strokeWidth: 1,
             },
           }}
-          tickCount={9} // Liczba linii siatki na osi Y
-          barWidth={38} // Szerokość kolumn
-          alignment="middle" // Wyrównanie do środka
+          tickCount={9}
+          barWidth={38}
+          alignment="middle"
         />
         <VictoryBar
           //   x={transactions.data}
