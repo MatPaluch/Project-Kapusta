@@ -18,9 +18,10 @@
   display: flex;
 }
 .amount {
-  width: 75%;
+  width: 70%;
   border-radius: 22px 0 0 22px;
   background-color: transparent;
+  padding: 0;
 
   font-family: var(--font-family);
   font-weight: 700;
@@ -42,6 +43,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 5px;
   margin: 0;
   background-color: transparent;
   position: relative;
