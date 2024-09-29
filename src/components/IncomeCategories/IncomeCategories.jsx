@@ -29,6 +29,7 @@ export const IncomeCategories = () => {
   if (error) return <p>Error: {error}</p>;
 
   const categoriesArray = Object.entries(incomeCategories);
+  console.log(incomeCategories);
 
   return (
     <div className={styles.categoriesContainer}>

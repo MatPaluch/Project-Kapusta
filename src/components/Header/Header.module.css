@@ -75,7 +75,7 @@ body {
 }
 
 .exitButton {
-  all: unset; /* Usuwa większość domyślnych stylów */
+  background-color: transparent;
   box-sizing: border-box;
   text-decoration: underline;
 }
