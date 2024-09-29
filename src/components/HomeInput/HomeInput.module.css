@@ -3,8 +3,21 @@
   display: none;
 }
 
+.submitButton {
+  display: none;
+}
+
+.clearButton {
+  display: none;
+}
+
 /* ======================== TABLET ===================================== */
 @media screen and (min-width: 768px) {
+  .form {
+    margin: auto;
+    padding-top: 24px;
+  }
+
   .inputBox {
     display: flex;
     margin: auto;
@@ -20,6 +33,7 @@
 
   .listItem {
     display: inline;
+    text-indent: 20px;
   }
 
   .productDescription {
@@ -47,7 +61,8 @@
     background-image: url('../../../assets/arrow.svg');
     background-repeat: no-repeat;
     background-position: 156px 15px;
-    text-align: center;
+    text-align: left;
+    text-indent: 20px;
   }
 
   .productValue {
@@ -64,6 +79,50 @@
     background-image: url('../../../assets/calculator.svg');
     background-repeat: no-repeat;
     background-position: 70px 10px;
+  }
+
+  .inputButtonBox {
+    display: flex;
+    margin-top: 32px;
+    justify-content: center;
+  }
+
+  .submitButton {
+    display: block;
+    border-radius: 16px;
+    width: 125px;
+    height: 44px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    background: #ff751d;
+    margin-right: 15px;
+  }
+
+  .clearButton {
+    display: block;
+    border-radius: 16px;
+    width: 125px;
+    height: 44px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #52555f;
+    border: 2px solid #f6f7fc;
+    border-radius: 16px;
+    width: 125px;
+    height: 44px;
+  }
+
+  .categoryOption {
+    text-indent: 20px;
   }
 }
 
