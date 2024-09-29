@@ -44,6 +44,7 @@ const reportsSlice = createSlice({
       .addCase(fetchReportIncomeCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.incomeCategories = action.payload;
+        state.incomeCategories.incomeData = action.payload.incomesData;
       })
       .addCase(fetchReportIncomeCategories.rejected, (state, action) => {
         state.loading = false;
@@ -57,6 +58,7 @@ const reportsSlice = createSlice({
       .addCase(fetchReportExpenseCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.expenseCategories = action.payload;
+        state.expenseCategories.expensesData = action.payload.expensesData;
       })
       .addCase(fetchReportExpenseCategories.rejected, (state, action) => {
         state.loading = false;
