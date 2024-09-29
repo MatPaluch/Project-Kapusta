@@ -45,7 +45,8 @@
   fill: var(--orange);
 }
 
-.categoryButton {
+.categoryButton,
+.mainButton {
   all: unset;
   box-sizing: border-box;
 }
