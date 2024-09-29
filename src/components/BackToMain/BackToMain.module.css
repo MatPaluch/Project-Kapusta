@@ -1,27 +1,10 @@
-.returnContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  text-decoration: none;
-  width: 100px;
-  height: 44px;
-}
-
-.arrowButton {
-  width: 18px;
-  height: 10px;
-  align-content: center;
-  all: unset;
-  box-sizing: border-box;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-140px);
-  margin-top: 16px;
+.arrowBox {
+  padding: 16px 20px;
 }
 
 .arrowIcon {
-  width: 18px;
-  height: 10px;
+  width: 24px;
+  height: 24px;
   fill: #ff751d;
 }
 .mobileHidden {
@@ -30,17 +13,19 @@
 
 /* ================================================= TABLET 👇 ========================================= */
 @media screen and (min-width: 768px) {
-  .arrowButton {
-    position: relative;
-    left: auto;
-    transform: none;
-    margin: auto;
+  .arrowBox {
+    padding: 0;
   }
-
-  .mobileHidden {
+  .arrowLink {
     display: flex;
-    margin-left: 15px;
+    align-items: center;
+    gap: 15px;
     text-decoration: none;
-    color: var(--grey-lighter);
+  }
+  .mobileHidden {
+    display: initial;
+    font-family: var(--font-family);
+    letter-spacing: 0.04em;
+    color: rgba(82, 85, 95, 0.7);
   }
 }

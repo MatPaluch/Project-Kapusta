@@ -6,7 +6,7 @@
 
 /* ======================== MOBILE ===================================== */
 .bilansBox {
-  margin: auto;
+  margin: 32px auto;
   display: flex;
   border-radius: 20px;
   width: 280px;
