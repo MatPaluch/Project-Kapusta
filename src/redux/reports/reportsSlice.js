@@ -1,19 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  fetchCategoryData,
   fetchReportExpenseCategories,
   fetchReportIncomeCategories,
 } from './reportsActions';
 
 const initialState = {
-  incomeCategories: [],
-  expenseCategories: [],
+  incomeCategories: {
+    incomeData: {},
+  },
+  expenseCategories: {
+    expensesData: {},
+  },
   loading: false,
   error: null,
   selectedCategory: null,
   selectedType: 'expense',
   categoryData: {},
 };
+
+// cofac dotad
 
 const reportsSlice = createSlice({
   name: 'reports',
@@ -39,6 +44,7 @@ const reportsSlice = createSlice({
       .addCase(fetchReportIncomeCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.incomeCategories = action.payload;
+        state.incomeCategories.incomeData = action.payload.incomeData;
       })
       .addCase(fetchReportIncomeCategories.rejected, (state, action) => {
         state.loading = false;
@@ -52,20 +58,9 @@ const reportsSlice = createSlice({
       .addCase(fetchReportExpenseCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.expenseCategories = action.payload;
+        state.expenseCategories.expensesData = action.payload.expensesData;
       })
       .addCase(fetchReportExpenseCategories.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(fetchCategoryData.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchCategoryData.fulfilled, (state, action) => {
-        state.loading = false;
-        state.categoryData = action.payload;
-      })
-      .addCase(fetchCategoryData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

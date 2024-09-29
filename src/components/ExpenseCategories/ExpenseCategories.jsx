@@ -2,10 +2,7 @@ import styles from './ExpenseCategories.module.css';
 import React, { useEffect } from 'react';
 import { ReportCategory } from '../ReportCategory/ReportCategory';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchReportExpenseCategories,
-  fetchCategoryData,
-} from '../../redux/reports/reportsActions';
+import { fetchReportExpenseCategories } from '../../redux/reports/reportsActions';
 import {
   setSelectedCategory,
   setSelectedType,
@@ -19,13 +16,13 @@ export const ExpenseCategories = () => {
   );
   const loading = useSelector(state => state.categories.loading);
   const error = useSelector(state => state.categories.error);
-  const selectedPeriod = useSelector(state => state.period.selectedPeriod); // Pobierz wybrany okres
+  const selectedPeriod = useSelector(state => state.period.selectedPeriod);
 
   useEffect(() => {
     if (selectedPeriod) {
-      dispatch(fetchReportExpenseCategories(selectedPeriod)); // Wyślij wybrany okres jako parametr
+      dispatch(fetchReportExpenseCategories(selectedPeriod));
     }
-  }, [dispatch, selectedPeriod]); // Wywołaj na zmianę okresu
+  }, [dispatch, selectedPeriod]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -40,15 +37,9 @@ export const ExpenseCategories = () => {
           name={categoryName}
           total={categoryData.total}
           onClick={() => {
+            console.log(`Selecting category: ${categoryName}`);
             dispatch(setSelectedCategory(categoryName));
             dispatch(setSelectedType('expense'));
-            dispatch(
-              fetchCategoryData({
-                category: categoryName,
-                type: 'expense',
-                period: selectedPeriod,
-              })
-            ); // Pobierz dane dla wybranej kategorii
           }}
         />
       ))}

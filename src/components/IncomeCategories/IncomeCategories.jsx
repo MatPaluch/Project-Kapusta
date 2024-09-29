@@ -4,6 +4,10 @@ import { ReportCategory } from '../ReportCategory/ReportCategory';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReportIncomeCategories } from '../../redux/reports/reportsActions';
+import {
+  setSelectedCategory,
+  setSelectedType,
+} from '../../redux/reports/reportsSlice';
 
 export const IncomeCategories = () => {
   const dispatch = useDispatch();
@@ -32,7 +36,12 @@ export const IncomeCategories = () => {
         <ReportCategory
           key={categoryName}
           name={categoryName}
-          total={categoryData.total} // Pobranie total dla kategorii
+          total={categoryData.total}
+          onClick={() => {
+            console.log(`Selecting category: ${categoryName}`);
+            dispatch(setSelectedCategory(categoryName));
+            dispatch(setSelectedType('expense'));
+          }}
         />
       ))}
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ReportCategory.module.css';
 import icons from '../../images/categoryIcons.svg';
 
-export const ReportCategory = ({ name, total }) => {
+export const ReportCategory = ({ name, total, onClick }) => {
   const getIconName = name => {
     let iconName;
     if (name === 'Other income') {
@@ -19,7 +19,7 @@ export const ReportCategory = ({ name, total }) => {
 
       <div className={styles.categoryImage}>
         <div className={styles.categoryBackground}></div>
-        <button className={styles.categoryButton}>
+        <button className={styles.categoryButton} onClick={onClick}>
           <svg className={styles.categoryIcon}>
             <use href={`${icons}#icon-category-${getIconName(name)}`}></use>
           </svg>
