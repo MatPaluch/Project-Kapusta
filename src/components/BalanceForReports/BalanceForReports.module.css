@@ -1,0 +1,46 @@
+/* ======================== MOBILE ===================================== */
+.balanceWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.balanceText {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: rgba(82, 85, 95, 0.7);
+}
+.balanceInput {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #000;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 22px;
+
+  width: 183px;
+  height: 44px;
+  text-overflow: ellipsis;
+}
+
+/* ======================== TABLET ===================================== */
+@media screen and (min-width: 768px) {
+  .balanceWrapper {
+    flex-direction: row;
+    gap: 20px;
+  }
+  .balanceInput {
+    border-radius: 16px;
+    width: 125px;
+  }
+}

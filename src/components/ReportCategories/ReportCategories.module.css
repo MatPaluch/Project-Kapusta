@@ -31,9 +31,7 @@
   margin-top: 20px;
 }
 .arrowButton {
-  width: 6px;
-  height: 15px;
-  all: unset;
+  background-color: transparent;
   box-sizing: border-box;
   padding: 5px;
   display: flex;
