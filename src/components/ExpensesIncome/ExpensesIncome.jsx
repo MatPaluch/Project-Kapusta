@@ -1,11 +1,15 @@
+import { useSelector } from 'react-redux';
 import styles from './ExpensesIncome.module.css';
 
-function ExpensesIncome({ expenses, income }) {
+function ExpensesIncome() {
+  const expenses = useSelector(state => state.reports.expenseCategories.total);
+  const income = useSelector(state => state.reports.incomeCategories.total);
+
   return (
     <div className={styles.bilansBox}>
       <div className={styles.labelBox}>
         <p className={styles.label}>Expenses:</p>
-        <p className={styles.expensesLabel}>{expenses}</p>
+        <p className={styles.expensesLabel}>- {expenses ? expenses : 0} PLN.</p>
       </div>
       <svg
         className={styles.svg}
@@ -18,8 +22,8 @@ function ExpensesIncome({ expenses, income }) {
         <path d="M1 0V70" stroke="#E0E5EB" />
       </svg>
       <div className={styles.labelBox}>
-        <p className={styles.label}>income:</p>
-        <p className={styles.incomeLabel}>{income}</p>
+        <p className={styles.label}>Income:</p>
+        <p className={styles.incomeLabel}>+ {income ? income : 0} PLN.</p>
       </div>
     </div>
   );
