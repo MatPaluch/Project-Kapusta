@@ -8,7 +8,7 @@ import ReportsPage from 'pages/ReportsPage';
 import { IncomesPage } from 'pages/IncomesPage';
 
 const Home = lazy(() => import('../pages/Home'));
-const Register = lazy(() => import('../pages/RegisterPage.jsx'));
+const Register = lazy(() => import('../pages/RegisterPage'));
 
 export const App = () => {
   const { token } = useSelector(state => state.auth); // Sprawdź token w Redux
