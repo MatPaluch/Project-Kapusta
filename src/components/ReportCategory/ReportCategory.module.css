@@ -50,3 +50,7 @@
   all: unset;
   box-sizing: border-box;
 }
+
+.categoryButton:active .categoryIcon {
+  fill: var(--orange);
+}

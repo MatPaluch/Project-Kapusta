@@ -3,16 +3,20 @@ import styles from './ReportCategories.module.css';
 import icons from '../../images/icons.svg';
 import { IncomeCategories } from 'components/IncomeCategories/IncomeCategories';
 import { ExpenseCategories } from 'components/ExpenseCategories/ExpenseCategories';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSelectedCategory } from '../../redux/reports/reportsSlice';
 
 export const ReportCategories = () => {
-  const [category, setCategory] = useState('expenses');
+  const dispatch = useDispatch();
+  const selectedType = useSelector(state => state.reports.selectedType);
+  const [category, setCategory] = useState(selectedType || 'expenses');
   const selectedMonth = useSelector(state => state.period.selectedPeriod);
 
   const toggleCategory = () => {
     setCategory(prevCategory =>
       prevCategory === 'expenses' ? 'incomes' : 'expenses'
     );
+    dispatch(setSelectedCategory(false));
   };
 
   return (
@@ -31,10 +35,14 @@ export const ReportCategories = () => {
         </button>
       </div>
       <div className={styles.categoriesContainer}>
-        {category === 'expenses' ? (
-          <ExpenseCategories selectedMonth={selectedMonth} />
+        {selectedMonth ? (
+          category === 'expenses' ? (
+            <ExpenseCategories selectedMonth={selectedMonth} />
+          ) : (
+            <IncomeCategories selectedMonth={selectedMonth} />
+          )
         ) : (
-          <IncomeCategories selectedMonth={selectedMonth} />
+          <p>Please select a month.</p>
         )}
       </div>
     </div>

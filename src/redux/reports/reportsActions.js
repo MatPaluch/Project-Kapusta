@@ -13,6 +13,7 @@ export const fetchReportIncomeCategories = createAsyncThunk(
           params: { period: formattedPeriod },
         }
       );
+
       return response.data.incomes;
     } catch (error) {
       return rejectWithValue(
@@ -34,6 +35,7 @@ export const fetchReportExpenseCategories = createAsyncThunk(
           params: { period: formattedPeriod },
         }
       );
+
       return response.data.expenses;
     } catch (error) {
       return rejectWithValue(

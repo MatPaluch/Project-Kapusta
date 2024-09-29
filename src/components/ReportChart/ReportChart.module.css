@@ -7,6 +7,16 @@
   margin: 32px auto;
   padding: 20px;
   border-radius: 30px;
+  font-size: 12px;
+  font-family: 'Roboto';
+}
+.verticalChart {
+  display: none;
+}
+.horizontalChart {
+  display: flex;
+  font-size: 12px;
+  width: 300px;
 }
 /* =========================== TABLET 👇 ============================== */
 @media screen and (min-width: 768px) {
@@ -17,6 +27,14 @@
     flex-wrap: wrap;
     box-shadow: 5px 10px 20px 0 rgba(170, 178, 197, 0.4);
   }
+  .verticalChart {
+    display: flex;
+    width: 635px;
+    height: 314px;
+  }
+  .horizontalChart {
+    display: none;
+  }
 }
 /* =========================== DESKTOP 👇 ============================== */
 @media screen and (min-width: 1280px) {
@@ -24,5 +42,9 @@
     position: relative;
     width: 1034px;
     z-index: 900;
+  }
+  .verticalChart {
+    width: 758px;
+    height: 328 px;
   }
 }
