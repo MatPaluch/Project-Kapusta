@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  fetchCategoryData,
   fetchReportExpenseCategories,
   fetchReportIncomeCategories,
 } from './reportsActions';
@@ -9,12 +10,25 @@ const initialState = {
   expenseCategories: [],
   loading: false,
   error: null,
+  selectedCategory: null,
+  selectedType: 'expense',
+  categoryData: {},
 };
 
 const reportsSlice = createSlice({
   name: 'reports',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedCategory(state, action) {
+      state.selectedCategory = action.payload;
+    },
+    setSelectedType(state, action) {
+      state.selectedType = action.payload;
+    },
+    setCategoryData(state, action) {
+      state.categoryData = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       // Obsługa danych przychodów
@@ -42,11 +56,28 @@ const reportsSlice = createSlice({
       .addCase(fetchReportExpenseCategories.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(fetchCategoryData.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchCategoryData.fulfilled, (state, action) => {
+        state.loading = false;
+        state.categoryData = action.payload;
+      })
+      .addCase(fetchCategoryData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
 
-export const { reportIncomeCategories, reportExpenseCategories } =
-  reportsSlice.actions;
+export const {
+  reportIncomeCategories,
+  reportExpenseCategories,
+  setSelectedCategory,
+  setSelectedType,
+  setCategoryData,
+} = reportsSlice.actions;
 
 export default reportsSlice.reducer;

@@ -10,10 +10,10 @@ export const fetchReportIncomeCategories = createAsyncThunk(
       const response = await axios.get(
         'https://project-kapusta-rest-api.vercel.app/transaction/period-data',
         {
-          params: { period: formattedPeriod }, // Przekazanie okresu jako parametru
+          params: { period: formattedPeriod },
         }
       );
-      return response.data.incomes; // Oczekiwane dane przychodów
+      return response.data.incomes;
     } catch (error) {
       return rejectWithValue(
         error.response ? error.response.data : error.message
@@ -31,10 +31,31 @@ export const fetchReportExpenseCategories = createAsyncThunk(
       const response = await axios.get(
         'https://project-kapusta-rest-api.vercel.app/transaction/period-data',
         {
-          params: { period: formattedPeriod }, // Przekazanie okresu jako parametru
+          params: { period: formattedPeriod },
         }
       );
-      return response.data.expenses; // Oczekiwane dane wydatków
+      return response.data.expenses;
+    } catch (error) {
+      return rejectWithValue(
+        error.response ? error.response.data : error.message
+      );
+    }
+  }
+);
+// For ReportChart
+export const fetchCategoryData = createAsyncThunk(
+  'categories/fetchCategoryData',
+  async ({ category, type, period }, { rejectWithValue }) => {
+    try {
+      const formattedPeriod = period.slice(0, 7);
+      const response = await axios.get(
+        'https://project-kapusta-rest-api.vercel.app/transaction/category-data', // Upewnij się, że to jest prawidłowy endpoint
+        {
+          params: { category, type, period: formattedPeriod },
+        }
+      );
+      console.log('pobrane dane', response.data);
+      return response.data;
     } catch (error) {
       return rejectWithValue(
         error.response ? error.response.data : error.message

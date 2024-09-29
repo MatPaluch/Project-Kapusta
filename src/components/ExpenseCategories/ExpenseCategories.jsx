@@ -2,7 +2,14 @@ import styles from './ExpenseCategories.module.css';
 import React, { useEffect } from 'react';
 import { ReportCategory } from '../ReportCategory/ReportCategory';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReportExpenseCategories } from '../../redux/reports/reportsActions';
+import {
+  fetchReportExpenseCategories,
+  fetchCategoryData,
+} from '../../redux/reports/reportsActions';
+import {
+  setSelectedCategory,
+  setSelectedType,
+} from '../../redux/reports/reportsSlice';
 
 export const ExpenseCategories = () => {
   const dispatch = useDispatch();
@@ -31,7 +38,18 @@ export const ExpenseCategories = () => {
         <ReportCategory
           key={categoryName}
           name={categoryName}
-          total={categoryData.total} // Pobranie total dla kategorii
+          total={categoryData.total}
+          onClick={() => {
+            dispatch(setSelectedCategory(categoryName));
+            dispatch(setSelectedType('expense'));
+            dispatch(
+              fetchCategoryData({
+                category: categoryName,
+                type: 'expense',
+                period: selectedPeriod,
+              })
+            ); // Pobierz dane dla wybranej kategorii
+          }}
         />
       ))}
     </div>
