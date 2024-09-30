@@ -9,6 +9,7 @@ const transactionSlice = createSlice({
   name: 'transaction',
   initialState: {
     data: [],
+    expenses: [],
     loading: false,
     error: null,
   },
@@ -21,7 +22,7 @@ const transactionSlice = createSlice({
       })
       .addCase(handleSubmit.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.expenses.push(action.payload);
       })
       .addCase(handleSubmit.rejected, (state, action) => {
         state.loading = false;
@@ -33,7 +34,7 @@ const transactionSlice = createSlice({
       })
       .addCase(fetchExpenseTransactions.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload.expenses;
+        state.expenses = action.payload;
       })
 
       .addCase(fetchExpenseTransactions.rejected, (state, action) => {

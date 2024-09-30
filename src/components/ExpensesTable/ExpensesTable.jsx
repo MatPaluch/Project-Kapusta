@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 export const ExpensesTable = () => {
   const dispatch = useDispatch();
-  const expenseTransactions = useSelector(state => state.transaction.data);
+  const expenseTransactions = useSelector(state => state.transaction.expenses);
   const loading = useSelector(state => state.loading);
   const error = useSelector(state => state.error);
 
@@ -45,27 +45,33 @@ export const ExpensesTable = () => {
           </tr>
         </thead>
         <tbody>
-          {latestTransactions.map(val => {
-            return (
-              <tr key={val._id} className={styles.tableRow}>
-                <td className={styles.tableItemDate}>{val.date}</td>
-                <td className={styles.tableItemDescription}>
-                  {val.description}
-                </td>
-                <td className={styles.tableItemCategory}>{val.category}</td>
-                <td className={styles.tableItemSum}>{val.amount}</td>
-                <td>
-                  <button
-                    className={styles.removeButton}
-                    onClick={() => removeItem(val._id)}
-                    aria-label="Remove item"
-                  >
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+          {expenseTransactions.length > 0 ? (
+            latestTransactions.map(val => {
+              return (
+                <tr key={val._id} className={styles.tableRow}>
+                  <td className={styles.tableItemDate}>{val.date}</td>
+                  <td className={styles.tableItemDescription}>
+                    {val.description}
+                  </td>
+                  <td className={styles.tableItemCategory}>{val.category}</td>
+                  <td className={styles.tableItemSum}>{val.amount}</td>
+                  <td>
+                    <button
+                      className={styles.removeButton}
+                      onClick={() => removeItem(val._id)}
+                      aria-label="Remove item"
+                    ></button>
+                  </td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td colSpan="5" className={styles.tableItemDescription}>
+                No transactions available
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
