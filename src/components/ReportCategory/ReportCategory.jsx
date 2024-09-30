@@ -14,19 +14,20 @@ export const ReportCategory = ({ name, total, onClick }) => {
   };
 
   return (
-    <div className={styles.categoryContainer}>
-      <div className={styles.categoryTotal}>{total} PLN</div>
+    <button className={styles.categoryButton} onClick={onClick}>
+      <div className={styles.categoryContainer}>
+        <div className={styles.categoryTotal}>{total} PLN</div>
 
-      <div className={styles.categoryImage}>
-        <div className={styles.categoryBackground}></div>
-        <button className={styles.categoryButton} onClick={onClick}>
+        <div className={styles.categoryImage}>
+          <div className={styles.categoryBackground}></div>
+
           <svg className={styles.categoryIcon}>
             <use href={`${icons}#icon-category-${getIconName(name)}`}></use>
           </svg>
-        </button>
-      </div>
+        </div>
 
-      <div className={styles.categoryName}>{name}</div>
-    </div>
+        <div className={styles.categoryName}>{name}</div>
+      </div>
+    </button>
   );
 };

@@ -24,6 +24,7 @@ export const ReportChart = () => {
           x: productName,
           y: amount,
         }))
+        .sort((a, b) => a.y - b.y)
     : [];
 
   return (
@@ -60,7 +61,7 @@ export const ReportChart = () => {
               <VictoryBar
                 data={formattedData}
                 barWidth={38}
-                barRatio={0.65}
+                barRatio={2}
                 alignment="middle"
                 labels={({ datum }) => `${datum.y} PLN`}
                 labelComponent={
@@ -91,57 +92,50 @@ export const ReportChart = () => {
           {/* Horizontal Chart */}
           <div className={styles.horizontalChart}>
             <VictoryChart horizontal>
-              {/* Oś pionowa */}
               <VictoryAxis
-                width={280}
-                domainPadding={0}
-                padding={0}
                 style={{
-                  axis: { stroke: 'var(--light-grey)' },
+                  axis: { stroke: 'none' },
                 }}
                 tickLabelComponent={
                   <VictoryLabel
-                    dy={-30} // Ustawienie ticków nad osią
-                    dx={100}
+                    dy={-23}
+                    dx={10}
+                    textAnchor="start"
                     style={{
                       fill: 'var(--grey)',
-                      fontSize: 12,
+                      fontSize: 17,
+                      fontFamily: 'Roboto',
                     }}
                   />
                 }
               />
-              {/* Oś pozioma */}
-              <VictoryAxis
-                dependentAxis
-                style={{
-                  axis: { stroke: 'none' },
-                  ticks: { stroke: 'none' },
-                  tickLabels: { fill: 'none' },
-                  grid: {
-                    stroke: 'var(--light-grey)',
-                    strokeWidth: 1,
-                  },
-                }}
-              />
-              {/* Słupki */}
+
               <VictoryBar
                 data={formattedData}
+                barWidth={22}
                 barRatio={0.65}
-                alignment="middle"
                 labels={({ datum }) => `${datum.y} PLN`}
                 labelComponent={
                   <VictoryLabel
-                    dy={-30} // Przesunięcie etykiety w górę, aby była nad słupkiem
-                    dx={-20}
+                    dy={-23}
+                    dx={-25}
                     style={{
                       fill: 'var(--grey)',
+                      fontSize: 17,
+                      fontFamily: 'Roboto',
                     }}
                   />
                 }
-                cornerRadius={{ topLeft: 10, topRight: 10 }}
+                cornerRadius={{
+                  topLeft: 11,
+                  topRight: 11,
+                }}
                 style={{
                   data: {
-                    fill: 'var(--chart-orange-light)',
+                    fill: ({ index }) =>
+                      index % 3 === 0
+                        ? 'var(--orange)'
+                        : 'var(--chart-orange-light)',
                   },
                 }}
               />

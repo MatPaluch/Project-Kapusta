@@ -36,15 +36,17 @@ export const IncomeCategories = () => {
     <div className={styles.categoriesContainer}>
       {categoriesArray && categoriesArray.length > 0
         ? categoriesArray.map(([categoryName, categoryData]) => (
-            <ReportCategory
-              key={categoryName}
-              name={categoryName}
-              total={categoryData.total}
-              onClick={() => {
-                dispatch(setSelectedCategory(categoryName));
-                dispatch(setSelectedType('expenses'));
-              }}
-            />
+            <div className={styles.categoryBox}>
+              <ReportCategory
+                key={categoryName}
+                name={categoryName}
+                total={categoryData.total}
+                onClick={() => {
+                  dispatch(setSelectedCategory(categoryName));
+                  dispatch(setSelectedType('incomes'));
+                }}
+              />
+            </div>
           ))
         : 'No incomes available in selected period'}
     </div>
