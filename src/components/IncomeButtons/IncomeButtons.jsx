@@ -11,7 +11,7 @@ function IncomeButtons() {
       </div>
       <div className={styles.income}>
         <Link to="/incomes" className={styles.linkButton}>
-          Incomes
+          Income
         </Link>
       </div>
     </div>

@@ -5,13 +5,11 @@ function ExpensesButton() {
   return (
     <div className={styles.linkWrapper}>
       <div className={styles.expenses}>
-        <Link to="/" className={styles.linkButton}>
-          Expenses
-        </Link>
+        <Link className={styles.linkButton}>Expenses</Link>
       </div>
       <div className={styles.linkBox}>
         <Link to="/incomes" className={styles.linkButton}>
-          Incomes
+          Income
         </Link>
       </div>
     </div>

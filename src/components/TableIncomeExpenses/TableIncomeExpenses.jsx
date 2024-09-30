@@ -1,5 +1,6 @@
 import HomeInput from 'components/HomeInput/HomeInput';
 import styles from './TableIncomeExpenses.module.css';
+// import React, { useState } from 'react';
 
 const exampleData = [
   {
@@ -23,6 +24,15 @@ const exampleData = [
 ];
 
 function TableIncomeExpenses() {
+  // const [style, setStyle] = useState('home');
+
+  // function backToTransaction() {
+  //   console.log('Wracamy do tranzakcji');
+  //   if (style !== 'home') setStyle('home');
+  //   else setStyle('transaction');
+  //   console.log(style);
+  // }
+
   function removeItem() {
     // ta funkcja ma usuwać przedmioty po ID
   }
@@ -55,6 +65,7 @@ function TableIncomeExpenses() {
           );
         })}
       </table>
+      {/* <button onClick={backToTransaction}>To transaction</button> */}
     </div>
   );
 }

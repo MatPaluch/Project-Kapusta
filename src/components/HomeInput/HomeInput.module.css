@@ -46,7 +46,8 @@
     font-size: 12px;
     letter-spacing: 0.02em;
     color: #c7ccdc;
-    text-align: center;
+    text-align: left;
+    text-indent: 20px;
   }
   .productCategory {
     border: 2px solid #f5f6fb;
@@ -128,4 +129,45 @@
 
 /* ======================== DESKTOP===================================== */
 @media screen and (min-width: 1280px) {
+  .form {
+    display: flex;
+    margin: auto;
+    padding-top: 32px;
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+
+  .inputButtonBox {
+    margin-top: 0px;
+  }
+
+  .clearButton {
+    width: 136px;
+  }
+
+  .submitButton {
+    width: 136px;
+  }
+
+  .inputBox {
+    width: 794px;
+    margin: auto;
+  }
+
+  .productDescription {
+    width: 290px;
+  }
+
+  .productCategory {
+    width: 169px;
+  }
+
+  .productValue {
+    width: 119px;
+    background-position: 80px 10px;
+  }
+
+  .list {
+    padding-left: 32px;
+  }
 }

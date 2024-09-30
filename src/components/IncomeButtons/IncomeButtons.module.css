@@ -11,6 +11,36 @@
   text-align: center;
 }
 
+.linkWrapper {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  justify-content: flex-start;
+  justify-items: center;
+  position: fixed;
+  bottom: 0;
+}
+
+.linkBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 53px;
+  color: black;
+  background-color: rgba(245, 246, 251, 1);
+}
+
+.income {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 53px;
+  color: #fff;
+  background-color: #ff751d;
+}
+
 /* ======================== TABLET ===================================== */
 @media screen and (min-width: 768px) {
   .linkWrapper {
@@ -19,6 +49,7 @@
     margin: auto;
     justify-content: flex-start;
     justify-items: center;
+    position: relative;
   }
 
   .linkBox {
@@ -45,4 +76,7 @@
 
 /* ======================== DESKTOP===================================== */
 @media screen and (min-width: 1280px) {
+  .linkWrapper {
+    width: 85%;
+  }
 }
