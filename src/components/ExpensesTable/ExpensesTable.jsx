@@ -1,41 +1,35 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { HomeInput } from '../HomeInput/HomeInput';
-import styles from './TableIncomeExpenses.module.css';
-// import React, { useState } from 'react';
+import styles from './ExpensesTable.module.css';
+import {
+  deleteTransaction,
+  fetchExpenseTransactions,
+} from '../../redux/transaction/transactionActions';
+import { useEffect } from 'react';
 
-const exampleData = [
-  {
-    date: '20.09.2024',
-    description: 'this is description1',
-    category: 'Salary',
-    sum: 1234,
-  },
-  {
-    date: '21.09.2024',
-    description: 'this is description2',
-    category: 'Transport',
-    sum: 2137,
-  },
-  {
-    date: '22.09.2024',
-    description: 'this is description3',
-    category: 'Education',
-    sum: 666,
-  },
-];
+export const ExpensesTable = () => {
+  const dispatch = useDispatch();
+  const expenseTransactions = useSelector(state => state.transaction.data);
+  const loading = useSelector(state => state.loading);
+  const error = useSelector(state => state.error);
 
-function TableIncomeExpenses() {
-  // const [style, setStyle] = useState('home');
+  useEffect(() => {
+    dispatch(fetchExpenseTransactions());
+  }, [dispatch]);
 
-  // function backToTransaction() {
-  //   console.log('Wracamy do tranzakcji');
-  //   if (style !== 'home') setStyle('home');
-  //   else setStyle('transaction');
-  //   console.log(style);
-  // }
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
-  function removeItem() {
-    // ta funkcja ma usuwać przedmioty po ID
-  }
+  const sortedTransactions = expenseTransactions
+    ? [...expenseTransactions].sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      )
+    : [];
+  const latestTransactions = sortedTransactions.slice(0, 15);
+
+  const removeItem = id => {
+    dispatch(deleteTransaction(id));
+  };
 
   return (
     <div className={styles.box}>
@@ -51,15 +45,15 @@ function TableIncomeExpenses() {
           </tr>
         </thead>
         <tbody>
-          {exampleData.map((val, key) => {
+          {latestTransactions.map(val => {
             return (
-              <tr key={key} className={styles.tableRow}>
+              <tr key={val._id} className={styles.tableRow}>
                 <td className={styles.tableItemDate}>{val.date}</td>
                 <td className={styles.tableItemDescription}>
                   {val.description}
                 </td>
                 <td className={styles.tableItemCategory}>{val.category}</td>
-                <td className={styles.tableItemSum}>{val.sum}</td>
+                <td className={styles.tableItemSum}>{val.amount}</td>
                 <td>
                   <button
                     className={styles.removeButton}
@@ -74,9 +68,6 @@ function TableIncomeExpenses() {
           })}
         </tbody>
       </table>
-      {/* <button onClick={backToTransaction}>To transaction</button> */}
     </div>
   );
-}
-
-export default TableIncomeExpenses;
+};

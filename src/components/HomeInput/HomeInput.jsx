@@ -1,50 +1,62 @@
 import styles from './HomeInput.module.css';
 import Calendar from 'components/Calendar/Calendar';
 import { useState } from 'react';
-import axios from 'axios';
+import { handleSubmit } from '../../redux/transaction/transactionActions';
+import { useDispatch, useSelector } from 'react-redux';
 
-function HomeInput() {
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
-  const [amaunt, setAmaunt] = useState('');
+export const HomeInput = () => {
+  const dispatch = useDispatch();
 
-  // const exampleCategories = [
-  //   {}
-  // ]
+  const getTodayDate = () => {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    return `${mm}.${dd}.${yyyy}`;
+  };
 
-  function descriptionHandler(e) {
-    setDescription(e.target.value);
-    console.log(description);
-  }
-  function categoryHandler(e) {
-    setCategory(e.target.value);
-    console.log(category);
-  }
-  function valueHandler(e) {
-    setAmaunt(e.target.value);
-    console.log(amaunt);
-  }
+  const [formData, setFormData] = useState({
+    description: '',
+    category: '',
+    amount: '',
+    date: getTodayDate(),
+  });
+  const { loading } = useSelector(state => state.transaction);
 
-  async function handleSubmit(e) {
+  const descriptionHandler = e => {
+    setFormData({ ...formData, description: e.target.value });
+  };
+
+  const categoryHandler = e => {
+    setFormData({ ...formData, category: e.target.value });
+  };
+
+  const valueHandler = e => {
+    setFormData({ ...formData, amount: e.target.value });
+  };
+
+  const dateHandler = date => {
+    setFormData({ ...formData, date });
+  };
+
+  const handleClear = () => {
+    setFormData({
+      description: '',
+      category: '',
+      amount: '',
+      date: getTodayDate(),
+    });
+  };
+
+  const onSubmit = e => {
     e.preventDefault();
-    // wysłanie jsona do b danych
-    const response = await axios.get(
-      'https://project-kapusta-rest-api.vercel.app/transaction/expense'
-    );
-    console.log(response.data);
-  }
-
-  function handleClear(e) {
-    setDescription('');
-    setCategory('');
-    setAmaunt('');
-    // usunąć po ID z bazy danych
-  }
+    dispatch(handleSubmit(formData));
+  };
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={onSubmit}>
       <div className={styles.inputBox}>
-        <Calendar />
+        <Calendar onChange={dateHandler} />
         <ul className={styles.list}>
           <li className={styles.listItem}>
             <input
@@ -52,20 +64,18 @@ function HomeInput() {
               type="text"
               name="description"
               placeholder="Product description"
-              value={description}
+              value={formData.description}
               onChange={descriptionHandler}
             />
           </li>
           <li className={styles.listItem}>
             <select
-              type="select"
               name="category"
               className={styles.productCategory}
-              value={category}
+              value={formData.category}
               onChange={categoryHandler}
             >
-              {/* renderować options po tablicy z backendu */}
-              <option value="" disabled selected hidden>
+              <option value="" disabled hidden>
                 Product category
               </option>
               <option value="Transport">Transport</option>
@@ -75,10 +85,10 @@ function HomeInput() {
               <option value="Entertainment">Entertainment</option>
               <option value="Housing">Housing</option>
               <option value="Technique">Technique</option>
-              <option value="Communal, communication">
+              <option value="Communal, Communication">
                 Communal, communication
               </option>
-              <option value="Sports, hobbies">Sports, hobbies</option>
+              <option value="Sports, Hobbies">Sports, Hobbies</option>
               <option value="Education">Education</option>
               <option value="Other">Other</option>
             </select>
@@ -87,9 +97,9 @@ function HomeInput() {
             <input
               className={styles.productValue}
               type="number"
-              name="amaunt"
+              name="amount"
               placeholder="0,00"
-              value={amaunt}
+              value={formData.amount}
               onChange={valueHandler}
             />
           </li>
@@ -99,9 +109,9 @@ function HomeInput() {
         <button
           type="submit"
           className={styles.submitButton}
-          onClick={handleSubmit}
+          disabled={loading}
         >
-          Input
+          {loading ? 'Loading...' : 'Input'}
         </button>
         <button
           type="button"
@@ -113,6 +123,4 @@ function HomeInput() {
       </div>
     </form>
   );
-}
-
-export default HomeInput;
+};
