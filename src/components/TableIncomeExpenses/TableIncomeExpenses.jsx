@@ -1,4 +1,4 @@
-import HomeInput from 'components/HomeInput/HomeInput';
+import { HomeInput } from '../HomeInput/HomeInput';
 import styles from './TableIncomeExpenses.module.css';
 // import React, { useState } from 'react';
 
@@ -41,29 +41,38 @@ function TableIncomeExpenses() {
     <div className={styles.box}>
       <HomeInput />
       <table className={styles.table}>
-        <tr className={styles.tableHeader}>
-          <th className={styles.tableHeaderItem}>date</th>
-          <th className={styles.tableHeaderItem}>description</th>
-          <th className={styles.tableHeaderItem}>category</th>
-          <th className={styles.tableHeaderItem}>sum</th>
-        </tr>
-        {exampleData.map((val, key) => {
-          return (
-            <tr key={key} className={styles.tableRow}>
-              <td className={styles.tableItemDate}>{val.date}</td>
-              <td className={styles.tableItemDescription}>{val.description}</td>
-              <td className={styles.tableItemCategory}>{val.category}</td>
-              <td className={styles.tableItemSum}>
-                {val.sum}
-                <button
-                  className={styles.removeButton}
-                  onClick={removeItem}
-                  value={val._id}
-                />
-              </td>
-            </tr>
-          );
-        })}
+        <thead>
+          <tr className={styles.tableHeader}>
+            <th className={styles.tableHeaderItem}>Date</th>
+            <th className={styles.tableHeaderItem}>Description</th>
+            <th className={styles.tableHeaderItem}>Category</th>
+            <th className={styles.tableHeaderItem}>Sum</th>
+            <th className={styles.tableHeaderItem}>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {exampleData.map((val, key) => {
+            return (
+              <tr key={key} className={styles.tableRow}>
+                <td className={styles.tableItemDate}>{val.date}</td>
+                <td className={styles.tableItemDescription}>
+                  {val.description}
+                </td>
+                <td className={styles.tableItemCategory}>{val.category}</td>
+                <td className={styles.tableItemSum}>{val.sum}</td>
+                <td>
+                  <button
+                    className={styles.removeButton}
+                    onClick={() => removeItem(val._id)}
+                    aria-label="Remove item"
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
       {/* <button onClick={backToTransaction}>To transaction</button> */}
     </div>

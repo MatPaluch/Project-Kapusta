@@ -36,9 +36,8 @@ export const ExpenseCategories = () => {
     <div className={styles.categoriesContainer}>
       {categoriesArray && categoriesArray.length > 0
         ? categoriesArray.map(([categoryName, categoryData]) => (
-            <div className={styles.categoryBox}>
+            <div className={styles.categoryBox} key={categoryName}>
               <ReportCategory
-                key={categoryName}
                 name={categoryName}
                 total={categoryData.total}
                 onClick={() => {
