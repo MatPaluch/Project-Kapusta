@@ -3,6 +3,31 @@
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 5px;
   margin-top: 20px;
+  width: 280px;
+  row-gap: 20px;
+}
+
+.categoryBox {
+  width: 33%;
+}
+.categoryBox:nth-of-type(3n)::after {
+  content: '';
+  display: block;
+  left: 20px;
+  position: absolute;
+  width: 280px;
+  border-bottom: 1px solid var(--grey-hr);
+}
+/* =========================== TABLET 👇 ============================== */
+@media screen and (min-width: 768px) {
+  .categoriesContainer {
+    width: 623px;
+  }
+  .categoryBox:nth-of-type(3n)::after {
+    display: none;
+  }
+  .categoryBox {
+    width: auto;
+  }
 }

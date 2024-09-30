@@ -41,7 +41,7 @@
   position: relative;
 }
 
-.categoryIcon:hover {
+.categoryButton .categoryIcon:hover {
   fill: var(--orange);
 }
 
@@ -53,4 +53,8 @@
 
 .categoryButton:active .categoryIcon {
   fill: var(--orange);
+}
+
+.categoryButton:active .categoryBackground {
+  background-color: var(--icon-orange-light);
 }
