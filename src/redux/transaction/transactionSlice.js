@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   deleteTransaction,
   fetchExpenseTransactions,
+  fetchIncomeTransactions,
   handleSubmit,
 } from './transactionActions';
 
@@ -10,6 +11,7 @@ const transactionSlice = createSlice({
   initialState: {
     data: [],
     expenses: [],
+    incomes: [],
     loading: false,
     error: null,
   },
@@ -36,11 +38,24 @@ const transactionSlice = createSlice({
         state.loading = false;
         state.expenses = action.payload;
       })
-
       .addCase(fetchExpenseTransactions.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
+
+      .addCase(fetchIncomeTransactions.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchIncomeTransactions.fulfilled, (state, action) => {
+        state.loading = false;
+        state.incomes = action.payload;
+      })
+      .addCase(fetchIncomeTransactions.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
       .addCase(deleteTransaction.pending, state => {
         state.loading = true;
         state.error = null;
