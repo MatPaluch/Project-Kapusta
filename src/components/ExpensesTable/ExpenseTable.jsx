@@ -55,7 +55,7 @@ export const ExpensesTable = () => {
                       {val.description}
                     </td>
                     <td className={styles.tableItemCategory}>{val.category}</td>
-                    <td className={styles.tableItemSum}>{val.amount}</td>
+                    <td className={styles.tableItemSum}>{val.amount} PLN</td>
                     <td>
                       <button
                         className={styles.removeButton}

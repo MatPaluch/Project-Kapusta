@@ -9,9 +9,20 @@
   margin-left: 41px;
 }
 
+.tableBox {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .table {
   margin: auto;
   margin-top: 110px;
+}
+
+.tableRow {
+  border: 2px solid #f5f6fb;
+  height: 30px;
 }
 
 /* ======================== TABLET ===================================== */
@@ -92,22 +103,23 @@
     font-size: 12px;
     letter-spacing: 0.04em;
     color: #52555f;
+    text-align: left;
   }
   .tableItemCategory {
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 12px;
     letter-spacing: 0.04em;
+    text-align: left;
     color: #52555f;
-    text-align: center;
   }
   .tableItemSum {
     font-family: var(--font-family);
-    font-weight: 400;
+    font-weight: 700;
     font-size: 12px;
     letter-spacing: 0.04em;
-    color: #52555f;
     text-align: right;
+    color: #e7192e;
   }
 }
 
