@@ -1,31 +1,40 @@
 /* ======================== MOBILE ===================================== */
+.mobileBox {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
 .form {
   margin: auto;
 }
 
 .inputBox {
   display: flex;
-  /* display: none; */
   margin: auto;
   align-items: center;
   width: 100%;
-  height: 44px;
+  height: 100%;
 }
 
 .list {
-  display: none;
+  margin: auto;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
 }
 
 .listItem {
-  display: inline;
   text-indent: 20px;
 }
 
 .productDescription {
-  display: none;
   border: 2px solid #f5f6fb;
   border-radius: 16px 0 0 0;
-  width: 186px;
+  width: 87.5%;
   height: 44px;
   font-family: var(--font-family);
   font-weight: 400;
@@ -36,9 +45,8 @@
   text-indent: 20px;
 }
 .productCategory {
-  display: none;
   border: 2px solid #f5f6fb;
-  width: 186px;
+  width: 87.5%;
   height: 44px;
   font-family: var(--font-family);
   font-weight: 400;
@@ -48,32 +56,38 @@
   appearance: none;
   background-image: url('../../../assets/arrow.svg');
   background-repeat: no-repeat;
-  background-position: 156px 15px;
+  background-position: 300px 15px;
   text-align: left;
   text-indent: 20px;
 }
 
 .productValue {
-  display: none;
   border: 2px solid #f5f6fb;
-  border-radius: 0 16px 16px 0;
-  width: 110px;
+  display: flex;
+  margin: auto;
+  margin-top: 32px;
+
+  border-radius: 16px 16px 16px 16px;
+  width: 183px;
   height: 44px;
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 12px;
   letter-spacing: 0.02em;
   text-align: center;
-  color: #c7ccdc;
+  color: black;
+  /* background-color: var(--light-grey); */
   background-image: url('../../../assets/calculator.svg');
   background-repeat: no-repeat;
-  background-position: 70px 10px;
+  background-position: 140px 10px;
 }
 
 .inputButtonBox {
-  /* display: flex; */
-  display: none;
-  margin-top: 32px;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  top: 389px;
+
   justify-content: center;
 }
 

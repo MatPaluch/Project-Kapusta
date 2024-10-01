@@ -10,8 +10,10 @@
 }
 
 .table {
-  display: none;
+  margin: auto;
+  margin-top: 110px;
 }
+
 /* ======================== TABLET ===================================== */
 @media screen and (min-width: 768px) {
   .box {
@@ -23,6 +25,11 @@
     height: 616px;
     box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
     background: #fff;
+  }
+
+  .tableBox {
+    height: 344px;
+    overflow-y: scroll;
   }
 
   .table {
@@ -58,10 +65,18 @@
     text-indent: 20px;
   }
 
+  .tableBody {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: #52555f;
+  }
+
   .tableRow {
-    /* stroke-width: 2px;
-    stroke: #f5f6fb; */
     border: 2px solid #f5f6fb;
+    height: 40px;
   }
 
   .tableItemDate {
