@@ -1,14 +1,110 @@
 /* ======================== MOBILE ===================================== */
-.list {
-  display: none;
+.form {
+  margin: auto;
+  padding-top: 24px;
+}
+
+.inputBox {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  width: 624px;
+  height: 44px;
+}
+
+.listItem {
+  display: inline;
+  text-indent: 20px;
+}
+
+.productDescription {
+  border: 2px solid #f5f6fb;
+  border-radius: 16px 0 0 0;
+  width: 186px;
+  height: 44px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #c7ccdc;
+  text-align: left;
+  text-indent: 20px;
+}
+.productCategory {
+  border: 2px solid #f5f6fb;
+  width: 186px;
+  height: 44px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #c7ccdc;
+  appearance: none;
+  background-image: url('../../../assets/arrow.svg');
+  background-repeat: no-repeat;
+  background-position: 156px 15px;
+  text-align: left;
+  text-indent: 20px;
+}
+
+.productValue {
+  border: 2px solid #f5f6fb;
+  border-radius: 0 16px 16px 0;
+  width: 110px;
+  height: 44px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: #c7ccdc;
+  background-image: url('../../../assets/calculator.svg');
+  background-repeat: no-repeat;
+  background-position: 70px 10px;
+}
+
+.inputButtonBox {
+  display: flex;
+  margin-top: 32px;
+  justify-content: center;
 }
 
 .submitButton {
-  display: none;
+  display: block;
+  border-radius: 16px;
+  width: 125px;
+  height: 44px;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  background: #ff751d;
+  margin-right: 15px;
 }
 
 .clearButton {
-  display: none;
+  display: block;
+  border-radius: 16px;
+  width: 125px;
+  height: 44px;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #52555f;
+  border: 2px solid #f6f7fc;
+  border-radius: 16px;
+  width: 125px;
+  height: 44px;
+}
+
+.categoryOption {
+  text-indent: 20px;
 }
 
 /* ======================== TABLET ===================================== */
@@ -24,11 +120,6 @@
     align-items: center;
     width: 624px;
     height: 44px;
-  }
-
-  .list {
-    list-style-type: none;
-    display: inline;
   }
 
   .listItem {

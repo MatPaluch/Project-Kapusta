@@ -1,0 +1,35 @@
+.arrowBox {
+  padding: 16px 20px;
+}
+
+.arrowIcon {
+  width: 24px;
+  height: 24px;
+  fill: #ff751d;
+}
+.mobileHidden {
+  display: none;
+}
+
+.arrowLink {
+  background-color: var(--light-grey);
+}
+
+/* ================================================= TABLET 👇 ========================================= */
+@media screen and (min-width: 768px) {
+  .arrowBox {
+    padding: 0;
+  }
+  .arrowLink {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+  }
+  .mobileHidden {
+    display: initial;
+    font-family: var(--font-family);
+    letter-spacing: 0.04em;
+    color: rgba(82, 85, 95, 0.7);
+  }
+}
