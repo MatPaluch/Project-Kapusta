@@ -11,7 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth > 768) {
+      if (window.innerWidth >= 768) {
         setTransaction('home');
       }
     }
