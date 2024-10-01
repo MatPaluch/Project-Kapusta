@@ -2,7 +2,7 @@ import { BackToHome } from 'components/BackToHome/BackToHome';
 import Balans from 'components/Balans/Balans';
 import ExpensesButton from 'components/ExpensesButtons/ExpensesButtons';
 import HomeInput from 'components/HomeInput/HomeInput';
-import TableIncomeExpenses from 'components/TableIncomeExpenses/TableIncomeExpenses';
+import { ExpensesTable } from 'components/ExpensesTable/ExpensesTable';
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
 import React, { useState } from 'react';
 
@@ -27,7 +27,7 @@ const Home = () => {
         <Balans />
         <ExpensesButton />
 
-        <TableIncomeExpenses />
+        <ExpensesTable />
       </>
     );
   }

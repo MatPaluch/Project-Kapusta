@@ -3,8 +3,21 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-function Calendar() {
+export const Calendar = ({ onChange }) => {
   const [startDate, setStartDate] = useState(new Date());
+
+  const handleDateChange = date => {
+    const formattedDate = date.toLocaleDateString('pl-PL', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+
+    setStartDate(date);
+    if (onChange) {
+      onChange(formattedDate);
+    }
+  };
 
   let dateFormatted = startDate;
   let dd = dateFormatted.getDate();
@@ -18,8 +31,6 @@ function Calendar() {
     mm = '0' + mm;
   }
   dateFormatted = dd + '.' + mm + '.' + yyyy;
-
-  // console.log(dateFormatted);
 
   return (
     <div className={styles.calendarBox}>
@@ -64,10 +75,10 @@ function Calendar() {
       <DatePicker
         className={styles.calendar}
         selected={startDate}
-        onChange={date => setStartDate(date)}
-        dateFormat="dd/MM/yyyy"
+        onChange={handleDateChange} // Używamy nowej funkcji
+        dateFormat="dd.MM.yyyy" // Ustal format daty
       />
     </div>
   );
-}
+};
 export default Calendar;
