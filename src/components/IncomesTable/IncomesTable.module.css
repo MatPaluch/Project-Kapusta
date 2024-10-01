@@ -1,0 +1,109 @@
+/* ======================== MOBILE ===================================== */
+.removeButton {
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  background-image: url('../../../assets/bin.svg');
+  background-repeat: no-repeat;
+  padding-right: 32px;
+  margin-left: 41px;
+}
+
+.table {
+  display: none;
+}
+/* ======================== TABLET ===================================== */
+@media screen and (min-width: 768px) {
+  .box {
+    margin: auto;
+    position: relative;
+    z-index: 999;
+    border-radius: 0 30px 30px 30px;
+    width: 704px;
+    height: 616px;
+    box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
+    background: #fff;
+  }
+
+  .table {
+    display: table;
+    margin: auto;
+    margin-top: 48px;
+    padding: 0;
+    width: 624px;
+    height: 38px;
+    text-indent: 20px;
+  }
+
+  .tableHeader {
+    width: 624px;
+    height: 38px;
+    padding: 0;
+
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: left;
+    text-indent: 20px;
+    color: #000;
+    background-color: rgba(245, 246, 251, 1);
+  }
+
+  .tableHeaderItem {
+    width: 624px;
+    height: 38px;
+    padding: 0;
+    text-indent: 20px;
+  }
+
+  .tableRow {
+    /* stroke-width: 2px;
+    stroke: #f5f6fb; */
+    border: 2px solid #f5f6fb;
+  }
+
+  .tableItemDate {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: #52555f;
+  }
+  .tableItemDescription {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: #52555f;
+  }
+  .tableItemCategory {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: #52555f;
+    text-align: center;
+  }
+  .tableItemSum {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: #52555f;
+    text-align: right;
+  }
+}
+
+/* ======================== DESKTOP===================================== */
+@media screen and (min-width: 1280px) {
+  .box {
+    width: 85%;
+    margin: auto;
+  }
+
+  .table {
+    width: 746px;
+  }
+}
