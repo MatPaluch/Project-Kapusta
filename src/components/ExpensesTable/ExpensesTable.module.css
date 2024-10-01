@@ -10,8 +10,10 @@
 }
 
 .table {
-  display: none;
+  margin: auto;
+  margin-top: 110px;
 }
+
 /* ======================== TABLET ===================================== */
 @media screen and (min-width: 768px) {
   .box {

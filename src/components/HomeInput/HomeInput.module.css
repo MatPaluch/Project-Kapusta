@@ -1,7 +1,6 @@
 /* ======================== MOBILE ===================================== */
 .form {
   margin: auto;
-  padding-top: 24px;
 }
 
 .inputBox {
@@ -11,6 +10,10 @@
   align-items: center;
   width: 100%;
   height: 44px;
+}
+
+.list {
+  display: none;
 }
 
 .listItem {
@@ -125,6 +128,10 @@
     align-items: center;
     width: 624px;
     height: 44px;
+  }
+
+  .list {
+    display: initial;
   }
 
   .listItem {
@@ -268,5 +275,6 @@
 
   .list {
     padding-left: 32px;
+    display: initial;
   }
 }
