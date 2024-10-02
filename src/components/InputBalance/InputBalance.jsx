@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './InputBalance.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBalance, setIsBalanceSet } from '../../redux/userSlice';
@@ -8,6 +9,7 @@ function InputBalance() {
   const dispatch = useDispatch();
   const balance = useSelector(state => state.user.balance);
   const isBalanceSet = useSelector(state => state.user.isBalanceSet);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleChange = e => {
     let value = e.target.value.replace(/[^0-9]/g, '');
@@ -20,8 +22,15 @@ function InputBalance() {
     dispatch(setBalance({ value }));
   };
 
-  const confirmBalance = async e => {
-    e.preventDefault();
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const confirmBalance = async () => {
     try {
       const response = await axios.patch(
         'https://project-kapusta-rest-api.vercel.app/user/balance',
@@ -32,19 +41,21 @@ function InputBalance() {
       dispatch(setBalance({ value }));
       dispatch(setIsBalanceSet(true));
       alert('Balance updated!');
+      closeModal();
     } catch (error) {
       console.error(
         'Failed to fetch user balance:',
         error.response ? error.response.data : error.message
       );
       alert('Failed to fetch user balance');
+      closeModal();
     }
   };
 
   return (
     <div className={styles.balanceWraper}>
       <p className={styles.label}>Balance:</p>
-      <form className={styles.amountBox} onSubmit={confirmBalance}>
+      <form className={styles.amountBox} onSubmit={e => e.preventDefault()}>
         <div className={styles.inputBox}>
           {!isBalanceSet && <ModalBilance />}
           <input
@@ -60,13 +71,31 @@ function InputBalance() {
           <span className={styles.pln}>PLN</span>
         </div>
         <button
-          type="submit"
+          type="button"
           className={`${isBalanceSet ? styles.disabled : styles.confirm}`}
           disabled={isBalanceSet}
+          onClick={openModal}
         >
           Confirm
         </button>
       </form>
+
+      {/* Modal window */}
+      {isModalOpen && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <p className={styles.paragraphModal}>Are you sure?</p>
+            <div className={styles.modalButtons}>
+              <button onClick={confirmBalance} className={styles.confirmButton}>
+                Yes
+              </button>
+              <button onClick={closeModal} className={styles.cancelButton}>
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
