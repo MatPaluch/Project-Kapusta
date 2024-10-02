@@ -7,7 +7,7 @@ import MobilePage from 'components/MobilePage/MobilePage';
 import { IncomesTable } from 'components/IncomesTable/IncomesTable';
 import { Layout } from 'components/Layout/Layout';
 
-export const IncomesPage = () => {
+const IncomesPage = () => {
   const [transaction, setTransaction] = useState('home');
 
   useEffect(() => {
@@ -55,3 +55,4 @@ export const IncomesPage = () => {
       </>
     );
 };
+export default IncomesPage;

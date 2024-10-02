@@ -1,10 +1,13 @@
-import { Header } from '../Header/Header';
-import styles from './Layout.module.css';
-import icons from '../../images/icons.svg';
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export const Layout = ({ children }) => {
-  const { token } = useSelector(state => state.auth); // Pobieramy dane użytkownika z Reduxa
+import styles from './Layout.module.css';
+import icons from '../../images/icons.svg';
+import { Header } from '../Header/Header';
+
+export const Layout = () => {
+  const token = useSelector(state => state.auth.token); // Pobieramy dane użytkownika z Reduxa
 
   return (
     <div className={styles.layoutContainer}>
@@ -35,7 +38,11 @@ export const Layout = ({ children }) => {
             </div>
 
             {/* Kontener dla formularza logowania */}
-            <div className={styles.loginContainer}>{children}</div>
+            <div className={styles.loginContainer}>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Outlet />
+              </Suspense>
+            </div>
 
             <div className={styles.kapusta2Container}>
               <svg className={styles.iconSingleKapusta}>
@@ -57,7 +64,11 @@ export const Layout = ({ children }) => {
               </svg>
             </div>
             {/* Zawartość strony głównej dla zalogowanych użytkowników */}
-            <div className={styles.mainContentContainer}>{children}</div>
+            <div className={styles.mainContentContainer}>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Outlet />
+              </Suspense>
+            </div>
           </>
         )}
       </div>
