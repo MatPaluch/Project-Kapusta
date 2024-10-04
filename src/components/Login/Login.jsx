@@ -11,6 +11,7 @@ import { loginUser, fetchUserData, decodeToken } from '../../redux/operations';
 import styles from './Login.module.css';
 
 const Login = () => {
+  const [active, setActive] = useState(true);
   const [state, setState] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({ email: '', password: '' });
   const dispatch = useDispatch();
@@ -120,9 +121,9 @@ const Login = () => {
           <div className={styles.buttonContainer}>
             <button
               type="submit"
-              className={`${styles.registerButtonForm} ${
-                isLoading ? styles.loading : ''
-              }`}
+              className={`${styles.registerButtonForm}
+              ${active && styles.active}
+              ${isLoading ? styles.loading : ''}`}
               disabled={isLoading} // Zablokowanie przycisku, gdy ładowanie jest w toku
             >
               {isLoading ? 'Loading...' : 'Log in'}
@@ -131,6 +132,8 @@ const Login = () => {
               type="button"
               className={styles.registerButtonForm}
               onClick={handleRegistrationRedirect}
+              onMouseEnter={() => setActive(false)}
+              onMouseLeave={() => setActive(true)}
             >
               Registration
             </button>

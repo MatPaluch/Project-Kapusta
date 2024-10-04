@@ -19,21 +19,31 @@ export const App = () => {
         <Route
           path="login"
           element={
-            <Redirect toIfLoggedIn={'/expense'} showIfNot={<LoginPage />} />
+            <IfLoggedIn redirectTo={'/expense'} otherwise={<LoginPage />} />
           }
         />
         <Route
           path="register"
           element={
-            <Redirect toIfLoggedIn={'/expense'} showIfNot={<RegisterPage />} />
+            <IfLoggedIn redirectTo={'/expense'} otherwise={<RegisterPage />} />
           }
         />
         <Route
           path="expense"
-          element={<Redirect toIfLoggedIn={'/expense'} showIfNot={<Home />} />}
+          element={<IfNotLoggedIn redirectTo={'/login'} otherwise={<Home />} />}
         />
-        <Route path="income" element={<IncomesPage />} />
-        <Route path="reports" element={<ReportsPage />} />
+        <Route
+          path="income"
+          element={
+            <IfNotLoggedIn redirectTo={'/login'} otherwise={<IncomesPage />} />
+          }
+        />
+        <Route
+          path="reports"
+          element={
+            <IfNotLoggedIn redirectTo={'/login'} otherwise={<ReportsPage />} />
+          }
+        />
       </Route>
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>

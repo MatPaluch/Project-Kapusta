@@ -70,7 +70,7 @@ const Register = () => {
 
         <div className={styles.formRegisterDiv}>
           <label htmlFor="name" className={styles.registerLabelName}>
-            {errors.password && <span className={styles.errorAsterisk}>*</span>}{' '}
+            {errors.username && <span className={styles.errorAsterisk}>*</span>}{' '}
             Name:
           </label>
           <input
@@ -81,16 +81,18 @@ const Register = () => {
             onChange={handleChange}
             placeholder="Name"
             className={`${styles.registerInputName} ${
-              errors.name ? styles.inputError : ''
+              errors.username ? styles.inputError : ''
             }`}
           />
           {/* Wyświetlanie błędu jeśli pole nie zostało wypełnione */}
-          {errors.name && <p className={styles.errorText}>{errors.name}</p>}
+          {errors.username && (
+            <p className={styles.errorText}>{errors.username}</p>
+          )}
         </div>
 
         <div className={styles.formRegisterDiv}>
           <label htmlFor="email" className={styles.registerLabelName}>
-            {errors.password && <span className={styles.errorAsterisk}>*</span>}{' '}
+            {errors.email && <span className={styles.errorAsterisk}>*</span>}{' '}
             E-mail:
           </label>
           <input

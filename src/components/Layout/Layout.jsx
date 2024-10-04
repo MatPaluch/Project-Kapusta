@@ -39,7 +39,7 @@ export const Layout = () => {
 
             {/* Kontener dla formularza logowania */}
             <div className={styles.loginContainer}>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={null}>
                 <Outlet />
               </Suspense>
             </div>
@@ -65,7 +65,7 @@ export const Layout = () => {
             </div>
             {/* Zawartość strony głównej dla zalogowanych użytkowników */}
             <div className={styles.mainContentContainer}>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense>
                 <Outlet />
               </Suspense>
             </div>
