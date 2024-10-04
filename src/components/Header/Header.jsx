@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../../redux/authSlice'; // Akcja wylogowania
+import { logout } from '../../redux/authorization/authSlice'; // Akcja wylogowania
 import styles from './Header.module.css';
 import icons from '../../images/icons.svg';
 import LogoutModal from 'components/LogoutModal/LogoutModal';

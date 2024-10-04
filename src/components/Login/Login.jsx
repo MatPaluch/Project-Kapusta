@@ -5,9 +5,13 @@ import {
   loginSuccess,
   loginRequest,
   loginFailure,
-} from '../../redux/authSlice';
-import { setBalance, setIsBalanceSet } from '../../redux/userSlice';
-import { loginUser, fetchUserData, decodeToken } from '../../redux/operations';
+} from '../../redux/authorization/authSlice';
+import { setBalance, setIsBalanceSet } from '../../redux/user/userSlice';
+import {
+  loginUser,
+  fetchUserData,
+  decodeToken,
+} from '../../redux/authorization/operations';
 import styles from './Login.module.css';
 
 const Login = () => {

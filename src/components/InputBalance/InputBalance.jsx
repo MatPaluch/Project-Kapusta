@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './InputBalance.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBalance, setIsBalanceSet } from '../../redux/userSlice';
+import { setBalance, setIsBalanceSet } from '../../redux/user/userSlice';
 import axios from 'axios';
 import ModalBilance from 'components/ModalBilance/ModalBilance';
 

@@ -1,4 +1,27 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+export const fetchReportExpenseCategories = createAsyncThunk(
+  'register',
+  async (period, { rejectWithValue }) => {
+    try {
+      const formattedPeriod = period.slice(0, 7);
+
+      const response = await axios.get(
+        'https://project-kapusta-rest-api.vercel.app/transaction/period-data',
+        {
+          params: { period: formattedPeriod },
+        }
+      );
+
+      return response.data.expenses;
+    } catch (error) {
+      return rejectWithValue(
+        error.response ? error.response.data : error.message
+      );
+    }
+  }
+);
 
 export const loginUser = async credentials => {
   const response = await axios.post(

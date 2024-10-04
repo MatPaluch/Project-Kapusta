@@ -5,12 +5,14 @@ import { useSelector } from 'react-redux';
 import styles from './Layout.module.css';
 import icons from '../../images/icons.svg';
 import { Header } from '../Header/Header';
+import ModalLoader from 'components/ModalLoader/ModalLoader';
 
 export const Layout = () => {
   const token = useSelector(state => state.auth.token); // Pobieramy dane użytkownika z Reduxa
 
   return (
     <div className={styles.layoutContainer}>
+      
       <Header />
       <div className={styles.layoutBackground}>
         {!token ? (
@@ -21,6 +23,7 @@ export const Layout = () => {
                 <use href={`${icons}#icon-kapusta-big`}></use>
               </svg>
             </div>
+
             <div className={styles.logo2Container}>
               <svg className={styles.iconLogo2}>
                 <use href={`${icons}#icon-logo2`}></use>
@@ -39,7 +42,7 @@ export const Layout = () => {
 
             {/* Kontener dla formularza logowania */}
             <div className={styles.loginContainer}>
-              <Suspense fallback={null}>
+              <Suspense fallback={<ModalLoader />}>
                 <Outlet />
               </Suspense>
             </div>
