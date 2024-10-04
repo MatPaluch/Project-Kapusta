@@ -1,11 +1,25 @@
 import styles from './HomeInput.module.css';
 import Calendar from 'components/Calendar/Calendar';
-import { useState } from 'react';
-import { handleSubmit } from '../../redux/transaction/transactionActions';
+import { useEffect, useState } from 'react';
+import {
+  handleExpenseSubmit,
+  handleIncomeSubmit,
+} from '../../redux/transaction/transactionActions';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchExpenseCategories,
+  fetchIncomeCategories,
+} from '../../redux/categories/categoriesActions';
 
 export const HomeInput = () => {
   const dispatch = useDispatch();
+  const categoryType = useSelector(state => state.categories.categoryType);
+  const expenseCategories = useSelector(
+    state => state.categories.expenseCategories
+  );
+  const incomeCategories = useSelector(
+    state => state.categories.incomeCategories
+  );
 
   const getTodayDate = () => {
     const today = new Date();
@@ -48,9 +62,31 @@ export const HomeInput = () => {
     });
   };
 
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    if (categoryType === 'incomes') {
+      dispatch(fetchIncomeCategories());
+    } else if (categoryType === 'expenses') {
+      dispatch(fetchExpenseCategories());
+    }
+  }, [dispatch, categoryType]);
+
+  useEffect(() => {
+    if (categoryType === 'incomes') {
+      setCategories(incomeCategories);
+    } else if (categoryType === 'expenses') {
+      setCategories(expenseCategories);
+    }
+  }, [categoryType, incomeCategories, expenseCategories]);
+
   const onSubmit = e => {
     e.preventDefault();
-    dispatch(handleSubmit(formData));
+    if (categoryType === 'expenses') {
+      dispatch(handleExpenseSubmit(formData));
+    } else {
+      dispatch(handleIncomeSubmit(formData));
+    }
   };
 
   return (
@@ -78,21 +114,14 @@ export const HomeInput = () => {
               <option value="" disabled hidden>
                 Product category
               </option>
-              <option value="Transport">Transport</option>
-              <option value="Product">Product</option>
-              <option value="Health">Health</option>
-              <option value="Alcohol">Alcohol</option>
-              <option value="Entertainment">Entertainment</option>
-              <option value="Housing">Housing</option>
-              <option value="Technique">Technique</option>
-              <option value="Communal, Communication">
-                Communal, communication
-              </option>
-              <option value="Sports, Hobbies">Sports, Hobbies</option>
-              <option value="Education">Education</option>
-              <option value="Other">Other</option>
+              {categories.map(category => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
             </select>
           </li>
+
           <li className={styles.listItem}>
             <input
               className={styles.productValue}

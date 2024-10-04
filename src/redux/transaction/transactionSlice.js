@@ -3,7 +3,8 @@ import {
   deleteTransaction,
   fetchExpenseTransactions,
   fetchIncomeTransactions,
-  handleSubmit,
+  handleExpenseSubmit,
+  handleIncomeSubmit,
 } from './transactionActions';
 
 const transactionSlice = createSlice({
@@ -18,15 +19,27 @@ const transactionSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(handleSubmit.pending, state => {
+      .addCase(handleExpenseSubmit.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(handleSubmit.fulfilled, (state, action) => {
+      .addCase(handleExpenseSubmit.fulfilled, (state, action) => {
         state.loading = false;
         state.expenses.push(action.payload);
       })
-      .addCase(handleSubmit.rejected, (state, action) => {
+      .addCase(handleExpenseSubmit.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || 'Something went wrong';
+      })
+      .addCase(handleIncomeSubmit.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(handleIncomeSubmit.fulfilled, (state, action) => {
+        state.loading = false;
+        state.expenses.push(action.payload);
+      })
+      .addCase(handleIncomeSubmit.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || 'Something went wrong';
       })
@@ -62,8 +75,15 @@ const transactionSlice = createSlice({
       })
       .addCase(deleteTransaction.fulfilled, (state, action) => {
         state.loading = false;
+        const transactionId = action.payload;
+        state.expenses = state.expenses.filter(
+          transaction => transaction._id !== transactionId
+        );
+        state.incomes = state.incomes.filter(
+          transaction => transaction._id !== transactionId
+        );
         state.data = state.data.filter(
-          transaction => transaction._id !== action.payload
+          transaction => transaction._id !== transactionId
         );
       })
       .addCase(deleteTransaction.rejected, (state, action) => {
