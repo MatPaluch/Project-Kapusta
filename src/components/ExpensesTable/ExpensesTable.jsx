@@ -47,9 +47,9 @@ export const ExpensesTable = () => {
           </thead>
           <tbody className={styles.tableBody}>
             {expenseTransactions.length > 0 ? (
-              latestTransactions.map(val => {
+              latestTransactions.map((val, index) => {
                 return (
-                  <tr key={val._id} className={styles.tableRow}>
+                  <tr key={val._id || index} className={styles.tableRow}>
                     <td className={styles.tableItemDate}>{val.date}</td>
                     <td className={styles.tableItemDescription}>
                       {val.description}

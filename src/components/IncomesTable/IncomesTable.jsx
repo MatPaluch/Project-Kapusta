@@ -46,9 +46,9 @@ export const IncomesTable = () => {
         </thead>
         <tbody>
           {incomeTransactions.length > 0 ? (
-            latestTransactions.map(val => {
+            latestTransactions.map((val, index) => {
               return (
-                <tr key={val._id} className={styles.tableRow}>
+                <tr key={val.id || index} className={styles.tableRow}>
                   <td className={styles.tableItemDate}>{val.date}</td>
                   <td className={styles.tableItemDescription}>
                     {val.description}
@@ -58,7 +58,7 @@ export const IncomesTable = () => {
                   <td>
                     <button
                       className={styles.removeButton}
-                      onClick={() => removeItem(val._id)}
+                      onClick={() => removeItem(val.id)}
                       aria-label="Remove item"
                     ></button>
                   </td>

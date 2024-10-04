@@ -1,8 +1,7 @@
 import { BackToHome } from 'components/BackToHome/BackToHome';
 import Balans from 'components/Balans/Balans';
 import ExpensesButton from 'components/ExpensesButtons/ExpensesButtons';
-import { ExpensesTable } from 'components/ExpensesTable/ExpenseTable';
-// import TableIncomeExpenses from 'components/TableIncomeExpenses/TableIncomeExpenses';
+
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
 import React, { useState, useEffect } from 'react';
 import MobilePage from 'components/MobilePage/MobilePage';
@@ -41,7 +40,6 @@ const Home = () => {
         <ToTransaction handler={handleClick} />
         <Balans />
         <ExpensesButton />
-        <ExpensesTable />
       </>
     );
   }

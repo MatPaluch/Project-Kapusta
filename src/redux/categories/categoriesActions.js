@@ -13,7 +13,7 @@ export const fetchExpenseCategories = () => async dispatch => {
     );
     dispatch(
       fetchCategoriesSuccess({
-        categoriesType: 'expenses',
+        categoryType: 'expenses',
         data: response.data.expenseCategories,
       })
     );
@@ -30,7 +30,7 @@ export const fetchIncomeCategories = () => async dispatch => {
     );
     dispatch(
       fetchCategoriesSuccess({
-        categoriesType: 'incomes',
+        categoryType: 'incomes',
         data: response.data.incomeCategories,
       })
     );
