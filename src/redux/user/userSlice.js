@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchUserData } from './userActions';
 
 const initialState = {
   balance: '0',
-  isBalanceSet: false,
+  isBalanceSet: true,
+  isPending: false,
 };
 
 const userSlice = createSlice({
@@ -17,6 +19,17 @@ const userSlice = createSlice({
     setIsBalanceSet: (state, action) => {
       state.isBalanceSet = action.payload;
     },
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchUserData.pending, (state, action) => {
+        state.isPending = true;
+      })
+      .addCase(fetchUserData.fulfilled, (state, action) => {
+        state.isPending = false;
+        state.balance = action.payload.balance;
+        state.isBalanceSet = action.payload.isBalanceSet;
+      });
   },
 });
 

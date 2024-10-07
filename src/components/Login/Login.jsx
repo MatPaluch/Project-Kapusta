@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setBalance, setIsBalanceSet } from '../../redux/user/userSlice';
 import { loginUser } from '../../redux/authorization/operations';
 import styles from './Login.module.css';
 
@@ -24,7 +23,6 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
     const newErrors = {};
     if (!state.email) newErrors.email = 'This is a required field';
     if (!state.password) newErrors.password = 'This is a required field';
@@ -34,11 +32,7 @@ const Login = () => {
       return;
     }
 
-    try {
-      dispatch(loginUser(state));
-
-      navigate('/');
-    } catch (error) {}
+    dispatch(loginUser(state));
   };
 
   const handleRegistrationRedirect = () => {
@@ -54,7 +48,7 @@ const Login = () => {
           </p>
 
           {/* Wyświetlanie błędów logowania */}
-          {error && <p className={styles.errorText}>{error}</p>}
+          {error && <p className={styles.errorText}>{error.message}</p>}
 
           <div className={styles.loginFormDiv}>
             <label htmlFor="email" className={styles.loginLabel}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../../redux/authorization/authSlice'; // Akcja wylogowania
+import { logoutUser } from '../../redux/authorization/operations'; // Akcja wylogowania
 import styles from './Header.module.css';
 import icons from '../../images/icons.svg';
 import LogoutModal from 'components/LogoutModal/LogoutModal';
@@ -17,9 +17,11 @@ export const Header = () => {
   };
 
   const handleConfirmLogout = () => {
-    dispatch(logout()); // Wywołujemy akcję wylogowania
-    navigate('/login'); // Przekierowanie na stronę logowania
+    dispatch(logoutUser()); // Wywołujemy akcję wylogowania
     setIsModalOpen(false); // Zamykamy modal
+    if (token === null) {
+      navigate('/login'); // Przekierowanie na stronę logowania
+    }
   };
 
   const handleCancelLogout = () => {

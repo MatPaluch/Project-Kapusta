@@ -18,31 +18,23 @@ export const App = () => {
         <Route index element={<Navigate to="/login" />} />
         <Route
           path="login"
-          element={
-            <IfLoggedIn redirectTo={'/expense'} otherwise={<LoginPage />} />
-          }
+          element={<IfLoggedIn redirectTo={'/expenses'} otherwise={<LoginPage />} />}
         />
         <Route
           path="register"
-          element={
-            <IfLoggedIn redirectTo={'/expense'} otherwise={<RegisterPage />} />
-          }
+          element={<IfLoggedIn redirectTo={'/expenses'} otherwise={<RegisterPage />} />}
         />
         <Route
-          path="expense"
+          path="expenses"
           element={<IfNotLoggedIn redirectTo={'/login'} otherwise={<Home />} />}
         />
         <Route
-          path="income"
-          element={
-            <IfNotLoggedIn redirectTo={'/login'} otherwise={<IncomesPage />} />
-          }
+          path="incomes"
+          element={<IfNotLoggedIn redirectTo={'/login'} otherwise={<IncomesPage />} />}
         />
         <Route
           path="reports"
-          element={
-            <IfNotLoggedIn redirectTo={'/login'} otherwise={<ReportsPage />} />
-          }
+          element={<IfNotLoggedIn redirectTo={'/login'} otherwise={<ReportsPage />} />}
         />
       </Route>
       <Route path="*" element={<Navigate to="/login" />} />
