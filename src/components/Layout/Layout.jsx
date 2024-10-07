@@ -6,13 +6,27 @@ import styles from './Layout.module.css';
 import icons from '../../images/icons.svg';
 import { Header } from '../Header/Header';
 import ModalLoader from 'components/ModalLoader/ModalLoader';
+import { Bounce, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Layout = () => {
   const token = useSelector(state => state.auth.token); // Pobieramy dane użytkownika z Reduxa
 
   return (
     <div className={styles.layoutContainer}>
-      
+      <ToastContainer
+        position="top-center"
+        autoClose={7000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       <Header />
       <div className={styles.layoutBackground}>
         {!token ? (

@@ -1,22 +1,21 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import styles from './Register.module.css';
+import { registerUser } from '../../redux/authorization/operations';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   // Stany na pola i błędy
-  const [state, setState] = useState({ username: '', email: '', password: '' });
-  const [errors, setErrors] = useState({
-    username: '',
-    email: '',
-    password: '',
-  }); // Stan na błędy
+  const [formValues, setFormValues] = useState({ username: '', email: '', password: '' });
+  const [errors, setErrors] = useState({ username: '', email: '', password: '' }); // Stan na błędy
   const [active, setActive] = useState(true);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = e => {
     const { name, value } = e.target;
-    setState(prevState => ({ ...prevState, [name]: value }));
+    setFormValues(prevState => ({ ...prevState, [name]: value }));
 
     // Resetowanie błędu przy wpisywaniu danych
     if (value) {
@@ -29,9 +28,9 @@ const Register = () => {
 
     // Walidacja formularza
     const newErrors = {};
-    if (!state.username) newErrors.username = 'This is a required field';
-    if (!state.email) newErrors.email = 'This is a required field';
-    if (!state.password) newErrors.password = 'This is a required field';
+    if (!formValues.username) newErrors.username = 'This is a required field';
+    if (!formValues.email) newErrors.email = 'This is a required field';
+    if (!formValues.password) newErrors.password = 'This is a required field';
 
     // Jeśli są błędy, ustawiamy je w stanie
     if (Object.keys(newErrors).length > 0) {
@@ -39,22 +38,31 @@ const Register = () => {
       return;
     }
 
-    try {
-      // Wysyłanie danych do API
-      console.log(state);
-      const response = await axios.post(
-        'https://project-kapusta-rest-api.vercel.app/auth/register',
-        state
-      );
-      console.log(response);
-      navigate('/login');
-    } catch (error) {
-      console.error(
-        'Registration failed:',
-        error.response ? error.response.data : error.message
-      );
-      alert('Registration failed. Please try again.');
-    }
+    // Wysyłanie danych do API
+    const resFromRegisterRequest = new Promise((resolve, reject) => {
+      dispatch(registerUser(formValues)).then(response => {
+        if (response.error) {
+          reject(response.payload.message);
+        } else {
+          resolve(response.payload.message);
+        }
+      });
+    });
+
+    toast.promise(resFromRegisterRequest, {
+      pending: 'Please wait ...',
+      success: {
+        render({ data }) {
+          navigate('/login');
+          return `${data}`;
+        },
+      },
+      error: {
+        render({ data }) {
+          return `Error ${data}`;
+        },
+      },
+    });
   };
 
   const handleLoginRedirect = () => {
@@ -64,70 +72,58 @@ const Register = () => {
   return (
     <div className={styles.registerDiv}>
       <form onSubmit={handleSubmit}>
-        <p className={styles.registerParagraph}>
-          You can register with your e-mail and password:
-        </p>
+        <p className={styles.registerParagraph}>You can register with your e-mail and password:</p>
 
         <div className={styles.formRegisterDiv}>
           <label htmlFor="name" className={styles.registerLabelName}>
-            {errors.username && <span className={styles.errorAsterisk}>*</span>}{' '}
-            Name:
+            {errors.username && <span className={styles.errorAsterisk}>*</span>} Name:
           </label>
           <input
+            autoComplete="username"
             type="text"
             id="name"
             name="username"
-            value={state.username}
+            value={formValues.username}
             onChange={handleChange}
             placeholder="Name"
-            className={`${styles.registerInputName} ${
-              errors.username ? styles.inputError : ''
-            }`}
+            className={`${styles.registerInputName} ${errors.username ? styles.inputError : ''}`}
           />
           {/* Wyświetlanie błędu jeśli pole nie zostało wypełnione */}
-          {errors.username && (
-            <p className={styles.errorText}>{errors.username}</p>
-          )}
+          {errors.username && <p className={styles.errorText}>{errors.username}</p>}
         </div>
 
         <div className={styles.formRegisterDiv}>
           <label htmlFor="email" className={styles.registerLabelName}>
-            {errors.email && <span className={styles.errorAsterisk}>*</span>}{' '}
-            E-mail:
+            {errors.email && <span className={styles.errorAsterisk}>*</span>} E-mail:
           </label>
           <input
+            autoComplete="email"
             type="email"
             id="email"
             name="email"
-            value={state.email}
+            value={formValues.email}
             onChange={handleChange}
             placeholder="Email"
-            className={`${styles.registerInputName} ${
-              errors.email ? styles.inputError : ''
-            }`}
+            className={`${styles.registerInputName} ${errors.email ? styles.inputError : ''}`}
           />
           {errors.email && <p className={styles.errorText}>{errors.email}</p>}
         </div>
 
         <div className={styles.formRegisterDiv}>
           <label htmlFor="password" className={styles.registerLabelName}>
-            {errors.password && <span className={styles.errorAsterisk}>*</span>}{' '}
-            Password:
+            {errors.password && <span className={styles.errorAsterisk}>*</span>} Password:
           </label>
           <input
+            autoComplete="current-password"
             type="password"
             id="password"
             name="password"
-            value={state.password}
+            value={formValues.password}
             onChange={handleChange}
             placeholder="Password"
-            className={`${styles.registerInputName} ${
-              errors.password ? styles.inputError : ''
-            }`}
+            className={`${styles.registerInputName} ${errors.password ? styles.inputError : ''}`}
           />
-          {errors.password && (
-            <p className={styles.errorText}>{errors.password}</p>
-          )}
+          {errors.password && <p className={styles.errorText}>{errors.password}</p>}
         </div>
 
         <div className={styles.buttonContainer}>
@@ -142,9 +138,7 @@ const Register = () => {
           </button>
           <button
             type="submit"
-            className={`${styles.registerButtonForm} ${
-              active && styles.active
-            }`}
+            className={`${styles.registerButtonForm} ${active && styles.active}`}
           >
             Registration
           </button>

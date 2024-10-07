@@ -1,51 +1,83 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchReportExpenseCategories = createAsyncThunk(
-  'register',
-  async (period, { rejectWithValue }) => {
+axios.defaults.baseURL = 'https://project-kapusta-rest-api.vercel.app';
+
+const setHeaderAuthToken = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const clearHeaderAuthToken = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
+
+export const registerUser = createAsyncThunk(
+  'auth/registerUser',
+  async (payload, { rejectWithValue }) => {
     try {
-      const formattedPeriod = period.slice(0, 7);
-
-      const response = await axios.get(
-        'https://project-kapusta-rest-api.vercel.app/transaction/period-data',
-        {
-          params: { period: formattedPeriod },
-        }
-      );
-
-      return response.data.expenses;
+      const body = payload; // Example { username: 'Xyz', email: 'xyz@example.com', password: 'Password1@' }
+      const response = await axios.post('/auth/registeree', body);
+      return response.data;
     } catch (error) {
-      return rejectWithValue(
-        error.response ? error.response.data : error.message
-      );
+      // Obsługa różnych typów błędów
+      if (error.response) {
+        // Serwer odpowiedział z kodem błędu
+        return rejectWithValue(error.response.data);
+      } else if (error.request) {
+        // Zapytanie zostało wysłane, ale brak odpowiedzi
+        return rejectWithValue('No response from the server');
+      } else {
+        // Coś poszło źle przy konfiguracji zapytania
+        return rejectWithValue(error.message);
+      }
     }
   }
 );
 
-export const loginUser = async credentials => {
-  const response = await axios.post(
-    'https://project-kapusta-rest-api.vercel.app/auth/login',
-    credentials
-  );
-  return response.data;
-};
-
-export const fetchUserData = async token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  const response = await axios.get(
-    'https://project-kapusta-rest-api.vercel.app/user'
-  );
-  return response.data;
-};
-
-export const decodeToken = async token => {
-  const jwtDecodeModule = await import('jwt-decode');
-  const jwtDecode = jwtDecodeModule.default || jwtDecodeModule.jwtDecode;
-
-  if (typeof jwtDecode !== 'function') {
-    throw new Error('jwtDecode is not a function');
+export const loginUser = createAsyncThunk(
+  'auth/loginUser',
+  async (payload, { rejectWithValue }) => {
+    try {
+      const body = payload; // Example { username: 'Xyz', email: 'xyz@example.com', password: 'Password1@' }
+      const response = await axios.post('/auth/login', body);
+      setHeaderAuthToken(response.data.token);
+      return response.data;
+    } catch (error) {
+      // Obsługa różnych typów błędów
+      if (error.response) {
+        // Serwer odpowiedział z kodem błędu
+        return rejectWithValue(error.response.data);
+      } else if (error.request) {
+        // Zapytanie zostało wysłane, ale brak odpowiedzi
+        return rejectWithValue('No response from the server');
+      } else {
+        // Coś poszło źle przy konfiguracji zapytania
+        return rejectWithValue(error.message);
+      }
+    }
   }
+);
 
-  return jwtDecode(token);
-};
+export const logoutUser = createAsyncThunk(
+  'auth/logoutUser',
+  async (payload, { rejectWithValue }) => {
+    try {
+      const body = payload; // Example { username: 'Xyz', email: 'xyz@example.com', password: 'Password1@' }
+      const response = await axios.post('/auth/logout', body);
+      clearHeaderAuthToken();
+      return response.data;
+    } catch (error) {
+      // Obsługa różnych typów błędów
+      if (error.response) {
+        // Serwer odpowiedział z kodem błędu
+        return rejectWithValue(error.response.data);
+      } else if (error.request) {
+        // Zapytanie zostało wysłane, ale brak odpowiedzi
+        return rejectWithValue('No response from the server');
+      } else {
+        // Coś poszło źle przy konfiguracji zapytania
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

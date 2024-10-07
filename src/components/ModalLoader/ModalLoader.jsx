@@ -1,14 +1,10 @@
 import BounceLoader from 'react-spinners/BounceLoader';
 import style from './ModalLoader.module.css';
-import { useEffect } from 'react';
 
 const ModalLoader = () => {
-  useEffect(() => {
-    document.body.style.overflow = 'hidden'; // Wyłączenie scrollowania
-  }, []);
   return (
     <div className={style.modal}>
-      <BounceLoader loading={true} />
+      <BounceLoader loading={true} color="#ff8311" />
     </div>
   );
 };
