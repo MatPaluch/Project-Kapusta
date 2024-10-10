@@ -1,10 +1,10 @@
 import styles from './BackToHome.module.css';
 import icons from '../../images/icons.svg';
 
-export const BackToHome = ({ home }) => {
+export const BackToHome = ({ onClick }) => {
   return (
     <div className={styles.arrowBox}>
-      <button onClick={home} className={styles.arrowLink}>
+      <button onClick={onClick} className={styles.arrowLink}>
         <svg className={styles.arrowIcon}>
           <use href={`${icons}#icon-big-arrow-left`}></use>
         </svg>

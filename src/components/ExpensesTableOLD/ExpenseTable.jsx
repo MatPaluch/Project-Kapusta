@@ -4,7 +4,7 @@ import styles from './ExpensesTable.module.css';
 import {
   deleteTransaction,
   fetchExpenseTransactions,
-} from '../../redux/transaction/transactionActions';
+} from '../../redux/transactions/transactionsActions';
 import { useEffect } from 'react';
 
 export const ExpensesTable = () => {
@@ -21,9 +21,7 @@ export const ExpensesTable = () => {
   if (error) return <p>Error: {error}</p>;
 
   const sortedTransactions = expenseTransactions
-    ? [...expenseTransactions].sort(
-        (a, b) => new Date(b.date) - new Date(a.date)
-      )
+    ? [...expenseTransactions].sort((a, b) => new Date(b.date) - new Date(a.date))
     : [];
   const latestTransactions = sortedTransactions.slice(0, 15);
 
@@ -51,9 +49,7 @@ export const ExpensesTable = () => {
                 return (
                   <tr key={val._id} className={styles.tableRow}>
                     <td className={styles.tableItemDate}>{val.date}</td>
-                    <td className={styles.tableItemDescription}>
-                      {val.description}
-                    </td>
+                    <td className={styles.tableItemDescription}>{val.description}</td>
                     <td className={styles.tableItemCategory}>{val.category}</td>
                     <td className={styles.tableItemSum}>{val.amount} PLN</td>
                     <td>

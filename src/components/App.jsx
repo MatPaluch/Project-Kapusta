@@ -7,7 +7,7 @@ import { Layout } from './Layout/Layout';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
-const Home = lazy(() => import('../pages/ExpensesPage'));
+const ExpensesPage = lazy(() => import('../pages/ExpensesPage'));
 const IncomesPage = lazy(() => import('../pages/IncomesPage'));
 const ReportsPage = lazy(() => import('../pages/ReportsPage'));
 
@@ -26,7 +26,7 @@ export const App = () => {
         />
         <Route
           path="expenses"
-          element={<IfNotLoggedIn redirectTo={'/login'} otherwise={<Home />} />}
+          element={<IfNotLoggedIn redirectTo={'/login'} otherwise={<ExpensesPage />} />}
         />
         <Route
           path="incomes"

@@ -1,0 +1,11 @@
+table {
+  margin-top: 50px;
+  padding: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.deleteIcon {
+  width: 18px;
+  height: 18px;
+}

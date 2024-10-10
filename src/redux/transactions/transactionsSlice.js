@@ -4,10 +4,10 @@ import {
   fetchExpenseTransactions,
   fetchIncomeTransactions,
   handleSubmit,
-} from './transactionActions';
+} from './transactionsActions';
 
-const transactionSlice = createSlice({
-  name: 'transaction',
+const transactionsSlice = createSlice({
+  name: 'transactions',
   initialState: {
     data: [],
     expenses: [],
@@ -62,9 +62,7 @@ const transactionSlice = createSlice({
       })
       .addCase(deleteTransaction.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = state.data.filter(
-          transaction => transaction._id !== action.payload
-        );
+        state.data = state.data.filter(transaction => transaction._id !== action.payload);
       })
       .addCase(deleteTransaction.rejected, (state, action) => {
         state.loading = false;
@@ -73,4 +71,4 @@ const transactionSlice = createSlice({
   },
 });
 
-export default transactionSlice.reducer;
+export default transactionsSlice.reducer;

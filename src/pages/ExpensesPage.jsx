@@ -1,57 +1,40 @@
 import { BackToHome } from 'components/BackToHome/BackToHome';
 import Balans from 'components/Balans/Balans';
-import ExpensesButton from 'components/ExpensesButtons/ExpensesButtons';
-import { ExpensesTable } from 'components/ExpensesTable/ExpenseTable';
-// import TableIncomeExpenses from 'components/TableIncomeExpenses/TableIncomeExpenses';
-import { ToTransaction } from 'components/ToTransaction/ToTransaction';
-import React, { useState, useEffect } from 'react';
-import MobilePage from 'components/MobilePage/MobilePage';
+import Calendar from 'components/Calendar/Calendar';
 
-const Home = () => {
-  const [transaction, setTransaction] = useState('home');
+import { ToTransaction } from 'components/ToTransaction/ToTransaction';
+import { useEffect, useState } from 'react';
+
+const ExpensesPage = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [showTransactionForm, setShowTransactionForm] = useState(false);
 
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth >= 768) {
-        setTransaction('home');
-      }
+      setIsMobile(window.innerWidth < 768);
     }
-
-    handleResize();
 
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleClick = () => {
-    if (transaction === 'home') {
-      setTransaction('transaction');
-    }
-    if (transaction === 'transaction') {
-      setTransaction('home');
-    }
-
-    console.log('klik!');
-  };
-
-  if (transaction === 'home') {
-    return (
+  if (isMobile) {
+    return showTransactionForm ? (
       <>
-        <ToTransaction handler={handleClick} />
+        <BackToHome onClick={() => setShowTransactionForm(false)} />
+        <div>Formularz</div>
+      </>
+    ) : (
+      <>
+        <ToTransaction onClick={() => setShowTransactionForm(true)} />
         <Balans />
-        <ExpensesButton />
-        <ExpensesTable />
+        <Calendar />
       </>
     );
+  } else {
+    return <div>Desktop</div>;
   }
-  if (transaction === 'transaction')
-    return (
-      <>
-        <BackToHome home={handleClick} />
-        <MobilePage />
-      </>
-    );
 };
 
-export default Home;
+export default ExpensesPage;
