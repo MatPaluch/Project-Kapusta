@@ -1,0 +1,26 @@
+.container {
+  padding: 20px;
+}
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  padding: 20px;
+}
+.desc {
+  padding-bottom: 5px;
+}
+.amount {
+  padding-bottom: 10px;
+  text-align: right;
+}
+.trUnderline {
+  border-bottom: 1px solid grey;
+}
+.tdPadding {
+  padding-bottom: 10px;
+}
+.iconDelete {
+  width: 18px;
+  height: 18px;
+  margin-left: 20px;
+}

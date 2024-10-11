@@ -1,6 +1,7 @@
 import { BackToHome } from 'components/BackToHome/BackToHome';
 import Balans from 'components/Balans/Balans';
 import Calendar from 'components/Calendar/Calendar';
+import ExpensesTableMobile from 'components/ExpensesTableMobile/ExpensesTableMobile';
 
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
 import { useEffect, useState } from 'react';
@@ -30,6 +31,7 @@ const ExpensesPage = () => {
         <ToTransaction onClick={() => setShowTransactionForm(true)} />
         <Balans />
         <Calendar />
+        <ExpensesTableMobile/>
       </>
     );
   } else {
