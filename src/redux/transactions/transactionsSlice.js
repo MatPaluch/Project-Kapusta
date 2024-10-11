@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  deleteTransaction,
+  deleteExpenseTransaction,
   fetchExpenseTransactions,
   fetchIncomeTransactions,
   handleSubmit,
@@ -9,13 +9,21 @@ import {
 const transactionsSlice = createSlice({
   name: 'transactions',
   initialState: {
-    data: [],
+    currentDate: new Date().toLocaleDateString('pl-PL', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    }),
     expenses: [],
     incomes: [],
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    setCurrentDate: (state, action) => {
+      state.currentDate = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(handleSubmit.pending, state => {
@@ -56,19 +64,20 @@ const transactionsSlice = createSlice({
         state.error = action.payload;
       })
 
-      .addCase(deleteTransaction.pending, state => {
+      .addCase(deleteExpenseTransaction.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(deleteTransaction.fulfilled, (state, action) => {
+      .addCase(deleteExpenseTransaction.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = state.data.filter(transaction => transaction._id !== action.payload);
+        state.expenses = state.expenses.filter(transaction => transaction._id !== action.payload);
       })
-      .addCase(deleteTransaction.rejected, (state, action) => {
+      .addCase(deleteExpenseTransaction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
+export const { setCurrentDate } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;

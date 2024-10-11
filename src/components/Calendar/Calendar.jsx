@@ -1,20 +1,23 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './Calendar.module.css';
 import icons from '../../images/icons.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentDate } from '../../redux/transactions/transactionsSlice';
 
 export const Calendar = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
+  const currentDate = useSelector(state => state.transactions.currentDate);
 
-  const handleDateChange = date => {
+  const handleDateChange = async date => {
     const formattedDate = date.toLocaleDateString('pl-PL', {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
     });
-    console.log(formattedDate);
-    setStartDate(date);
+    await dispatch(setCurrentDate(formattedDate));
+    console.log(currentDate);
   };
 
   // let dateFormatted = startDate;
@@ -43,7 +46,7 @@ export const Calendar = () => {
     <div className={styles.calendarBox}>
       <DatePicker
         className={styles.calendar}
-        selected={startDate}
+        selected={currentDate}
         onChange={handleDateChange} // Używamy nowej funkcji
         dateFormat="dd.MM.yyyy" // Ustal format daty
         customInput={<CustomInput className={styles.customButtonCalendar} />}

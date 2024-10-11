@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HomeInput } from '../HomeInput/HomeInput';
 import styles from './IncomesTable.module.css';
 import {
-  deleteTransaction,
+  deleteExpenseTransaction,
   fetchIncomeTransactions,
 } from '../../redux/transactions/transactionsActions';
 import { useEffect } from 'react';
@@ -26,7 +26,7 @@ export const IncomesTable = () => {
   const latestTransactions = sortedTransactions.slice(0, 15);
 
   const removeItem = id => {
-    dispatch(deleteTransaction(id));
+    dispatch(deleteExpenseTransaction(id));
   };
 
   return (

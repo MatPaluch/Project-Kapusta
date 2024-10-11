@@ -59,7 +59,7 @@ export const fetchIncomeTransactions = createAsyncThunk(
   }
 );
 
-export const deleteTransaction = createAsyncThunk(
+export const deleteExpenseTransaction = createAsyncThunk(
   'transaction/deleteTransaction',
   async (id, { rejectWithValue }) => {
     try {
