@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const handleSubmit = createAsyncThunk(
-  'transaction/submit',
+export const handleExpenseSubmit = createAsyncThunk(
+  'transaction/submitExpense',
   async (formData, { dispatch, rejectWithValue }) => {
     try {
       const response = await axios.post(
@@ -15,6 +15,28 @@ export const handleSubmit = createAsyncThunk(
         }
       );
       dispatch(fetchExpenseTransactions());
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const handleIncomeSubmit = createAsyncThunk(
+  'transaction/submitIncome',
+  async (formData, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        'https://project-kapusta-rest-api.vercel.app/transaction/income',
+        JSON.stringify(formData),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      dispatch(fetchIncomeTransactions());
 
       return response.data;
     } catch (error) {

@@ -1,7 +1,11 @@
 import styles from './MobilePage.module.css';
 // import Calendar from 'components/Calendar/Calendar';
 import { useState } from 'react';
-import { handleSubmit } from '../../redux/transaction/transactionActions';
+import {
+  handleExpenseSubmit,
+  handleIncomeSubmit,
+  handleSubmit,
+} from '../../redux/transaction/transactionActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 function MobilePage() {
@@ -50,7 +54,11 @@ function MobilePage() {
 
   const onSubmit = e => {
     e.preventDefault();
-    dispatch(handleSubmit(formData));
+    // if (categoryType === 'expenses') {
+    //   dispatch(handleExpenseSubmit(formData));
+    // } else {
+    //   dispatch(handleIncomeSubmit(formData));
+    // }
   };
 
   return (
