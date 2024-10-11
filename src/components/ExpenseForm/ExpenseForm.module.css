@@ -1,0 +1,56 @@
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.description {
+  width: 280px;
+  height: 44px;
+  padding: 0 20px;
+  border: 2px solid #fff;
+  border-radius: 22px 22px 0 0;
+  background-color: transparent;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: black;
+}
+.categorySelect {
+  width: 280px;
+  height: 44px;
+  padding: 0 20px;
+  border: 2px solid #fff;
+  border-top: 0;
+  border-bottom-right-radius: 22px;
+  background-color: transparent;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+.categoryOption {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+.amountWrapper {
+  display: flex;
+}
+.amount {
+  border: 2px solid #fff;
+  border-radius: 22px 0 0 22px;
+  width: 125px;
+  height: 44px;
+}
+.calculatorWrapper {
+  display: flex;
+  place-items: center;
+  border: 2px solid #fff;
+  border-radius: 22px 0 0 22px;
+  width: 60px;
+  height: 44px;
+  transform: rotate(-180deg);
+}

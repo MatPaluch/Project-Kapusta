@@ -1,6 +1,7 @@
 import { BackToHome } from 'components/BackToHome/BackToHome';
 import Balans from 'components/Balans/Balans';
 import Calendar from 'components/Calendar/Calendar';
+import ExpenseForm from 'components/ExpenseForm/ExpenseForm';
 import ExpensesTableMobile from 'components/ExpensesTableMobile/ExpensesTableMobile';
 
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
@@ -24,14 +25,14 @@ const ExpensesPage = () => {
     return showTransactionForm ? (
       <>
         <BackToHome onClick={() => setShowTransactionForm(false)} />
-        <div>Formularz</div>
+        <ExpenseForm />
       </>
     ) : (
       <>
         <ToTransaction onClick={() => setShowTransactionForm(true)} />
         <Balans />
         <Calendar />
-        <ExpensesTableMobile/>
+        <ExpensesTableMobile />
       </>
     );
   } else {

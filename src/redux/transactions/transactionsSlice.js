@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   deleteExpenseTransaction,
+  fetchExpenseCategories,
   fetchExpenseTransactions,
   fetchIncomeTransactions,
   handleSubmit,
@@ -9,6 +10,8 @@ import {
 const transactionsSlice = createSlice({
   name: 'transactions',
   initialState: {
+    expensesCategories: null,
+    incomesCategories: [],
     currentDate: new Date().toLocaleDateString('pl-PL', {
       day: '2-digit',
       month: '2-digit',
@@ -32,7 +35,6 @@ const transactionsSlice = createSlice({
       })
       .addCase(handleSubmit.fulfilled, (state, action) => {
         state.loading = false;
-        state.expenses.push(action.payload);
       })
       .addCase(handleSubmit.rejected, (state, action) => {
         state.loading = false;
@@ -63,7 +65,6 @@ const transactionsSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-
       .addCase(deleteExpenseTransaction.pending, state => {
         state.loading = true;
         state.error = null;
@@ -75,6 +76,9 @@ const transactionsSlice = createSlice({
       .addCase(deleteExpenseTransaction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(fetchExpenseCategories.fulfilled, (state, action) => {
+        state.expensesCategories = action.payload;
       });
   },
 });
