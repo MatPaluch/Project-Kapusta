@@ -37,20 +37,79 @@
   letter-spacing: 0.02em;
 }
 .amountWrapper {
+  margin-top: 32px;
   display: flex;
 }
 .amount {
+  padding: 0px 20px;
+  background-color: transparent;
   border: 2px solid #fff;
   border-radius: 22px 0 0 22px;
   width: 125px;
   height: 44px;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: right;
+  color: #000;
+  text-overflow: ellipsis;
 }
 .calculatorWrapper {
-  display: flex;
+  margin-left: -2px;
+  display: grid;
   place-items: center;
   border: 2px solid #fff;
-  border-radius: 22px 0 0 22px;
+  border-radius: 0 22px 22px 0;
   width: 60px;
   height: 44px;
-  transform: rotate(-180deg);
+}
+.calculatorSVG {
+  width: 20px;
+  height: 20px;
+}
+.buttonsWrapper {
+  display: flex;
+  margin-top: 80px;
+  gap: 20px;
+}
+.submit {
+  border-radius: 16px;
+  width: 130px;
+  height: 44px;
+  background-color: var(--orange);
+  box-shadow: 1px 3px 5px 0 rgba(255, 107, 8, 0.35);
+
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+}
+
+.submit:hover {
+  background-color: rgba(234, 98, 13, 0.898);
+  box-shadow: 1px 3px 5px 0 rgba(255, 107, 8, 0.35);
+}
+.clear {
+  border-radius: 16px;
+  width: 130px;
+  height: 44px;
+  box-shadow: 1px 2px 5px 0 rgba(170, 178, 197, 0.4);
+  background: #f5f6fb;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #52555f;
+}
+.clear:hover {
+  background-color: rgb(234, 234, 234);
 }

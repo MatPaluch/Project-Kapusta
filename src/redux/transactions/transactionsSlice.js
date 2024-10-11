@@ -10,13 +10,14 @@ import {
 const transactionsSlice = createSlice({
   name: 'transactions',
   initialState: {
+    formElements: {
+      description: '',
+      category: '',
+      amount: '',
+    },
+    currentDate: null,
     expensesCategories: null,
     incomesCategories: [],
-    currentDate: new Date().toLocaleDateString('pl-PL', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    }),
     expenses: [],
     incomes: [],
     loading: false,
@@ -25,6 +26,9 @@ const transactionsSlice = createSlice({
   reducers: {
     setCurrentDate: (state, action) => {
       state.currentDate = action.payload;
+    },
+    setAmount: (state, action) => {
+      state.formElements.amount = action.payload;
     },
   },
   extraReducers: builder => {
@@ -82,6 +86,6 @@ const transactionsSlice = createSlice({
       });
   },
 });
-export const { setCurrentDate } = transactionsSlice.actions;
+export const { setCurrentDate, setAmount } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;

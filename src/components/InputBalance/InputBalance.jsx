@@ -24,7 +24,7 @@ function InputBalance() {
     if (value === '') {
       value = '0'; // W przypadku pustej wartości ustawiamy 0
     }
-    dispatch(setBalance({ value }));
+    dispatch(setBalance(value));
   };
 
   const openModal = e => {

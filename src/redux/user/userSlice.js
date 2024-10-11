@@ -14,7 +14,7 @@ const userSlice = createSlice({
 
   reducers: {
     setBalance: (state, action) => {
-      state.balance = action.payload.value;
+      state.balance = action.payload;
     },
     setIsBalanceSet: (state, action) => {
       state.isBalanceSet = action.payload;
