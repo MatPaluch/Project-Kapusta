@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchUserData } from './userActions';
+import { fetchUserData, setUserBalance } from './userActions';
 
 const initialState = {
   balance: '0',
@@ -26,6 +26,14 @@ const userSlice = createSlice({
         state.isPending = true;
       })
       .addCase(fetchUserData.fulfilled, (state, action) => {
+        state.isPending = false;
+        state.balance = action.payload.balance;
+        state.isBalanceSet = action.payload.isBalanceSet;
+      })
+      .addCase(setUserBalance.pending, (state, action) => {
+        state.isPending = true;
+      })
+      .addCase(setUserBalance.fulfilled, (state, action) => {
         state.isPending = false;
         state.balance = action.payload.balance;
         state.isBalanceSet = action.payload.isBalanceSet;

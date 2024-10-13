@@ -28,6 +28,7 @@ export const setUserBalance = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const response = await axios.patch('/user/balance', { balance: payload });
+      console.log(response.data);
       return response.data;
     } catch (error) {
       // Obsługa różnych typów błędów

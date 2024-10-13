@@ -16,7 +16,7 @@ const transactionsSlice = createSlice({
       amount: '',
     },
     currentDate: null,
-    expensesCategories: null,
+    expensesCategories: [],
     incomesCategories: [],
     expenses: [],
     incomes: [],
@@ -26,6 +26,12 @@ const transactionsSlice = createSlice({
   reducers: {
     setCurrentDate: (state, action) => {
       state.currentDate = action.payload;
+    },
+    setDescription: (state, action) => {
+      state.formElements.description = action.payload;
+    },
+    setCategory: (state, action) => {
+      state.formElements.category = action.payload;
     },
     setAmount: (state, action) => {
       state.formElements.amount = action.payload;
@@ -39,11 +45,13 @@ const transactionsSlice = createSlice({
       })
       .addCase(handleSubmit.fulfilled, (state, action) => {
         state.loading = false;
+        console.log('Success!!');
       })
       .addCase(handleSubmit.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || 'Something went wrong';
       })
+
       .addCase(fetchExpenseTransactions.pending, state => {
         state.loading = true;
         state.error = null;
@@ -69,23 +77,27 @@ const transactionsSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+
       .addCase(deleteExpenseTransaction.pending, state => {
         state.loading = true;
         state.error = null;
       })
       .addCase(deleteExpenseTransaction.fulfilled, (state, action) => {
         state.loading = false;
-        state.expenses = state.expenses.filter(transaction => transaction._id !== action.payload);
+        state.expenses = state.expenses.filter(
+          transaction => transaction._id !== action.payload.id
+        );
       })
       .addCase(deleteExpenseTransaction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
+
       .addCase(fetchExpenseCategories.fulfilled, (state, action) => {
         state.expensesCategories = action.payload;
       });
   },
 });
-export const { setCurrentDate, setAmount } = transactionsSlice.actions;
+export const { setCurrentDate, setDescription, setCategory, setAmount } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;

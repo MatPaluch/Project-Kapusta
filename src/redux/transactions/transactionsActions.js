@@ -2,23 +2,26 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const handleSubmit = createAsyncThunk(
-  'transaction/submit',
-  async (bodyExpense, { dispatch, rejectWithValue }) => {
+  'transactions/submit',
+  async (bodyExpense, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         'https://project-kapusta-rest-api.vercel.app/transaction/expense',
         bodyExpense
       );
-      dispatch(fetchExpenseTransactions());
-      console.log(response.data);
+
+      console.log(response);
+      return response.data;
     } catch (error) {
+      console.log(error);
+      console.log(error.response.data);
       return rejectWithValue(error.response.data);
     }
   }
 );
 
 export const fetchExpenseTransactions = createAsyncThunk(
-  'transaction/fetchExpenseTransactions',
+  'transactions/fetchExpenseTransactions',
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
@@ -34,7 +37,7 @@ export const fetchExpenseTransactions = createAsyncThunk(
 );
 
 export const fetchIncomeTransactions = createAsyncThunk(
-  'transaction/fetchIncomeTransactions',
+  'transactions/fetchIncomeTransactions',
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
@@ -50,11 +53,14 @@ export const fetchIncomeTransactions = createAsyncThunk(
 );
 
 export const deleteExpenseTransaction = createAsyncThunk(
-  'transaction/deleteTransaction',
+  'transactions/deleteTransaction',
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`https://project-kapusta-rest-api.vercel.app/transaction/${id}`);
-      return id;
+      const response = await axios.delete(
+        `https://project-kapusta-rest-api.vercel.app/transaction/${id}`
+      );
+
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -62,7 +68,7 @@ export const deleteExpenseTransaction = createAsyncThunk(
 );
 
 export const fetchExpenseCategories = createAsyncThunk(
-  'transaction/fetchExpenseCategories',
+  'transactions/fetchExpenseCategories',
   async (payload, { rejectWithValue }) => {
     try {
       const response = await axios.get(

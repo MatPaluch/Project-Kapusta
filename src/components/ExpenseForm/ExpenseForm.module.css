@@ -17,25 +17,13 @@
   letter-spacing: 0.02em;
   color: black;
 }
-.categorySelect {
-  width: 280px;
-  height: 44px;
-  padding: 0 20px;
-  border: 2px solid #fff;
-  border-top: 0;
-  border-bottom-right-radius: 22px;
-  background-color: transparent;
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.02em;
+.description::placeholder {
+  color: #c7ccdc;
 }
-.categoryOption {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.02em;
+.categoryLoading {
+  color: #aaaaaa;
 }
+
 .amountWrapper {
   margin-top: 32px;
   display: flex;

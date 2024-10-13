@@ -6,6 +6,8 @@ import {
   deleteExpenseTransaction,
   fetchExpenseTransactions,
 } from '../../redux/transactions/transactionsActions';
+import { fetchUserData } from '../../redux/user/userActions';
+import { toast } from 'react-toastify';
 
 const ExpensesTableMobile = () => {
   const dispatch = useDispatch();
@@ -16,8 +18,36 @@ const ExpensesTableMobile = () => {
 
   const deleteHandler = e => {
     const id = e.currentTarget.value;
-    console.log(id);
-    dispatch(deleteExpenseTransaction(id));
+
+    const resFromSetBalance = new Promise((resolve, reject) => {
+      dispatch(deleteExpenseTransaction(id)).then(response => {
+        dispatch(fetchUserData());
+        console.log(response);
+        if (response.error) {
+          reject(response.payload.message);
+        } else {
+          resolve(response.payload.message);
+        }
+      });
+    });
+
+    toast.promise(
+      resFromSetBalance,
+      {
+        pending: 'Please wait ...',
+        success: {
+          render({ data }) {
+            return `${data}`;
+          },
+        },
+        error: {
+          render({ data }) {
+            return `Error ${data}`;
+          },
+        },
+      },
+      { autoClose: 2000 }
+    );
   };
   return (
     <div className={styles.container}>
@@ -60,7 +90,7 @@ const ExpensesTableMobile = () => {
               <td>Loading</td>
             </tr>
           )}
-        </tbody> 
+        </tbody>
       </table>
     </div>
   );

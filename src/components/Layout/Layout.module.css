@@ -1,9 +1,9 @@
 .layoutBackground {
   width: 100%;
   max-width: 1280px;
-  height: 342px;
+  height: 258px;
   background-color: var(--light-grey);
-  border-bottom-left-radius: 160px;
+  border-bottom-left-radius: 116px;
   margin: 0 auto;
   z-index: 100;
   position: relative;
