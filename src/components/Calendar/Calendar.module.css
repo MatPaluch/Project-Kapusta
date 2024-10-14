@@ -35,6 +35,10 @@
 
 @media screen and (min-width: 768px) {
   .calendarBox {
-    margin: 0;
+    background-color: white;
+    margin-top: 0;
+    margin-left: 32px;
+    display: inline-block;
+    padding: 24px 40px;
   }
 }

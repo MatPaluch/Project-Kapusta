@@ -8,6 +8,7 @@ import {
 } from '../../redux/transactions/transactionsActions';
 import { fetchUserData } from '../../redux/user/userActions';
 import { toast } from 'react-toastify';
+import TableLoader from 'components/TableLoader/TableLoader';
 
 const ExpensesTableMobile = () => {
   const dispatch = useDispatch();
@@ -85,10 +86,7 @@ const ExpensesTableMobile = () => {
               );
             })
           ) : (
-            <tr>
-              {/* Tutaj dodać jakiś loader */}
-              <td>Loading</td>
-            </tr>
+            <TableLoader/>
           )}
         </tbody>
       </table>

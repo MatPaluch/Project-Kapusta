@@ -3,6 +3,7 @@ import Balans from 'components/Balans/Balans';
 import Calendar from 'components/Calendar/Calendar';
 import ExpenseForm from 'components/ExpenseForm/ExpenseForm';
 import ExpensesTableMobile from 'components/ExpensesTableMobile/ExpensesTableMobile';
+import TabsExpensesIncomes from 'components/TabsExpensesIncomes/TabsExpensesIncomes';
 
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
 import { useEffect, useState } from 'react';
@@ -33,10 +34,18 @@ const ExpensesPage = () => {
         <Balans />
         <Calendar />
         <ExpensesTableMobile />
+        <TabsExpensesIncomes page={'expenses'} />
       </>
     );
   } else {
-    return <div>Desktop</div>;
+    return (
+      <>
+        <Balans />
+        <TabsExpensesIncomes page={'expenses'}/>
+        <Calendar />
+        <ExpenseForm />
+      </>
+    );
   }
 };
 

@@ -61,3 +61,11 @@
   background-color: #dbdde7;
   cursor: pointer;
 }
+/* ======================== TABLET ===================================== */
+
+@media screen and (min-width: 768px) {
+  .categorySelect {
+    border: 2px solid #f5f6fb;
+    width: 186px;
+  }
+}

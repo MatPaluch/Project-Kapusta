@@ -1,0 +1,52 @@
+/* ======================== MOBILE ===================================== */
+
+.linkWrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  height: 53px;
+}
+
+.buttonsLink {
+  width: 50%;
+  background-color: var(--light-grey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: black;
+  text-decoration: none;
+}
+.active {
+  color: #fff;
+  background-color: var(--orange);
+}
+/* ======================== TABLET ===================================== */
+@media screen and (min-width: 768px) {
+  .linkWrapper {
+    width: 280px;
+    margin: 20px 0 0 32px;
+    position: initial;
+    height: 40px;
+  }
+  .buttonsLink {
+    width: 138px;
+    border-radius: 22px 22px 0 0;
+    background-color: #fafbfd;
+  }
+  .active {
+    background-color: #fefefe;
+    color: var(--orange);
+  }
+}
+/* =========================== DESKTOP 👇 ============================== */
+@media screen and (min-width: 1280px) {
+  .linkWrapper {
+    margin-left: 91px;
+  }
+}

@@ -14,7 +14,7 @@ function InputBalance() {
 
   useEffect(() => {
     dispatch(fetchUserData());
-  }, []);
+  }, [dispatch]);
 
   const handleChange = e => {
     let value = e.target.value.replace(/[^0-9]/g, '');
