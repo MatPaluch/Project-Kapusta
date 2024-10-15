@@ -1,6 +1,6 @@
 import styles from './ExpenseBody.module.css';
 import Calendar from 'components/Calendar/Calendar';
-import ExpenseForm from 'components/ExpenseForm/ExpenseForm';
+import MultiForm from 'components/MultiForm/MultiForm';
 import ExpensesTableDesktop from 'components/ExpensesTableDesktop/ExpensesTableDesktop';
 
 const ExpenseBody = () => {
@@ -8,10 +8,10 @@ const ExpenseBody = () => {
     <div className={styles.expenseBody}>
       <div className={styles.inputs}>
         <Calendar />
-        <ExpenseForm />
+        <MultiForm page={'expense'} />
       </div>
       <div>
-        <ExpensesTableDesktop />
+        <ExpensesTableDesktop page={'expense'} />
       </div>
     </div>
   );

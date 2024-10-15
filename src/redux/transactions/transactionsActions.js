@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const handleSubmit = createAsyncThunk(
-  'transactions/submit',
-  async (bodyExpense, { rejectWithValue }) => {
+export const handleExpenseSubmit = createAsyncThunk(
+  'transactions/handleExpenseSubmit',
+  async (payload, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'https://project-kapusta-rest-api.vercel.app/transaction/expense',
-        bodyExpense
+        `https://project-kapusta-rest-api.vercel.app/transaction/${payload.page}`,
+        payload.bodyTransaction
       );
       return response.data;
     } catch (error) {
@@ -18,15 +18,15 @@ export const handleSubmit = createAsyncThunk(
   }
 );
 
-export const fetchExpenseTransactions = createAsyncThunk(
-  'transactions/fetchExpenseTransactions',
-  async (_, { rejectWithValue }) => {
+export const fetchTransactions = createAsyncThunk(
+  'transactions/fetchTransactions',
+  async (page, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        'https://project-kapusta-rest-api.vercel.app/transaction/expense'
+        `https://project-kapusta-rest-api.vercel.app/transaction/${page}`
       );
 
-      return response.data.expenses;
+      return response.data;
     } catch (error) {
       console.error('Error fetching data:', error);
       return rejectWithValue(error.response ? error.response.data : error.message);
@@ -34,23 +34,7 @@ export const fetchExpenseTransactions = createAsyncThunk(
   }
 );
 
-export const fetchIncomeTransactions = createAsyncThunk(
-  'transactions/fetchIncomeTransactions',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(
-        'https://project-kapusta-rest-api.vercel.app/transaction/income'
-      );
-
-      return response.data.incomes;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return rejectWithValue(error.response ? error.response.data : error.message);
-    }
-  }
-);
-
-export const deleteExpenseTransaction = createAsyncThunk(
+export const deleteTransaction = createAsyncThunk(
   'transactions/deleteTransaction',
   async (id, { rejectWithValue }) => {
     try {
@@ -74,6 +58,21 @@ export const fetchExpenseCategories = createAsyncThunk(
       );
 
       return response.data.expenseCategories;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const fetchIncomeCategories = createAsyncThunk(
+  'transactions/fetchIncomeCategories',
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        'https://project-kapusta-rest-api.vercel.app/transaction/income-categories'
+      );
+      console.log(response.data);
+      return response.data.incomeCategories;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }

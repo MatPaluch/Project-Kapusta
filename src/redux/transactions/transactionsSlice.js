@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  deleteExpenseTransaction,
+  deleteTransaction,
   fetchExpenseCategories,
-  fetchExpenseTransactions,
-  fetchIncomeTransactions,
-  handleSubmit,
+  fetchTransactions,
+  fetchIncomeCategories,
+  handleExpenseSubmit,
 } from './transactionsActions';
 
 const transactionsSlice = createSlice({
@@ -39,61 +39,52 @@ const transactionsSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(handleSubmit.pending, state => {
+      .addCase(handleExpenseSubmit.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(handleSubmit.fulfilled, (state, action) => {
+      .addCase(handleExpenseSubmit.fulfilled, (state, action) => {
         state.loading = false;
       })
-      .addCase(handleSubmit.rejected, (state, action) => {
+      .addCase(handleExpenseSubmit.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || 'Something went wrong';
       })
 
-      .addCase(fetchExpenseTransactions.pending, state => {
+      .addCase(fetchTransactions.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchExpenseTransactions.fulfilled, (state, action) => {
+      .addCase(fetchTransactions.fulfilled, (state, action) => {
         state.loading = false;
-        state.expenses = action.payload;
+        state.expenses = action.payload.expenses;
+        state.incomes = action.payload.incomes;
       })
-      .addCase(fetchExpenseTransactions.rejected, (state, action) => {
+      .addCase(fetchTransactions.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
 
-      .addCase(fetchIncomeTransactions.pending, state => {
+      .addCase(deleteTransaction.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchIncomeTransactions.fulfilled, (state, action) => {
-        state.loading = false;
-        state.incomes = action.payload;
-      })
-      .addCase(fetchIncomeTransactions.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-
-      .addCase(deleteExpenseTransaction.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(deleteExpenseTransaction.fulfilled, (state, action) => {
+      .addCase(deleteTransaction.fulfilled, (state, action) => {
         state.loading = false;
         state.expenses = state.expenses.filter(
           transaction => transaction._id !== action.payload.id
         );
       })
-      .addCase(deleteExpenseTransaction.rejected, (state, action) => {
+      .addCase(deleteTransaction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
 
       .addCase(fetchExpenseCategories.fulfilled, (state, action) => {
         state.expensesCategories = action.payload;
+      })
+      .addCase(fetchIncomeCategories.fulfilled, (state, action) => {
+        state.incomesCategories = action.payload;
       });
   },
 });

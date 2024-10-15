@@ -4,12 +4,9 @@ import { toast } from 'react-toastify';
 import styles from './ExpensesTableDesktop.module.css';
 import icons from '../../images/icons.svg';
 import { fetchUserData } from '../../redux/user/userActions';
-import {
-  deleteExpenseTransaction,
-  fetchExpenseTransactions,
-} from '../../redux/transactions/transactionsActions';
+import { deleteTransaction, fetchTransactions } from '../../redux/transactions/transactionsActions';
 
-const ExpensesTableDesktop = () => {
+const ExpensesTableDesktop = ({ page }) => {
   const { expenses } = useSelector(state => state.transactions);
   const table = [
     { _id: 1 },
@@ -38,14 +35,14 @@ const ExpensesTableDesktop = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchExpenseTransactions());
+    dispatch(fetchTransactions(page));
   }, [dispatch]);
 
   const deleteHandler = e => {
     const id = e.currentTarget.value;
 
     const resFromSetBalance = new Promise((resolve, reject) => {
-      dispatch(deleteExpenseTransaction(id)).then(response => {
+      dispatch(deleteTransaction(id)).then(response => {
         if (response.error) {
           reject(response.payload.message);
         } else {
