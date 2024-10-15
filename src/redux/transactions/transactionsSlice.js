@@ -45,7 +45,6 @@ const transactionsSlice = createSlice({
       })
       .addCase(handleSubmit.fulfilled, (state, action) => {
         state.loading = false;
-        console.log('Success!!');
       })
       .addCase(handleSubmit.rejected, (state, action) => {
         state.loading = false;

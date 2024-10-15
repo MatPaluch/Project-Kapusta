@@ -23,7 +23,7 @@ const ExpensesTableMobile = () => {
     const resFromSetBalance = new Promise((resolve, reject) => {
       dispatch(deleteExpenseTransaction(id)).then(response => {
         dispatch(fetchUserData());
-        console.log(response);
+
         if (response.error) {
           reject(response.payload.message);
         } else {
@@ -52,10 +52,10 @@ const ExpensesTableMobile = () => {
   };
   return (
     <div className={styles.container}>
-      <table className={styles.table}>
-        <tbody>
-          {!loading ? (
-            expenses.map(transaction => {
+      {!loading ? (
+        <table className={styles.table}>
+          <tbody>
+            {expenses.map(transaction => {
               return (
                 <React.Fragment key={transaction._id}>
                   <tr key={transaction._id}>
@@ -63,19 +63,17 @@ const ExpensesTableMobile = () => {
                       {transaction.description}
                     </td>
                     <td colSpan={2} rowSpan={2} className={styles.amount}>
-                      <div className={styles.amountBox}>
-                        - {transaction.amount} PLN
-                        <button
-                          type="button"
-                          className={styles.deleteButton}
-                          onClick={deleteHandler}
-                          value={transaction._id}
-                        >
-                          <svg className={styles.iconDelete}>
-                            <use href={`${icons}#icon-delete`}></use>
-                          </svg>
-                        </button>
-                      </div>
+                      <span>- {transaction.amount} PLN</span>
+                      <button
+                        type="button"
+                        className={styles.deleteButton}
+                        onClick={deleteHandler}
+                        value={transaction._id}
+                      >
+                        <svg className={styles.iconDelete}>
+                          <use href={`${icons}#icon-delete`}></use>
+                        </svg>
+                      </button>
                     </td>
                   </tr>
                   <tr className={styles.trUnderline}>
@@ -84,12 +82,12 @@ const ExpensesTableMobile = () => {
                   </tr>
                 </React.Fragment>
               );
-            })
-          ) : (
-            <TableLoader/>
-          )}
-        </tbody>
-      </table>
+            })}
+          </tbody>
+        </table>
+      ) : (
+        <TableLoader />
+      )}
     </div>
   );
 };

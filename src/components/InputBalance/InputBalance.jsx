@@ -39,7 +39,6 @@ function InputBalance() {
   const confirmBalance = () => {
     const resFromSetBalance = new Promise((resolve, reject) => {
       dispatch(setUserBalance(Number(balance))).then(response => {
-        console.log(response);
         if (response.error) {
           reject(response.payload.message);
         } else {

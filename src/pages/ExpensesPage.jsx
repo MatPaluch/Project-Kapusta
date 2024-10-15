@@ -1,6 +1,7 @@
 import { BackToHome } from 'components/BackToHome/BackToHome';
 import Balans from 'components/Balans/Balans';
 import Calendar from 'components/Calendar/Calendar';
+import ExpenseBody from 'components/ExpenseBody/ExpenseBody';
 import ExpenseForm from 'components/ExpenseForm/ExpenseForm';
 import ExpensesTableMobile from 'components/ExpensesTableMobile/ExpensesTableMobile';
 import TabsExpensesIncomes from 'components/TabsExpensesIncomes/TabsExpensesIncomes';
@@ -41,9 +42,8 @@ const ExpensesPage = () => {
     return (
       <>
         <Balans />
-        <TabsExpensesIncomes page={'expenses'}/>
-        <Calendar />
-        <ExpenseForm />
+        <TabsExpensesIncomes page={'expenses'} />
+        <ExpenseBody />
       </>
     );
   }

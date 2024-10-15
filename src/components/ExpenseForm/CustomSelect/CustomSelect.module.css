@@ -17,6 +17,10 @@
   letter-spacing: 0.02em;
   cursor: pointer;
 }
+.arrowList {
+  position: absolute;
+  right: 20px;
+}
 .categorySelect:focus {
   outline: none;
   border-color: white;
@@ -40,7 +44,7 @@
   margin: 0;
 
   position: absolute;
-  top: 46px;
+  top: 42px;
   left: -2px;
   z-index: 1111;
 
@@ -58,14 +62,21 @@
   background-color: #ffffff;
 }
 .categoryOption:hover {
-  background-color: #dbdde7;
+  background-color: var(--light-grey);
   cursor: pointer;
 }
+
 /* ======================== TABLET ===================================== */
 
 @media screen and (min-width: 768px) {
   .categorySelect {
+    margin-left: -2px;
     border: 2px solid #f5f6fb;
+    width: 169px;
+    border-radius: 0;
+  }
+  .categoryList {
     width: 186px;
+    border-color: var(--light-grey);
   }
 }

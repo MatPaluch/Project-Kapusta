@@ -3,9 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import styles from './ExpenseForm.module.css';
 import icons from '../../images/icons.svg';
-import { fetchExpenseCategories, handleSubmit } from '../../redux/transactions/transactionsActions';
+import {
+  fetchExpenseCategories,
+  fetchExpenseTransactions,
+  handleSubmit,
+} from '../../redux/transactions/transactionsActions';
 import { setAmount, setCategory, setDescription } from '../../redux/transactions/transactionsSlice';
 import CustomSelect from './CustomSelect/CustomSelect';
+import { fetchUserData } from '../../redux/user/userActions';
 
 const ExpenseForm = () => {
   const dispatch = useDispatch();
@@ -58,13 +63,17 @@ const ExpenseForm = () => {
 
     const resFromSetBalance = new Promise((resolve, reject) => {
       dispatch(handleSubmit({ description, category, amount, date })).then(response => {
-        console.log(response);
         if (response.error) {
           reject(response.payload.message);
         } else {
           resolve(response.payload.message);
         }
       });
+    });
+
+    resFromSetBalance.then(() => {
+      dispatch(fetchUserData());
+      dispatch(fetchExpenseTransactions());
     });
 
     toast.promise(

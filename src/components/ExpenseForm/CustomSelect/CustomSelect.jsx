@@ -27,6 +27,16 @@ const CustomSelect = ({ name, placeholder, optionsArray, selectedOption, onChang
         placeholder={placeholder}
         readOnly
       />
+      <svg
+        className={styles.arrowList}
+        width="12"
+        height="7"
+        viewBox="0 0 12 7"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M1 1L6 5L11 1" stroke="#C7CCDC" strokeWidth="2" />
+      </svg>
       {isOpen && (
         <ul className={styles.categoryList}>
           {optionsArray.map((option, index) => (

@@ -12,7 +12,6 @@ const TabsExpensesIncomes = ({ page }) => {
         to="/expenses"
         className={`${expenses ? styles.active : ''} ${styles.buttonsLink}`}
         onMouseEnter={() => {
-          console.log(expenses);
           if (page === 'incomes') {
             setExpenses(true);
             setIncomes(false);

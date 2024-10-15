@@ -24,12 +24,9 @@
   font-size: 12px;
   letter-spacing: 0.04em;
   color: #e7192e;
+  vertical-align: super;
 }
-.amountBox {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
+
 .trUnderline {
   border-bottom: 1px solid #f5f6fb;
 }
@@ -47,6 +44,7 @@
   border-radius: 100%;
   margin-left: 20px;
   background-color: transparent;
+  vertical-align: sub;
 }
 .deleteButton:hover {
   background-color: #f5f6fb;

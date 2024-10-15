@@ -9,8 +9,6 @@ export const handleSubmit = createAsyncThunk(
         'https://project-kapusta-rest-api.vercel.app/transaction/expense',
         bodyExpense
       );
-
-      console.log(response);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -74,7 +72,7 @@ export const fetchExpenseCategories = createAsyncThunk(
       const response = await axios.get(
         'https://project-kapusta-rest-api.vercel.app/transaction/expense-categories'
       );
-      console.log(response.data.expenseCategories);
+
       return response.data.expenseCategories;
     } catch (error) {
       return rejectWithValue(error.response.data);
