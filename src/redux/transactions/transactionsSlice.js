@@ -57,8 +57,8 @@ const transactionsSlice = createSlice({
       })
       .addCase(fetchTransactions.fulfilled, (state, action) => {
         state.loading = false;
-        state.expenses = action.payload.expenses;
-        state.incomes = action.payload.incomes;
+        state.expenses = action.payload?.expenses || [];
+        state.incomes = action.payload?.incomes || [];
       })
       .addCase(fetchTransactions.rejected, (state, action) => {
         state.loading = false;

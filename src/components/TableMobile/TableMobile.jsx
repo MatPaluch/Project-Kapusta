@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import styles from './ExpensesTableMobile.module.css';
+import styles from './TableMobile.module.css';
 import icons from '../../images/icons.svg';
 
 import { deleteTransaction, fetchTransactions } from '../../redux/transactions/transactionsActions';
@@ -9,16 +9,17 @@ import { fetchUserData } from '../../redux/user/userActions';
 
 import TableLoader from 'components/TableLoader/TableLoader';
 
-const ExpensesTableMobile = ({ page }) => {
+const TableMobile = ({ page }) => {
   const dispatch = useDispatch();
   const transactions = useSelector(state =>
     page === 'expense' ? state.transactions.expenses : state.transactions.incomes
   );
+
   const loading = useSelector(state => state.transactions.loading);
 
   useEffect(() => {
     dispatch(fetchTransactions(page));
-  }, [dispatch]);
+  }, [dispatch, page]);
 
   const deleteHandler = e => {
     const id = e.currentTarget.value;
@@ -67,7 +68,11 @@ const ExpensesTableMobile = ({ page }) => {
                       {transaction.description}
                     </td>
                     <td colSpan={2} rowSpan={2} className={styles.amount}>
-                      <span>- {transaction.amount} PLN</span>
+                      {page === 'expense' ? (
+                        <span className={styles.red}>- {transaction.amount} PLN</span>
+                      ) : (
+                        <span className={styles.green}>{transaction.amount} PLN</span>
+                      )}
                       <button
                         type="button"
                         className={styles.deleteButton}
@@ -96,4 +101,4 @@ const ExpensesTableMobile = ({ page }) => {
   );
 };
 
-export default ExpensesTableMobile;
+export default TableMobile;

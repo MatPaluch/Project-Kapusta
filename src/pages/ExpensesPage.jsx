@@ -3,7 +3,7 @@ import Balans from 'components/Balans/Balans';
 import Calendar from 'components/Calendar/Calendar';
 import ExpenseBody from 'components/ExpenseBody/ExpenseBody';
 import MultiForm from 'components/MultiForm/MultiForm';
-import ExpensesTableMobile from 'components/ExpensesTableMobile/ExpensesTableMobile';
+import TableMobile from 'components/TableMobile/TableMobile';
 import TabsExpensesIncomes from 'components/TabsExpensesIncomes/TabsExpensesIncomes';
 
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
@@ -34,7 +34,7 @@ const ExpensesPage = () => {
         <ToTransaction onClick={() => setShowTransactionForm(true)} />
         <Balans />
         <Calendar />
-        <ExpensesTableMobile page={'expense'} />
+        <TableMobile page={'expense'} />
         <TabsExpensesIncomes page={'expenses'} />
       </>
     );
