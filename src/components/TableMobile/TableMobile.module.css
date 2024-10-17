@@ -58,3 +58,8 @@
   width: 18px;
   height: 18px;
 }
+.modalLoader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

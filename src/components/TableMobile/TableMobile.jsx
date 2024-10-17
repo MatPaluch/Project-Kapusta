@@ -7,7 +7,7 @@ import icons from '../../images/icons.svg';
 import { deleteTransaction, fetchTransactions } from '../../redux/transactions/transactionsActions';
 import { fetchUserData } from '../../redux/user/userActions';
 
-import TableLoader from 'components/TableLoader/TableLoader';
+import ModalLoader from 'components/ModalLoader/ModalLoader';
 
 const TableMobile = ({ page }) => {
   const dispatch = useDispatch();
@@ -95,7 +95,9 @@ const TableMobile = ({ page }) => {
           </tbody>
         </table>
       ) : (
-        <TableLoader />
+        <div className={styles.modalLoader}>
+          <ModalLoader />
+        </div>
       )}
     </div>
   );

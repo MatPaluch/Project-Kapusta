@@ -62,8 +62,25 @@
 .iconBigKapustaPrivate {
   display: none;
 }
+
+.modalLoader {
+  border-radius: 30px;
+  box-shadow: 5px 10px 20px 0 rgba(170, 178, 197, 0.4);
+  width: 280px;
+  height: 496px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  background-color: white;
+  z-index: 900;
+}
 /* =============================== TABLET 👇 ========================================= */
 @media screen and (min-width: 768px) {
+  .modalLoader {
+    width: 426px;
+    height: 552px;
+  }
   .layoutBackground {
     height: 583px;
   }
