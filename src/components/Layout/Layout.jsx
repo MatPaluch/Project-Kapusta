@@ -1,12 +1,11 @@
+import styles from './Layout.module.css';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Bounce, ToastContainer } from 'react-toastify';
 
-import styles from './Layout.module.css';
 import icons from '../../images/icons.svg';
 import { Header } from '../Header/Header';
-
-import { Bounce, ToastContainer } from 'react-toastify';
 
 export const Layout = () => {
   const token = useSelector(state => state.auth.token); // Pobieramy dane użytkownika z Reduxa

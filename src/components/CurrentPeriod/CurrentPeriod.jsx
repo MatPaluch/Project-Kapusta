@@ -1,5 +1,5 @@
-import React from 'react';
 import styles from './CurrentPeriod.module.css';
+import React from 'react';
 import icons from '../../images/icons.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { nextMonth, previousMonth } from '../../redux/period/periodSlice';
@@ -21,20 +21,14 @@ export const CurrentPeriod = () => {
       <div>Current period:</div>
 
       <div className={styles.currentPeriod}>
-        <button
-          className={styles.arrowButton}
-          onClick={() => dispatch(previousMonth())}
-        >
+        <button className={styles.arrowButton} onClick={() => dispatch(previousMonth())}>
           <svg className={styles.arrowIcon}>
             <use href={`${icons}#icon-arrow-left`}></use>
           </svg>
         </button>
 
         {formatDate(currentDate)}
-        <button
-          className={styles.arrowButton}
-          onClick={() => dispatch(nextMonth())}
-        >
+        <button className={styles.arrowButton} onClick={() => dispatch(nextMonth())}>
           <svg className={styles.arrowIcon}>
             <use href={`${icons}#icon-arrow-right`}></use>
           </svg>

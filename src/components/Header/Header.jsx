@@ -1,8 +1,8 @@
+import styles from './Header.module.css';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../redux/authorization/operations'; // Akcja wylogowania
-import styles from './Header.module.css';
 import icons from '../../images/icons.svg';
 import LogoutModal from 'components/LogoutModal/LogoutModal';
 

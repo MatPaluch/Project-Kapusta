@@ -1,8 +1,8 @@
+import styles from './Login.module.css';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../redux/authorization/operations';
-import styles from './Login.module.css';
 
 const Login = () => {
   const [active, setActive] = useState(true);

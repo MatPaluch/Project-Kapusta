@@ -1,9 +1,9 @@
+import styles from './TableDesktop.module.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { fetchUserData } from '../../redux/user/userActions';
 import { deleteTransaction, fetchTransactions } from '../../redux/transactions/transactionsActions';
-import styles from './TableDesktop.module.css';
 import icons from '../../images/icons.svg';
 
 const TableDesktop = ({ page }) => {

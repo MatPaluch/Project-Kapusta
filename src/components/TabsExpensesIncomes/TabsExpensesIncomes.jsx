@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 import styles from './TabsExpensesIncomes.module.css';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const TabsExpensesIncomes = ({ page }) => {
   const [expenses, setExpenses] = useState(page === 'expenses' ? true : false);

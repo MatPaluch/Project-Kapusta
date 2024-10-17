@@ -1,7 +1,7 @@
+import styles from './Calendar.module.css';
 import React, { forwardRef, useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import styles from './Calendar.module.css';
 import icons from '../../images/icons.svg';
 import { useDispatch } from 'react-redux';
 import { setCurrentDate } from '../../redux/transactions/transactionsSlice';

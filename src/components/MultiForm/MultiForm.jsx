@@ -1,7 +1,7 @@
+import styles from './MultiForm.module.css';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import CustomSelect from './CustomSelect/CustomSelect';
 import {
   fetchExpenseCategories,
   fetchTransactions,
@@ -10,8 +10,8 @@ import {
 } from '../../redux/transactions/transactionsActions';
 import { setAmount, setCategory, setDescription } from '../../redux/transactions/transactionsSlice';
 import { fetchUserData } from '../../redux/user/userActions';
-import styles from './MultiForm.module.css';
 import icons from '../../images/icons.svg';
+import CustomSelect from './CustomSelect/CustomSelect';
 
 const MultiForm = ({ page }) => {
   const isExpensesPage = page === 'expense' ? true : false;

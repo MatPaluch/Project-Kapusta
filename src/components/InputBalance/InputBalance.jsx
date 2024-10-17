@@ -1,9 +1,9 @@
+import styles from './InputBalance.module.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { setBalance } from '../../redux/user/userSlice';
 import { fetchUserData, setUserBalance } from '../../redux/user/userActions';
-import styles from './InputBalance.module.css';
 import ModalBilance from 'components/ModalBilance/ModalBilance';
 import ModalAreYouSure from 'components/ModalAreYouSure/ModalAreYouSure';
 

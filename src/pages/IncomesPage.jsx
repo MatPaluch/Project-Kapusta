@@ -1,11 +1,11 @@
+import { useEffect, useState } from 'react';
 import { BackToHome } from 'components/BackToHome/BackToHome';
+import { ToTransaction } from 'components/ToTransaction/ToTransaction';
+import MultiForm from 'components/MultiForm/MultiForm';
 import Balans from 'components/Balans/Balans';
 import Calendar from 'components/Calendar/Calendar';
 import TableMobile from 'components/TableMobile/TableMobile';
-import MultiForm from 'components/MultiForm/MultiForm';
 import TabsExpensesIncomes from 'components/TabsExpensesIncomes/TabsExpensesIncomes';
-import { ToTransaction } from 'components/ToTransaction/ToTransaction';
-import { useEffect, useState } from 'react';
 import MainBody from 'components/MainBody/MainBody';
 
 const IncomesPage = () => {
