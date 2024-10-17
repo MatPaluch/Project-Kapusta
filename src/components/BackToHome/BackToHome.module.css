@@ -18,13 +18,18 @@
 /* ================================================= TABLET 👇 ========================================= */
 @media screen and (min-width: 768px) {
   .arrowBox {
-    padding: 0;
+    padding: 0px;
   }
   .arrowLink {
     display: flex;
     align-items: center;
     gap: 15px;
     text-decoration: none;
+    padding: 10px;
+  }
+  .arrowLink:hover {
+    background-color: rgba(82, 85, 95, 0.3);
+    border-radius: 16px;
   }
   .mobileHidden {
     display: initial;

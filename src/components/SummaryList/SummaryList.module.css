@@ -1,0 +1,36 @@
+.summaryBox {
+  width: 230px;
+  margin: 30px 32px;
+  background-color: var(--light-grey);
+  border-radius: 16px 16px 16px 0;
+}
+.header {
+  padding: 12px 0;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000;
+  margin: 0;
+}
+.list {
+  list-style-type: none;
+  padding-left: 0;
+  width: 100%;
+  margin: 0;
+}
+.element {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 22px;
+  border-top: 2px solid white;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #52555f;
+}

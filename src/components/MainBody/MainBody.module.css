@@ -4,14 +4,23 @@
   box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
   background: #fff;
   margin: 0 32px;
+  height: 654px;
 }
 .inputs {
   display: flex;
   justify-content: space-between;
 }
-
+.lists {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
 /* ======================== DESKTOP===================================== */
 @media screen and (min-width: 1280px) {
+  .lists {
+    flex-wrap: nowrap;
+  }
   .mainBody {
     margin: 0 91px;
   }

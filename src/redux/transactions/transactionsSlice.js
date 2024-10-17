@@ -20,6 +20,7 @@ const transactionsSlice = createSlice({
     incomesCategories: [],
     expenses: [],
     incomes: [],
+    summary: {},
     loading: false,
     error: null,
   },
@@ -59,6 +60,7 @@ const transactionsSlice = createSlice({
         state.loading = false;
         state.expenses = action.payload?.expenses || [];
         state.incomes = action.payload?.incomes || [];
+        state.summary = action.payload.monthStats;
       })
       .addCase(fetchTransactions.rejected, (state, action) => {
         state.loading = false;

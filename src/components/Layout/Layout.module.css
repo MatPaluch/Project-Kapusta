@@ -128,9 +128,9 @@
     display: block;
     overflow: hidden;
     width: 183px;
-    height: 142px;
+    height: 216px;
     position: absolute;
-    top: 973px;
+    top: 1090px;
     left: 50%;
     transform: translateX(113px);
     z-index: 100;
@@ -174,7 +174,7 @@
     max-width: 1270px;
     height: 232px;
     position: absolute;
-    top: 601px;
+    top: 680px;
     left: 10px;
     z-index: -1;
     margin: 0;
