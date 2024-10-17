@@ -1,9 +1,9 @@
 .layoutBackground {
   width: 100%;
   max-width: 1280px;
-  height: 342px;
+  height: 290px;
   background-color: var(--light-grey);
-  border-bottom-left-radius: 160px;
+  border-bottom-left-radius: 116px;
   margin: 0 auto;
   z-index: 100;
   position: relative;
@@ -65,7 +65,7 @@
 /* =============================== TABLET 👇 ========================================= */
 @media screen and (min-width: 768px) {
   .layoutBackground {
-    height: 526px;
+    height: 583px;
   }
 
   .loginContainer {
@@ -176,7 +176,7 @@
     position: absolute;
     top: 601px;
     left: 10px;
-    z-index: 100;
+    z-index: -1;
     margin: 0;
     padding: 0;
   }
@@ -185,9 +185,8 @@
     flex-shrink: initial;
   }
   .iconBigKapustaPrivate {
-    display: flex;
+    display: initial;
     width: 1334px;
     height: 232px;
-    z-index: 101;
   }
 }

@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-  loginSuccess,
-  loginRequest,
-  loginFailure,
-} from '../../redux/authSlice';
-import { setBalance, setIsBalanceSet } from '../../redux/userSlice';
-import { loginUser, fetchUserData, decodeToken } from '../../redux/operations';
+import { loginUser } from '../../redux/authorization/operations';
 import styles from './Login.module.css';
 
 const Login = () => {
+  const [active, setActive] = useState(true);
   const [state, setState] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({ email: '', password: '' });
   const dispatch = useDispatch();
@@ -25,9 +20,9 @@ const Login = () => {
       setErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
     }
   };
+
   const handleSubmit = async e => {
     e.preventDefault();
-
     const newErrors = {};
     if (!state.email) newErrors.email = 'This is a required field';
     if (!state.password) newErrors.password = 'This is a required field';
@@ -37,27 +32,7 @@ const Login = () => {
       return;
     }
 
-    dispatch(loginRequest());
-
-    try {
-      const { token } = await loginUser(state);
-      const user = await decodeToken(token);
-      const userData = await fetchUserData(token);
-      const value = String(userData.balance);
-      const isBalanceSet = userData.isBalanceSet;
-
-      dispatch(setIsBalanceSet(isBalanceSet));
-      dispatch(setBalance({ value }));
-      dispatch(loginSuccess({ token, user }));
-      navigate('/');
-    } catch (error) {
-      console.error(
-        'Błąd logowania:',
-        error.response ? error.response.data : error.message
-      );
-      dispatch(loginFailure('Logowanie nie powiodło się. Spróbuj ponownie.')); // Ustawienie błędu
-      alert('Logowanie nie powiodło się. Spróbuj ponownie.');
-    }
+    dispatch(loginUser(state));
   };
 
   const handleRegistrationRedirect = () => {
@@ -73,56 +48,48 @@ const Login = () => {
           </p>
 
           {/* Wyświetlanie błędów logowania */}
-          {error && <p className={styles.errorText}>{error}</p>}
+          {error && <p className={styles.errorText}>{error.message}</p>}
 
           <div className={styles.loginFormDiv}>
             <label htmlFor="email" className={styles.loginLabel}>
-              {errors.email && <span className={styles.errorAsterisk}>*</span>}{' '}
-              Email:
+              {errors.email && <span className={styles.errorAsterisk}>*</span>} Email:
             </label>
             <input
+              autoComplete="email"
               type="email"
               id="email"
               name="email"
               value={state.email}
               onChange={handleChange}
               placeholder="Email"
-              className={`${styles.loginInput} ${
-                errors.email ? styles.inputError : ''
-              }`}
+              className={`${styles.loginInput} ${errors.email ? styles.inputError : ''}`}
             />
             {errors.email && <p className={styles.errorText}>{errors.email}</p>}
           </div>
 
           <div className={styles.loginFormDiv}>
             <label htmlFor="password" className={styles.loginLabel}>
-              {errors.password && (
-                <span className={styles.errorAsterisk}>*</span>
-              )}{' '}
-              Password:
+              {errors.password && <span className={styles.errorAsterisk}>*</span>} Password:
             </label>
             <input
+              autoComplete="current-password"
               type="password"
               id="password"
               name="password"
               value={state.password}
               onChange={handleChange}
               placeholder="Password"
-              className={`${styles.loginInput} ${
-                errors.password ? styles.inputError : ''
-              }`}
+              className={`${styles.loginInput} ${errors.password ? styles.inputError : ''}`}
             />
-            {errors.password && (
-              <p className={styles.errorText}>{errors.password}</p>
-            )}
+            {errors.password && <p className={styles.errorText}>{errors.password}</p>}
           </div>
 
           <div className={styles.buttonContainer}>
             <button
               type="submit"
-              className={`${styles.registerButtonForm} ${
-                isLoading ? styles.loading : ''
-              }`}
+              className={`${styles.registerButtonForm}
+              ${active && styles.active}
+              ${isLoading ? styles.loading : ''}`}
               disabled={isLoading} // Zablokowanie przycisku, gdy ładowanie jest w toku
             >
               {isLoading ? 'Loading...' : 'Log in'}
@@ -131,6 +98,8 @@ const Login = () => {
               type="button"
               className={styles.registerButtonForm}
               onClick={handleRegistrationRedirect}
+              onMouseEnter={() => setActive(false)}
+              onMouseLeave={() => setActive(true)}
             >
               Registration
             </button>

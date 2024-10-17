@@ -1,13 +1,32 @@
-import { Header } from '../Header/Header';
-import styles from './Layout.module.css';
-import icons from '../../images/icons.svg';
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export const Layout = ({ children }) => {
-  const { token } = useSelector(state => state.auth); // Pobieramy dane użytkownika z Reduxa
+import styles from './Layout.module.css';
+import icons from '../../images/icons.svg';
+import { Header } from '../Header/Header';
+import ModalLoader from 'components/ModalLoader/ModalLoader';
+import { Bounce, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+export const Layout = () => {
+  const token = useSelector(state => state.auth.token); // Pobieramy dane użytkownika z Reduxa
 
   return (
     <div className={styles.layoutContainer}>
+      <ToastContainer
+        position="top-center"
+        autoClose={7000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       <Header />
       <div className={styles.layoutBackground}>
         {!token ? (
@@ -18,6 +37,7 @@ export const Layout = ({ children }) => {
                 <use href={`${icons}#icon-kapusta-big`}></use>
               </svg>
             </div>
+
             <div className={styles.logo2Container}>
               <svg className={styles.iconLogo2}>
                 <use href={`${icons}#icon-logo2`}></use>
@@ -35,7 +55,11 @@ export const Layout = ({ children }) => {
             </div>
 
             {/* Kontener dla formularza logowania */}
-            <div className={styles.loginContainer}>{children}</div>
+            <div className={styles.loginContainer}>
+              <Suspense fallback={<ModalLoader />}>
+                <Outlet />
+              </Suspense>
+            </div>
 
             <div className={styles.kapusta2Container}>
               <svg className={styles.iconSingleKapusta}>
@@ -57,7 +81,11 @@ export const Layout = ({ children }) => {
               </svg>
             </div>
             {/* Zawartość strony głównej dla zalogowanych użytkowników */}
-            <div className={styles.mainContentContainer}>{children}</div>
+            <div className={styles.mainContentContainer}>
+              <Suspense>
+                <Outlet />
+              </Suspense>
+            </div>
           </>
         )}
       </div>

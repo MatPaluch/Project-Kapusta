@@ -1,15 +1,20 @@
-import { useState } from 'react';
-import styles from './InputBalance.module.css';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBalance, setIsBalanceSet } from '../../redux/userSlice';
-import axios from 'axios';
+import { toast } from 'react-toastify';
+import { setBalance } from '../../redux/user/userSlice';
+import { fetchUserData, setUserBalance } from '../../redux/user/userActions';
+import styles from './InputBalance.module.css';
 import ModalBilance from 'components/ModalBilance/ModalBilance';
+import ModalAreYouSure from 'components/ModalAreYouSure/ModalAreYouSure';
 
 function InputBalance() {
   const dispatch = useDispatch();
-  const balance = useSelector(state => state.user.balance);
-  const isBalanceSet = useSelector(state => state.user.isBalanceSet);
+  const { balance, isPending, isBalanceSet } = useSelector(state => state.user);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchUserData());
+  }, [dispatch]);
 
   const handleChange = e => {
     let value = e.target.value.replace(/[^0-9]/g, '');
@@ -19,10 +24,11 @@ function InputBalance() {
     if (value === '') {
       value = '0'; // W przypadku pustej wartości ustawiamy 0
     }
-    dispatch(setBalance({ value }));
+    dispatch(setBalance(value));
   };
 
-  const openModal = () => {
+  const openModal = e => {
+    e.preventDefault();
     setIsModalOpen(true);
   };
 
@@ -30,32 +36,41 @@ function InputBalance() {
     setIsModalOpen(false);
   };
 
-  const confirmBalance = async () => {
-    try {
-      const response = await axios.patch(
-        'https://project-kapusta-rest-api.vercel.app/user/balance',
-        { balance: Number(balance) } // Wysyłamy aktualny stan balance do backendu
-      );
-      const value = String(response.data.data.balance);
+  const confirmBalance = () => {
+    const resFromSetBalance = new Promise((resolve, reject) => {
+      dispatch(setUserBalance(Number(balance))).then(response => {
+        if (response.error) {
+          reject(response.payload.message);
+        } else {
+          resolve(response.payload.message);
+        }
+      });
+    });
 
-      dispatch(setBalance({ value }));
-      dispatch(setIsBalanceSet(true));
-      alert('Balance updated!');
-      closeModal();
-    } catch (error) {
-      console.error(
-        'Failed to fetch user balance:',
-        error.response ? error.response.data : error.message
-      );
-      alert('Failed to fetch user balance');
-      closeModal();
-    }
+    toast.promise(
+      resFromSetBalance,
+      {
+        pending: 'Please wait ...',
+        success: {
+          render({ data }) {
+            return `${data}`;
+          },
+        },
+        error: {
+          render({ data }) {
+            return `Error ${data}`;
+          },
+        },
+      },
+      { autoClose: 2000 }
+    );
+    closeModal();
   };
 
   return (
     <div className={styles.balanceWraper}>
       <p className={styles.label}>Balance:</p>
-      <form className={styles.amountBox} onSubmit={e => e.preventDefault()}>
+      <form className={styles.amountBox} onSubmit={openModal}>
         <div className={styles.inputBox}>
           {!isBalanceSet && <ModalBilance />}
           <input
@@ -71,31 +86,16 @@ function InputBalance() {
           <span className={styles.pln}>PLN</span>
         </div>
         <button
-          type="button"
+          type="submit"
           className={`${isBalanceSet ? styles.disabled : styles.confirm}`}
           disabled={isBalanceSet}
-          onClick={openModal}
         >
-          Confirm
+          {isPending ? 'Loading' : 'Confirm'}
         </button>
       </form>
 
       {/* Modal window */}
-      {isModalOpen && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
-            <p className={styles.paragraphModal}>Are you sure?</p>
-            <div className={styles.modalButtons}>
-              <button onClick={confirmBalance} className={styles.confirmButton}>
-                Yes
-              </button>
-              <button onClick={closeModal} className={styles.cancelButton}>
-                No
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {isModalOpen && <ModalAreYouSure clickYes={confirmBalance} clickNo={closeModal} />}
     </div>
   );
 }

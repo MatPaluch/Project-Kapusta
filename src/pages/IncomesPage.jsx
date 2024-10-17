@@ -1,57 +1,47 @@
-import Balans from 'components/Balans/Balans';
 import { BackToHome } from 'components/BackToHome/BackToHome';
-import IncomeButtons from 'components/IncomeButtons/IncomeButtons';
-import { ToTransaction } from 'components/ToTransaction/ToTransaction';
-import React, { useState, useEffect } from 'react';
-import MobilePage from 'components/MobilePage/MobilePage';
-import { IncomesTable } from 'components/IncomesTable/IncomesTable';
-import { Layout } from 'components/Layout/Layout';
+import Balans from 'components/Balans/Balans';
+import Calendar from 'components/Calendar/Calendar';
+import TabsExpensesIncomes from 'components/TabsExpensesIncomes/TabsExpensesIncomes';
 
-export const IncomesPage = () => {
-  const [transaction, setTransaction] = useState('home');
+import { ToTransaction } from 'components/ToTransaction/ToTransaction';
+import { useEffect, useState } from 'react';
+
+const IncomesPage = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [showTransactionForm, setShowTransactionForm] = useState(false);
 
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth >= 768) {
-        setTransaction('home');
-      }
+      setIsMobile(window.innerWidth < 768);
     }
-
-    handleResize();
 
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleClick = () => {
-    if (transaction === 'home') {
-      setTransaction('transaction');
-    }
-    if (transaction === 'transaction') {
-      setTransaction('home');
-    }
+  if (isMobile) {
+    return showTransactionForm ? (
+      <>
+        <BackToHome onClick={() => setShowTransactionForm(false)} />
+      </>
+    ) : (
+      <>
+        <ToTransaction onClick={() => setShowTransactionForm(true)} />
+        <Balans />
+        <Calendar />
 
-    console.log('klik!');
-  };
-
-  if (transaction === 'home') {
+        <TabsExpensesIncomes page={'incomes'} />
+      </>
+    );
+  } else {
     return (
       <>
-        <Layout>
-          <ToTransaction handler={handleClick} />
-          <Balans />
-          <IncomeButtons />
-          <IncomesTable />
-        </Layout>
+        <Balans />
+        <TabsExpensesIncomes page={'incomes'} />
       </>
     );
   }
-  if (transaction === 'transaction')
-    return (
-      <>
-        <BackToHome home={handleClick} />
-        <MobilePage />
-      </>
-    );
 };
+
+export default IncomesPage;

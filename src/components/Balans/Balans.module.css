@@ -17,7 +17,7 @@
 /* ======================== DESKTOP===================================== */
 @media screen and (min-width: 1280px) {
   .balanceBox {
-    padding: 40px 91px;
+    padding: 40px 91px 8px 91px;
     gap: 298px;
     justify-content: flex-start;
   }

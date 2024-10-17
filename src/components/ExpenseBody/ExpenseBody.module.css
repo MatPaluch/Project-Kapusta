@@ -1,0 +1,18 @@
+.expenseBody {
+  border-radius: 0 30px 30px 30px;
+  width: auto;
+  box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
+  background: #fff;
+  margin: 0 32px;
+}
+.inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ======================== DESKTOP===================================== */
+@media screen and (min-width: 1280px) {
+  .expenseBody {
+    margin: 0 91px;
+  }
+}

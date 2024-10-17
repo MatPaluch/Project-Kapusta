@@ -1,63 +1,43 @@
-import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux'; // Importuj useSelector
-import PrivateRoute from './PrivateRout/PrivateRout';
-import { Layout } from './Layout/Layout';
-import LoginPage from '../pages/LoginPage'; // Zaktualizuj import do LoginPage
-import ReportsPage from 'pages/ReportsPage';
-import { IncomesPage } from 'pages/IncomesPage';
+import { lazy } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-const Home = lazy(() => import('../pages/Home'));
-const Register = lazy(() => import('../pages/RegisterPage'));
+import IfNotLoggedIn from './ExtraRoutes/IfNotLoggedIn';
+import IfLoggedIn from './ExtraRoutes/IfLoggedIn';
+import { Layout } from './Layout/Layout';
+
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage'));
+const ExpensesPage = lazy(() => import('../pages/ExpensesPage'));
+const IncomesPage = lazy(() => import('../pages/IncomesPage'));
+const ReportsPage = lazy(() => import('../pages/ReportsPage'));
 
 export const App = () => {
-  const { token } = useSelector(state => state.auth); // Sprawdź token w Redux
-
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Routes>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Navigate to="/login" />} />
         <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <Layout>
-                <Home />
-                {/* Zawsze renderuj Home, gdy użytkownik jest zalogowany */}
-              </Layout>
-            </PrivateRoute>
-          }
+          path="login"
+          element={<IfLoggedIn redirectTo={'/expenses'} otherwise={<LoginPage />} />}
         />
         <Route
-          path="/incomes"
-          element={
-            <PrivateRoute>
-              <IncomesPage />
-            </PrivateRoute>
-          }
-        ></Route>
-
-        <Route
-          path="/reports"
-          element={
-            <PrivateRoute>
-              <Layout>
-                <ReportsPage />
-                {/* Reszta routingu stron */}
-              </Layout>
-            </PrivateRoute>
-          }
+          path="register"
+          element={<IfLoggedIn redirectTo={'/expenses'} otherwise={<RegisterPage />} />}
         />
         <Route
-          path="/login"
-          element={
-            <Layout>
-              {!token ? <LoginPage /> : <Home />}
-              {/* Jeśli zalogowany, renderuj Home */}
-            </Layout>
-          }
+          path="expenses"
+          element={<IfNotLoggedIn redirectTo={'/login'} otherwise={<ExpensesPage />} />}
         />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </Suspense>
+        <Route
+          path="incomes"
+          element={<IfNotLoggedIn redirectTo={'/login'} otherwise={<IncomesPage />} />}
+        />
+        <Route
+          path="reports"
+          element={<IfNotLoggedIn redirectTo={'/login'} otherwise={<ReportsPage />} />}
+        />
+      </Route>
+      <Route path="*" element={<Navigate to="/login" />} />
+    </Routes>
   );
 };

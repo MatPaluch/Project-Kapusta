@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './authSlice';
-import userReducer from './userSlice';
+import authReducer from './authorization/authSlice';
+import userReducer from './user/userSlice';
 import categoriesReducer from './categories/categoriesSlice';
 import periodReducer from './period/periodSlice';
-import transactionReducer from './transaction/transactionSlice';
+import transactionsReducer from './transactions/transactionsSlice';
 
 import reportsReducer from './reports/reportsSlice';
 export const store = configureStore({
@@ -13,6 +13,6 @@ export const store = configureStore({
     categories: categoriesReducer,
     period: periodReducer,
     reports: reportsReducer,
-    transaction: transactionReducer,
+    transactions: transactionsReducer,
   },
 });
