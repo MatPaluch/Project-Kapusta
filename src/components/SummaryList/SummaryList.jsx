@@ -9,7 +9,7 @@ const SummaryList = () => {
       <h4 className={styles.header}>Summary</h4>
       <ul className={styles.list}>
         {arrayOfObj.map(([key, value]) => (
-          <li className={styles.element}>
+          <li className={styles.element} key={key}>
             <span>{key}</span>
             <span>{value}</span>
           </li>
