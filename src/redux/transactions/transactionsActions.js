@@ -25,7 +25,7 @@ export const fetchTransactions = createAsyncThunk(
       const response = await axios.get(
         `https://project-kapusta-rest-api.vercel.app/transaction/${page}`
       );
-
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error('Error fetching data:', error);

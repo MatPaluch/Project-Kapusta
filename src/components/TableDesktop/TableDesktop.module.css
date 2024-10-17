@@ -121,7 +121,9 @@
 /* ======================== DESKTOP===================================== */
 @media screen and (min-width: 1280px) {
   .table {
+    width: 71%;
     padding: 28px 32px;
+    padding-right: 0px;
   }
   .tbody {
     height: 378px;
