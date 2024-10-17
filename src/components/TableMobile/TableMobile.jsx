@@ -7,8 +7,6 @@ import icons from '../../images/icons.svg';
 import { deleteTransaction, fetchTransactions } from '../../redux/transactions/transactionsActions';
 import { fetchUserData } from '../../redux/user/userActions';
 
-import ModalLoader from 'components/ModalLoader/ModalLoader';
-
 const TableMobile = ({ page }) => {
   const dispatch = useDispatch();
   const transactions = useSelector(state =>
@@ -95,9 +93,7 @@ const TableMobile = ({ page }) => {
           </tbody>
         </table>
       ) : (
-        <div className={styles.modalLoader}>
-          <ModalLoader />
-        </div>
+        <div className={styles.modalLoader}>Loading...</div>
       )}
     </div>
   );

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import styles from './Layout.module.css';
 import icons from '../../images/icons.svg';
 import { Header } from '../Header/Header';
-import ModalLoader from 'components/ModalLoader/ModalLoader';
+
 import { Bounce, ToastContainer } from 'react-toastify';
 
 export const Layout = () => {
@@ -55,13 +55,7 @@ export const Layout = () => {
 
             {/* Kontener dla formularza logowania */}
             <div className={styles.loginContainer}>
-              <Suspense
-                fallback={
-                  <div className={styles.modalLoader}>
-                    <ModalLoader />
-                  </div>
-                }
-              >
+              <Suspense fallback={<div className={styles.modalLoader}>Loading...</div>}>
                 <Outlet />
               </Suspense>
             </div>
