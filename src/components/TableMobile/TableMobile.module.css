@@ -23,8 +23,13 @@
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.04em;
-  color: #e7192e;
   vertical-align: super;
+}
+.red {
+  color: #e7192e;
+}
+.green {
+  color: #407946;
 }
 
 .trUnderline {

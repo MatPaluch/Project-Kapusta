@@ -1,9 +1,9 @@
 import { BackToHome } from 'components/BackToHome/BackToHome';
 import Balans from 'components/Balans/Balans';
 import Calendar from 'components/Calendar/Calendar';
-import ExpenseBody from 'components/ExpenseBody/ExpenseBody';
-import ExpenseForm from 'components/ExpenseForm/ExpenseForm';
-import ExpensesTableMobile from 'components/ExpensesTableMobile/ExpensesTableMobile';
+import MainBody from 'components/MainBody/MainBody';
+import MultiForm from 'components/MultiForm/MultiForm';
+import TableMobile from 'components/TableMobile/TableMobile';
 import TabsExpensesIncomes from 'components/TabsExpensesIncomes/TabsExpensesIncomes';
 
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
@@ -27,14 +27,14 @@ const ExpensesPage = () => {
     return showTransactionForm ? (
       <>
         <BackToHome onClick={() => setShowTransactionForm(false)} />
-        <ExpenseForm />
+        <MultiForm page={'expense'} />
       </>
     ) : (
       <>
         <ToTransaction onClick={() => setShowTransactionForm(true)} />
         <Balans />
         <Calendar />
-        <ExpensesTableMobile />
+        <TableMobile page={'expense'} />
         <TabsExpensesIncomes page={'expenses'} />
       </>
     );
@@ -43,7 +43,7 @@ const ExpensesPage = () => {
       <>
         <Balans />
         <TabsExpensesIncomes page={'expenses'} />
-        <ExpenseBody />
+        <MainBody page={'expense'} />
       </>
     );
   }

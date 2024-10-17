@@ -13,6 +13,7 @@
   display: flex;
   justify-content: space-between;
   height: 40px;
+  padding-right: 15px;
 }
 .headRow > th {
   width: 100%;
@@ -29,6 +30,9 @@
 }
 .headRow > th:nth-of-type(2) {
   width: 200%;
+}
+.headRow > th:last-of-type {
+  width: 50%;
 }
 .tbody {
   display: flex;
@@ -63,6 +67,10 @@
 .row > td:nth-of-type(2) {
   width: 200%;
 }
+.row > :last-of-type {
+  width: 50%;
+  justify-content: center;
+}
 
 .date {
   justify-content: center;
@@ -73,18 +81,24 @@
   justify-content: center;
 }
 .amount {
-  justify-content: space-around;
-
+  justify-content: center;
   font-family: var(--font-family);
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.04em;
+}
+.red {
   color: #e7192e;
 }
+.green {
+  color: #407946;
+}
+
 .deleteIcon {
   width: 18px;
   height: 18px;
 }
+
 .buttonDelete {
   width: 32px;
   height: 32px;
@@ -95,6 +109,13 @@
 }
 .buttonDelete:hover {
   background-color: #f5f6fb;
+}
+/* ======================== TABLET ===================================== */
+
+@media screen and (min-width: 768px) {
+  .buttonDelete {
+    margin: 0 8px;
+  }
 }
 
 /* ======================== DESKTOP===================================== */

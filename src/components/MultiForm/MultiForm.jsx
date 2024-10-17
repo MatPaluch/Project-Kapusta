@@ -1,22 +1,30 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import styles from './ExpenseForm.module.css';
+
+import styles from './MultiForm.module.css';
 import icons from '../../images/icons.svg';
+
 import {
   fetchExpenseCategories,
-  fetchExpenseTransactions,
-  handleSubmit,
+  fetchTransactions,
+  fetchIncomeCategories,
+  handleExpenseSubmit,
 } from '../../redux/transactions/transactionsActions';
 import { setAmount, setCategory, setDescription } from '../../redux/transactions/transactionsSlice';
-import CustomSelect from './CustomSelect/CustomSelect';
 import { fetchUserData } from '../../redux/user/userActions';
 
-const ExpenseForm = () => {
+import CustomSelect from './CustomSelect/CustomSelect';
+
+const MultiForm = ({ page }) => {
+  const isExpensesPage = page === 'expense' ? true : false;
   const dispatch = useDispatch();
-  const categories = useSelector(state => state.transactions.expensesCategories);
   const date = useSelector(state => state.transactions.currentDate);
   const { description, category, amount } = useSelector(state => state.transactions.formElements);
+  const categories = useSelector(state =>
+    isExpensesPage ? state.transactions.expensesCategories : state.transactions.incomesCategories
+  );
+
   const clearInputs = useCallback(() => {
     dispatch(setDescription(''));
     dispatch(setCategory(''));
@@ -24,11 +32,12 @@ const ExpenseForm = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchExpenseCategories());
+    isExpensesPage ? dispatch(fetchExpenseCategories()) : dispatch(fetchIncomeCategories());
+
     return () => {
       clearInputs(); // Funkcja czyszcząca wywoływana przy odmontowaniu komponentu
     };
-  }, [dispatch, clearInputs]);
+  }, [dispatch, clearInputs, isExpensesPage]);
 
   const handleDescription = e => {
     dispatch(setDescription(e.currentTarget.value));
@@ -62,7 +71,8 @@ const ExpenseForm = () => {
     }
 
     const resFromSetBalance = new Promise((resolve, reject) => {
-      dispatch(handleSubmit({ description, category, amount, date })).then(response => {
+      const bodyTransaction = { description, category, amount, date };
+      dispatch(handleExpenseSubmit({ bodyTransaction, page })).then(response => {
         if (response.error) {
           reject(response.payload.message);
         } else {
@@ -73,14 +83,14 @@ const ExpenseForm = () => {
 
     resFromSetBalance.then(() => {
       dispatch(fetchUserData());
-      dispatch(fetchExpenseTransactions());
+      dispatch(fetchTransactions(page));
     });
 
     toast.promise(
       resFromSetBalance,
       {
         pending: 'Please wait ...',
-        success: 'Expense has been added to transactions.',
+        success: `${page === 'expense' ? 'Expense' : 'Income'} has been added to transactions.`,
         error: {
           render({ data }) {
             return `Error ${data}`;
@@ -138,4 +148,4 @@ const ExpenseForm = () => {
     </form>
   );
 };
-export default ExpenseForm;
+export default MultiForm;

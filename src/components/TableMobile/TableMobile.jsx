@@ -1,27 +1,31 @@
-import { useDispatch, useSelector } from 'react-redux';
-import styles from './ExpensesTableMobile.module.css';
-import icons from '../../images/icons.svg';
 import React, { useEffect } from 'react';
-import {
-  deleteExpenseTransaction,
-  fetchExpenseTransactions,
-} from '../../redux/transactions/transactionsActions';
-import { fetchUserData } from '../../redux/user/userActions';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import styles from './TableMobile.module.css';
+import icons from '../../images/icons.svg';
+
+import { deleteTransaction, fetchTransactions } from '../../redux/transactions/transactionsActions';
+import { fetchUserData } from '../../redux/user/userActions';
+
 import TableLoader from 'components/TableLoader/TableLoader';
 
-const ExpensesTableMobile = () => {
+const TableMobile = ({ page }) => {
   const dispatch = useDispatch();
+  const transactions = useSelector(state =>
+    page === 'expense' ? state.transactions.expenses : state.transactions.incomes
+  );
+
+  const loading = useSelector(state => state.transactions.loading);
+
   useEffect(() => {
-    dispatch(fetchExpenseTransactions());
-  }, [dispatch]);
-  const { expenses, loading } = useSelector(state => state.transactions);
+    dispatch(fetchTransactions(page));
+  }, [dispatch, page]);
 
   const deleteHandler = e => {
     const id = e.currentTarget.value;
 
     const resFromSetBalance = new Promise((resolve, reject) => {
-      dispatch(deleteExpenseTransaction(id)).then(response => {
+      dispatch(deleteTransaction(id)).then(response => {
         dispatch(fetchUserData());
 
         if (response.error) {
@@ -50,12 +54,13 @@ const ExpensesTableMobile = () => {
       { autoClose: 2000 }
     );
   };
+
   return (
     <div className={styles.container}>
       {!loading ? (
         <table className={styles.table}>
           <tbody>
-            {expenses.map(transaction => {
+            {transactions.map(transaction => {
               return (
                 <React.Fragment key={transaction._id}>
                   <tr key={transaction._id}>
@@ -63,7 +68,11 @@ const ExpensesTableMobile = () => {
                       {transaction.description}
                     </td>
                     <td colSpan={2} rowSpan={2} className={styles.amount}>
-                      <span>- {transaction.amount} PLN</span>
+                      {page === 'expense' ? (
+                        <span className={styles.red}>- {transaction.amount} PLN</span>
+                      ) : (
+                        <span className={styles.green}>+ {transaction.amount} PLN</span>
+                      )}
                       <button
                         type="button"
                         className={styles.deleteButton}
@@ -92,4 +101,4 @@ const ExpensesTableMobile = () => {
   );
 };
 
-export default ExpensesTableMobile;
+export default TableMobile;
