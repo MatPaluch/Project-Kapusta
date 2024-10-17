@@ -7,6 +7,7 @@ import TabsExpensesIncomes from 'components/TabsExpensesIncomes/TabsExpensesInco
 
 import { ToTransaction } from 'components/ToTransaction/ToTransaction';
 import { useEffect, useState } from 'react';
+import MainBody from 'components/MainBody/MainBody';
 
 const IncomesPage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -42,6 +43,7 @@ const IncomesPage = () => {
       <>
         <Balans />
         <TabsExpensesIncomes page={'incomes'} />
+        <MainBody page={'income'} />
       </>
     );
   }

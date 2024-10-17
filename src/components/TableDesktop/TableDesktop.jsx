@@ -1,13 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import styles from './ExpensesTableDesktop.module.css';
+import styles from './TableDesktop.module.css';
 import icons from '../../images/icons.svg';
 import { fetchUserData } from '../../redux/user/userActions';
 import { deleteTransaction, fetchTransactions } from '../../redux/transactions/transactionsActions';
 
-const ExpensesTableDesktop = ({ page }) => {
-  const { expenses } = useSelector(state => state.transactions);
+const TableDesktop = ({ page }) => {
+  const transactions = useSelector(state =>
+    page === 'expense' ? state.transactions.expenses : state.transactions.incomes
+  );
   const table = [
     { _id: 1 },
     { _id: 2 },
@@ -24,7 +26,7 @@ const ExpensesTableDesktop = ({ page }) => {
     { _id: 13 },
   ];
 
-  expenses.forEach((newItem, index) => {
+  transactions.forEach((newItem, index) => {
     if (index < table.length) {
       table[index] = newItem;
     } else {
@@ -36,7 +38,7 @@ const ExpensesTableDesktop = ({ page }) => {
 
   useEffect(() => {
     dispatch(fetchTransactions(page));
-  }, [dispatch]);
+  }, [dispatch, page]);
 
   const deleteHandler = e => {
     const id = e.currentTarget.value;
@@ -79,29 +81,38 @@ const ExpensesTableDesktop = ({ page }) => {
           <th>Description</th>
           <th>Category</th>
           <th>Sum</th>
+          <th></th>
         </tr>
       </thead>
       <tbody className={styles.tbody}>
-        {table.map(expense => (
-          <tr key={expense._id} className={styles.row}>
-            <td className={styles.date}>{expense.date}</td>
-            <td className={styles.desc}>{expense.description}</td>
-            <td className={styles.category}>{expense.category}</td>
+        {table.map(transaction => (
+          <tr key={transaction._id} className={styles.row}>
+            <td className={styles.date}>{transaction.date}</td>
+            <td className={styles.desc}>{transaction.description}</td>
+            <td className={styles.category}>{transaction.category}</td>
             <td className={styles.amount}>
-              {expense.amount && (
-                <>
-                  <span>- {expense.amount} PLN</span>
-                  <button
-                    type="button"
-                    className={styles.buttonDelete}
-                    onClick={deleteHandler}
-                    value={expense._id}
-                  >
-                    <svg className={styles.deleteIcon}>
-                      <use href={`${icons}#icon-delete`}></use>
-                    </svg>
-                  </button>
-                </>
+              {page === 'expense' ? (
+                <span className={styles.red}>
+                  {transaction.amount && `- ${transaction.amount} PLN`}
+                </span>
+              ) : (
+                <span className={styles.green}>
+                  {transaction.amount && `+ ${transaction.amount} PLN`}
+                </span>
+              )}
+            </td>
+            <td className={styles.action}>
+              {transaction.amount && (
+                <button
+                  type="button"
+                  className={styles.buttonDelete}
+                  onClick={deleteHandler}
+                  value={transaction._id}
+                >
+                  <svg className={styles.deleteIcon}>
+                    <use href={`${icons}#icon-delete`}></use>
+                  </svg>
+                </button>
               )}
             </td>
           </tr>
@@ -110,4 +121,4 @@ const ExpensesTableDesktop = ({ page }) => {
     </table>
   );
 };
-export default ExpensesTableDesktop;
+export default TableDesktop;

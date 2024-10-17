@@ -71,7 +71,7 @@ const TableMobile = ({ page }) => {
                       {page === 'expense' ? (
                         <span className={styles.red}>- {transaction.amount} PLN</span>
                       ) : (
-                        <span className={styles.green}>{transaction.amount} PLN</span>
+                        <span className={styles.green}>+ {transaction.amount} PLN</span>
                       )}
                       <button
                         type="button"

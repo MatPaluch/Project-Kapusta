@@ -73,7 +73,6 @@ const MultiForm = ({ page }) => {
     const resFromSetBalance = new Promise((resolve, reject) => {
       const bodyTransaction = { description, category, amount, date };
       dispatch(handleExpenseSubmit({ bodyTransaction, page })).then(response => {
-        console.log(response);
         if (response.error) {
           reject(response.payload.message);
         } else {

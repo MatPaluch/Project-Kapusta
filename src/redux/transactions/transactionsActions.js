@@ -21,12 +21,11 @@ export const handleExpenseSubmit = createAsyncThunk(
 export const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',
   async (page, { rejectWithValue }) => {
-    console.log(page);
     try {
       const response = await axios.get(
         `https://project-kapusta-rest-api.vercel.app/transaction/${page}`
       );
-      console.log(response.data);
+
       return response.data;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -72,7 +71,7 @@ export const fetchIncomeCategories = createAsyncThunk(
       const response = await axios.get(
         'https://project-kapusta-rest-api.vercel.app/transaction/income-categories'
       );
-      console.log(response.data);
+
       return response.data.incomeCategories;
     } catch (error) {
       return rejectWithValue(error.response.data);
