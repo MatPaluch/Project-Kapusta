@@ -1,8 +1,8 @@
 import styles from './MainBody.module.css';
-import Calendar from 'components/Calendar/Calendar';
-import MultiForm from 'components/MultiForm/MultiForm';
-import SummaryList from 'components/SummaryList/SummaryList';
-import TableDesktop from 'components/TableDesktop/TableDesktop';
+import Calendar from '../Calendar/Calendar.jsx';
+import MultiForm from '../MultiForm/MultiForm.jsx';
+import SummaryList from '../SummaryList/SummaryList.jsx';
+import TableDesktop from '../TableDesktop/TableDesktop.jsx';
 
 const MainBody = ({ page }) => {
   return (
