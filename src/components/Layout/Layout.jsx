@@ -7,7 +7,6 @@ import icons from '../../images/icons.svg';
 import { Header } from '../Header/Header';
 import ModalLoader from 'components/ModalLoader/ModalLoader';
 import { Bounce, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export const Layout = () => {
   const token = useSelector(state => state.auth.token); // Pobieramy dane użytkownika z Reduxa
