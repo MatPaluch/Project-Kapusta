@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import styles from './TableMobile.module.css';
-import icons from '../../images/icons.svg';
 
 import { deleteTransaction, fetchTransactions } from '../../redux/transactions/transactionsActions';
 import { fetchUserData } from '../../redux/user/userActions';
+
+import styles from './TableMobile.module.css';
+import icons from '../../images/icons.svg';
 
 const TableMobile = ({ page }) => {
   const dispatch = useDispatch();

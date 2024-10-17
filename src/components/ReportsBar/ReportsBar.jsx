@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ReportsBar.module.css';
-
 import { CurrentPeriod } from 'components/CurrentPeriod/CurrentPeriod';
 import { BackToMain } from 'components/BackToMain/BackToMain';
 import { BalanceForReports } from 'components/BalanceForReports/BalanceForReports';

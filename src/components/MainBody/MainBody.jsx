@@ -1,8 +1,8 @@
-import styles from './MainBody.module.css';
 import Calendar from '../Calendar/Calendar.jsx';
 import MultiForm from '../MultiForm/MultiForm.jsx';
 import SummaryList from '../SummaryList/SummaryList.jsx';
 import TableDesktop from '../TableDesktop/TableDesktop.jsx';
+import styles from './MainBody.module.css';
 
 const MainBody = ({ page }) => {
   return (
