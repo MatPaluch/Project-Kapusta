@@ -7,6 +7,7 @@ import { deleteTransaction, fetchTransactions } from '../../redux/transactions/t
 import { fetchUserData } from '../../redux/user/userActions';
 
 import icons from '../../images/icons.svg';
+import { BounceLoader } from 'react-spinners';
 
 const TableMobile = ({ page }) => {
   const dispatch = useDispatch();
@@ -94,7 +95,9 @@ const TableMobile = ({ page }) => {
           </tbody>
         </table>
       ) : (
-        <div className={styles.modalLoader}>Loading...</div>
+        <div className={styles.modalLoader}>
+          <BounceLoader color={'rgba(255, 117, 29, 1)'} loading={true} />
+        </div>
       )}
     </div>
   );

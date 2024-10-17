@@ -6,6 +6,7 @@ import { Bounce, ToastContainer } from 'react-toastify';
 
 import icons from '../../images/icons.svg';
 import { Header } from '../Header/Header';
+import { BounceLoader } from 'react-spinners';
 
 export const Layout = () => {
   const token = useSelector(state => state.auth.token); // Pobieramy dane użytkownika z Reduxa
@@ -54,7 +55,13 @@ export const Layout = () => {
 
             {/* Kontener dla formularza logowania */}
             <div className={styles.loginContainer}>
-              <Suspense fallback={<div className={styles.modalLoader}>Loading...</div>}>
+              <Suspense
+                fallback={
+                  <div className={styles.modalLoader}>
+                    <BounceLoader color={'rgba(255, 117, 29, 1)'} loading={true} />
+                  </div>
+                }
+              >
                 <Outlet />
               </Suspense>
             </div>
