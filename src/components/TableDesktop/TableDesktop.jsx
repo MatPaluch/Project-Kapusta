@@ -5,8 +5,10 @@ import { toast } from 'react-toastify';
 import { fetchUserData } from '../../redux/user/userActions';
 import { deleteTransaction, fetchTransactions } from '../../redux/transactions/transactionsActions';
 import icons from '../../images/icons.svg';
+import { BounceLoader } from 'react-spinners';
 
 const TableDesktop = ({ page }) => {
+  const { loading } = useSelector(state => state.transactions);
   const transactions = useSelector(state =>
     page === 'expense' ? state.transactions.expenses : state.transactions.incomes
   );
@@ -85,7 +87,11 @@ const TableDesktop = ({ page }) => {
         </tr>
       </thead>
       <tbody className={styles.tbody}>
-        {console.log(table)}
+        {loading && (
+          <div className={styles.center}>
+            <BounceLoader color={'rgba(255, 117, 29, 1)'} loading={true} />
+          </div>
+        )}
         {table.map(transaction => (
           <tr key={transaction._id} className={styles.row}>
             <td className={styles.date}>{transaction.date}</td>
