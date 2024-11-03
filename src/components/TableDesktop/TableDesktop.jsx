@@ -85,6 +85,7 @@ const TableDesktop = ({ page }) => {
         </tr>
       </thead>
       <tbody className={styles.tbody}>
+        {console.log(table)}
         {table.map(transaction => (
           <tr key={transaction._id} className={styles.row}>
             <td className={styles.date}>{transaction.date}</td>

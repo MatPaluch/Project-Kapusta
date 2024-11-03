@@ -2,7 +2,7 @@
   "name": "project-kapusta",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://matpaluch.github.io/Project-Kapusta/",
+  "homepage": "https://matpaluch.github.io/project-kapusta/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
     "@testing-library/jest-dom": "^6.6.2",
