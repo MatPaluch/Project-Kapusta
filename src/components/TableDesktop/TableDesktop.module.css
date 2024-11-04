@@ -116,6 +116,9 @@
   .buttonDelete {
     margin: 0 8px;
   }
+  .tbody{
+    position: relative;
+  }
   .center {
     position: absolute;
     z-index: 30;
@@ -134,7 +137,6 @@
     padding-right: 0px;
   }
   .tbody {
-    position: relative;
     height: 378px;
   }
 }

@@ -26,14 +26,16 @@ const TableMobile = ({ page }) => {
 
     const resFromSetBalance = new Promise((resolve, reject) => {
       dispatch(deleteTransaction(id)).then(response => {
-        dispatch(fetchUserData());
-
         if (response.error) {
           reject(response.payload.message);
         } else {
           resolve(response.payload.message);
         }
       });
+    });
+    resFromSetBalance.then(() => {
+      dispatch(fetchUserData());
+      dispatch(fetchTransactions(page));
     });
 
     toast.promise(
