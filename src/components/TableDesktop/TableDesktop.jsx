@@ -54,7 +54,10 @@ const TableDesktop = ({ page }) => {
         }
       });
     });
-    resFromSetBalance.then(() => dispatch(fetchUserData()));
+    resFromSetBalance.then(() => {
+      dispatch(fetchUserData());
+      dispatch(fetchTransactions(page));
+    });
 
     toast.promise(
       resFromSetBalance,

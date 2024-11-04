@@ -16,7 +16,8 @@ export const registerUser = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const body = payload; // Example { username: 'Xyz', email: 'xyz@example.com', password: 'Password1@' }
-      const response = await axios.post('/auth/registeree', body);
+      const response = await axios.post('/auth/register', body);
+      console.log(response)
       return response.data;
     } catch (error) {
       // Obsługa różnych typów błędów

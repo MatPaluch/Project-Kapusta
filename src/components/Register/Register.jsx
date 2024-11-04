@@ -42,6 +42,7 @@ const Register = () => {
     const resFromRegisterRequest = new Promise((resolve, reject) => {
       dispatch(registerUser(formValues)).then(response => {
         if (response.error) {
+          console.log(response)
           reject(response.payload.message);
         } else {
           resolve(response.payload.message);

@@ -116,6 +116,14 @@
   .buttonDelete {
     margin: 0 8px;
   }
+  .center {
+    position: absolute;
+    z-index: 30;
+    padding-top: 126px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 /* ======================== DESKTOP===================================== */
@@ -128,13 +136,5 @@
   .tbody {
     position: relative;
     height: 378px;
-  }
-  .center {
-    position: absolute;
-    z-index: 30;
-    padding-top: 126px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
   }
 }
