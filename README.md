@@ -1,7 +1,7 @@
 # Project-Kapusta 🥬
 
-Aplikacja stworzona do zarządzania finansami osobistymi. Umożliwia monitorowanie wydatków,
-przychodów oraz wizualizację danych w przejrzysty i interaktywny sposób.
+Aplikacja w pełni responsywna stworzona do zarządzania finansami osobistymi. Umożliwia monitorowanie wydatków,
+przychodów oraz wizualizację danych w przejrzysty i interaktywny sposób. 
 
 ## Technologie
 
@@ -24,10 +24,6 @@ https://project-kapusta-rest-api.vercel.app/api-docs/
 
 Backend aplikacji jest hostowany na platformie Vercel, zapewniając niezawodne i skalowalne środowisko. API oferuje operacje CRUD dla zarządzania finansami.
 
-## Ustawianie daty i wybór z customowej listy.  
-![Date](assets/Date.PNG)  
-![CustomList](assets/CustomList.PNG)  
-
 ## Zrzuty ekranu
 
 ![Validation](assets/RegisterValidation.PNG)
@@ -35,3 +31,8 @@ Backend aplikacji jest hostowany na platformie Vercel, zapewniając niezawodne i
 ![Visit](assets/FirstVisit.PNG)
 ![Stats](assets/Stats.PNG)
 ![Reports](assets/Reports.PNG)
+
+## Ustawianie daty i wybór z customowej listy.  
+
+![Date](assets/Date.PNG)  
+![CustomList](assets/CustomList.PNG)  
