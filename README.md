@@ -24,12 +24,14 @@ https://project-kapusta-rest-api.vercel.app/api-docs/
 
 Backend aplikacji jest hostowany na platformie Vercel, zapewniając niezawodne i skalowalne środowisko. API oferuje operacje CRUD dla zarządzania finansami.
 
+## Ustawianie daty i wybór z customowej listy.  
+![Date](assets/Date.PNG)  
+![CustomList](assets/CustomList.PNG)  
+
 ## Zrzuty ekranu
 
 ![Validation](assets/RegisterValidation.PNG)
 ![Validation](assets/Validation.PNG)
 ![Visit](assets/FirstVisit.PNG)
-![CustomList](assets/CustomList.PNG)
-![Date](assets/Date.PNG)
 ![Stats](assets/Stats.PNG)
 ![Reports](assets/Reports.PNG)
