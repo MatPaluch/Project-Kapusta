@@ -23,3 +23,8 @@ https://project-kapusta-rest-api.vercel.app/api-docs/
 ## Backend
 
 Backend aplikacji znajduje się na platformie hostingowej Vercel.
+
+## Zrzuty ekranu
+
+Strona Logowania  
+![Login](assets/Login.PNG)
