@@ -22,7 +22,7 @@ https://project-kapusta-rest-api.vercel.app/api-docs/
 
 ## Backend
 
-Backend aplikacji znajduje się na platformie hostingowej Vercel.
+Backend aplikacji jest hostowany na platformie Vercel, zapewniając niezawodne i skalowalne środowisko. API oferuje operacje CRUD dla zarządzania finansami.
 
 ## Zrzuty ekranu
 
