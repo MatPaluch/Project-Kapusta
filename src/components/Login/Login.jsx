@@ -44,7 +44,7 @@ const Login = () => {
       <div className={styles.loginDiv}>
         <form onSubmit={handleSubmit}>
           <p className={styles.loginParagraph}>
-            Run this pls Log in using an email and password, after registering:
+            Log in using an email and password, after registering:
           </p>
 
           {/* Wyświetlanie błędów logowania */}
