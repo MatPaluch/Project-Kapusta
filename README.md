@@ -26,5 +26,10 @@ Backend aplikacji znajduje się na platformie hostingowej Vercel.
 
 ## Zrzuty ekranu
 
-Strona Logowania  
-![Login](assets/Login.PNG)
+![Validation](assets/RegisterValidation.PNG)
+![Validation](assets/Validation.PNG)
+![Visit](assets/FirstVisit.PNG)
+![CustomList](assets/CustomList.PNG)
+![Date](assets/Date.PNG)
+![Stats](assets/Stats.PNG)
+![Reports](assets/Reports.PNG)
